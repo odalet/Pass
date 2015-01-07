@@ -19,7 +19,6 @@ public class UserModel {
     /**
      * Id used to identify each user.
      */
-	@JsonProperty("Id")
     private int id;
 
     /**

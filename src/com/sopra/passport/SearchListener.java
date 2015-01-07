@@ -23,6 +23,20 @@ public class SearchListener implements TextWatcher {
 		this.userListView = userListView;
 	}
 	
+	public boolean search(CharSequence s, User user) {
+		boolean result = false;
+		
+		if (user.getSurname().toLowerCase(Locale.ENGLISH).contains(s.toString().toLowerCase(Locale.ENGLISH)))
+			result = true;
+		
+		for (String name : user.getGivenNames()) {
+			if (name.toLowerCase(Locale.ENGLISH).contains(s.toString().toLowerCase(Locale.ENGLISH)))
+				result = true;
+		}
+		
+		return result;
+	}
+	
 	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		
@@ -34,10 +48,8 @@ public class SearchListener implements TextWatcher {
 		UserListAdapter userListAdapter = null;
 		
 		for (User user : userList) {
-			if (user.getSurname().toLowerCase(Locale.ENGLISH).contains(s.toString().toLowerCase(Locale.ENGLISH)) ||
-					user.getSurname().toLowerCase(Locale.ENGLISH).contains(s.toString().toLowerCase(Locale.ENGLISH))) {
+			if (search(s, user))
 				tmpList.add(user);
-			}
 		}
 		
 		userListAdapter = new UserListAdapter(context, R.layout.user_item_row, tmpList);
