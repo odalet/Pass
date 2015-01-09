@@ -39,6 +39,7 @@ public class UserActivity extends Activity {
         TextView birthdateView = (TextView)findViewById(R.id.user_birthdate_text);
         TextView birthplaceView = (TextView)findViewById(R.id.user_birthplace_text);
         TextView addressView = (TextView)findViewById(R.id.user_address_text);
+<<<<<<< HEAD
         ImageButton photoView = (ImageButton)findViewById(R.id.user_photography_view);
         
         photoView.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +54,11 @@ public class UserActivity extends Activity {
             }
         });
         
+=======
+        ImageView photoView = (ImageView)findViewById(R.id.user_photography_view);
+        ImageView signatureView = (ImageView)findViewById(R.id.user_signature_view);
+        ImageView fingerprintView = (ImageView)findViewById(R.id.user_fingerprint_view);
+>>>>>>> refs/remotes/passport/master
         StringBuffer tmp;
         
         surnameView.setText(user.getSurname());
@@ -81,6 +87,7 @@ public class UserActivity extends Activity {
         birthplaceView.setText(user.getBirthplace());
         addressView.setText(user.getAddress());
         photoView.setImageBitmap(user.getPhotoToBitmap());
+        signatureView.setImageBitmap(user.getSignatureToBitmap());
     }
     
     

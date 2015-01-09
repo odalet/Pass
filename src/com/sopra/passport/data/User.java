@@ -167,7 +167,7 @@ public class User implements Serializable {
     	return photo;
     }
     public Bitmap getPhotoToBitmap() {
-    	return ImageConverter.getBitmapFromBytes(photo);
+    	return ImageConverter.getBitmapFromBytes(photo, ImageConverter.ImageFormat.JPEG_FORMAT);
     }
     
     public void setPhoto(byte[] photo) {
@@ -176,6 +176,9 @@ public class User implements Serializable {
     
     public byte[] getSignature() {
     	return signature;
+    }
+    public Bitmap getSignatureToBitmap() {
+    	return ImageConverter.getBitmapFromBytes(signature, ImageConverter.ImageFormat.JPEG_2000_FORMAT);
     }
     public void setSignature(byte[] signature) {
     	this.signature = signature;

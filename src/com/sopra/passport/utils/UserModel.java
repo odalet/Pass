@@ -19,7 +19,6 @@ public class UserModel {
     /**
      * Id used to identify each user.
      */
-	@JsonProperty("Id")
     private int id;
 
     /**
@@ -121,6 +120,8 @@ public class UserModel {
     	user.setBirthdate(new Date(birthdate));
     	user.setBirthplace(birthplace);
     	user.setPhoto(photo.getBytes());
+    	user.setSignature(signature.getBytes());
+    	user.setFingerprint(fingerprint.getBytes());
     	
     	return user;
     }
