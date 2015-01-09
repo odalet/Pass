@@ -33,6 +33,8 @@ public class UserActivity extends Activity {
         TextView birthplaceView = (TextView)findViewById(R.id.user_birthplace_text);
         TextView addressView = (TextView)findViewById(R.id.user_address_text);
         ImageView photoView = (ImageView)findViewById(R.id.user_photography_view);
+        ImageView signatureView = (ImageView)findViewById(R.id.user_signature_view);
+        ImageView fingerprintView = (ImageView)findViewById(R.id.user_fingerprint_view);
         StringBuffer tmp;
         
         surnameView.setText(user.getSurname());
@@ -61,5 +63,6 @@ public class UserActivity extends Activity {
         birthplaceView.setText(user.getBirthplace());
         addressView.setText(user.getAddress());
         photoView.setImageBitmap(user.getPhotoToBitmap());
+        signatureView.setImageBitmap(user.getSignatureToBitmap());
     }
 }
