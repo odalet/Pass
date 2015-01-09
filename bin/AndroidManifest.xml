@@ -23,11 +23,15 @@
         <activity
             android:name=".UserListActivity"
             android:label="@string/app_name" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ImageViewer"
+            android:label="@string/title_activity_image_viewer" >
         </activity>
     </application>
 

@@ -21,5 +21,7 @@
     <string name="activity_user_title">User details</string>
     <string name="list_photography_description">Photography</string>
     <string name="user_information_label">Information</string>
+    <string name="title_activity_image_viewer">ImageViewer</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

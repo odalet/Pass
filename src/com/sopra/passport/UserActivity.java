@@ -2,15 +2,22 @@ package com.sopra.passport;
 
 import com.sopra.passport.data.User;
 
+
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class UserActivity extends Activity {
 
+	private Context context = this;
 	private User user;
-	
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +39,20 @@ public class UserActivity extends Activity {
         TextView birthdateView = (TextView)findViewById(R.id.user_birthdate_text);
         TextView birthplaceView = (TextView)findViewById(R.id.user_birthplace_text);
         TextView addressView = (TextView)findViewById(R.id.user_address_text);
-        ImageView photoView = (ImageView)findViewById(R.id.user_photography_view);
+        ImageButton photoView = (ImageButton)findViewById(R.id.user_photography_view);
+        
+        photoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            
+                Intent intent = new Intent(context, ImageViewer.class);
+    			intent.putExtra("image", user.getPhoto() );
+    			startActivity(intent);
+   
+            
+            }
+        });
+        
         StringBuffer tmp;
         
         surnameView.setText(user.getSurname());
@@ -62,4 +82,8 @@ public class UserActivity extends Activity {
         addressView.setText(user.getAddress());
         photoView.setImageBitmap(user.getPhotoToBitmap());
     }
+    
+    
+    
+  
 }

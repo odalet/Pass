@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/user_photography_view"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -69,7 +69,6 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textIsSelectable="true"
                     android:textStyle="bold" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -113,7 +112,6 @@
                     android:layout_weight="1"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textIsSelectable="true" />
-
             </TableRow>
 
             <TableRow
@@ -135,6 +133,12 @@
                     android:layout_weight="1"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textIsSelectable="true" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
                 <TextView
                     android:id="@+id/user_sex_label"
@@ -147,8 +151,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textIsSelectable="true" />
+
             </TableRow>
 
             <TableRow
