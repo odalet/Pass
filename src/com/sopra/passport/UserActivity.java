@@ -71,10 +71,6 @@ public class UserActivity extends Activity {
             }
         });
         
-
-        //ImageView photoView = (ImageView)findViewById(R.id.user_photography_view);
-
-
         StringBuffer tmp;
         
         surnameView.setText(user.getSurname());
@@ -102,27 +98,26 @@ public class UserActivity extends Activity {
         birthdateView.setText(user.getBirthdate().toString());
         birthplaceView.setText(user.getBirthplace());
         addressView.setText(user.getAddress());
+        
         try {
 			photoView.setImageBitmap(user.getPhotoToBitmap());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        Log.i("img", user.getFingerprint().toString());
         
-    
+        try {
+        	signatureView.setImageBitmap(user.getSignatureToBitmap());
+        } catch (IOException e) {
+        	// TODO Auto-generated catch block
+        	e.printStackTrace();
+        }
         
-        
-       try {
-    	
-		signatureView.setImageBitmap(user.getSignatureToBitmap());
-       } catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-       }
+        try {
+        	fingerprintView.setImageBitmap(user.getFingerprintToBitmap());
+        } catch (IOException e) {
+        	// TODO Auto-generated catch block
+        	e.printStackTrace();
+        }
     }
-    
-    
-    
-  
 }

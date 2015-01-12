@@ -188,6 +188,9 @@ public class User implements Serializable {
     public byte[] getFingerprint() {
     	return fingerprint;
     }
+    public Bitmap getFingerprintToBitmap() throws IOException {
+    	return ImageConverter.getBitmapFromBytes(fingerprint, ImageConverter.ImageFormat.WSQ_FORMAT);
+    }
     public void setFingerprint(byte[] fingerprint) {
     	this.fingerprint = fingerprint;
     }

@@ -45,7 +45,7 @@ public class JJ2000Frontend {
   private static String pinfoDecoder[][] = Decoder.getAllParameters();
 
   public static Bitmap decode(byte[] input) {
-    // Get the dfault parameter values
+    // Get the default parameter values
     ParameterList defpl = new ParameterList();
     for (int i = pinfoDecoder.length - 1; i >= 0; --i) {
       if (pinfoDecoder[i][3] != null) {

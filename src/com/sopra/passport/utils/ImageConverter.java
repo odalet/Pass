@@ -1,12 +1,11 @@
 package com.sopra.passport.utils;
-import jj2000.JJ2000Frontend;
-import jj2000.j2k.decoder.Decoder;
-import jj2000.j2k.util.ParameterList;
-import android.graphics.Bitmap;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import jj2000.JJ2000Frontend;
+
+import org.jnbis.WsqDecoder;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,7 +17,8 @@ public class ImageConverter {
 	public static enum ImageFormat {
 		PNG_FORMAT,
 		JPEG_FORMAT,
-		JPEG_2000_FORMAT
+		JPEG_2000_FORMAT,
+		WSQ_FORMAT
 	}
 	
 	static public byte[] getBytesFromBitmap(Bitmap bitmap) {
@@ -34,7 +34,12 @@ public class ImageConverter {
 		switch(format) {
 		
 		case JPEG_2000_FORMAT:
-			decodedBytes = JJ2000Frontend.decode(encodedImage);       
+			decodedBytes = JJ2000Frontend.decode(base64Bytes);   
+			break;
+			
+		case WSQ_FORMAT:
+			WsqDecoder wsqDecoder = new WsqDecoder();
+			decodedBytes = toAndroidBitmap(wsqDecoder.decode(base64Bytes));
 			break;
 			
 		case PNG_FORMAT:
@@ -47,9 +52,17 @@ public class ImageConverter {
 			decodedBytes = BitmapFactory.decodeByteArray(base64Bytes, 0, base64Bytes.length);
 			break;
 		}
-		
-		 
-		
+
 		return decodedBytes;
+	}
+	
+	private static Bitmap toAndroidBitmap(org.jnbis.Bitmap bitmap) {
+		byte[] byteData = bitmap.getPixels();
+		int[] intData = new int[byteData.length];
+		
+		for (int j = 0; j < byteData.length; j++)
+			intData[j] = 0xFF000000 | ((byteData[j] & 0xFF) << 16) | ((byteData[j] & 0xFF) << 8) | (byteData[j] & 0xFF);
+
+		return Bitmap.createBitmap(intData, 0, bitmap.getWidth(), bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 	}
 }
