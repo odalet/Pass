@@ -1,6 +1,10 @@
 package com.sopra.passport;
 
+import java.io.IOException;
+
 import com.sopra.passport.utils.ImageConverter;
+import com.sopra.passport.utils.ImageConverter.ImageFormat;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Bitmap;
@@ -27,8 +31,15 @@ public class ImageViewer extends Activity {
 		setContentView(R.layout.image_viewer);
     	byte [] myImg = (byte [])getIntent().getSerializableExtra("image");
     	final ImageView photoView = (ImageView)findViewById(R.id.imageViewer);
-    	Bitmap myImgBitMap = ImageConverter.getBitmapFromBytes(myImg);
-    	photoView.setImageBitmap(myImgBitMap);
+    	//Bitmap myImgBitMap;
+		try {
+			Bitmap myImgBitMap = ImageConverter.getBitmapFromBytes(myImg,ImageFormat.JPEG_FORMAT);
+			photoView.setImageBitmap(myImgBitMap);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     	
     	zoom = (ZoomControls) findViewById(R.id.zoomControls1);
     	

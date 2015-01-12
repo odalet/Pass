@@ -1,5 +1,6 @@
 package com.sopra.passport.data;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -166,7 +167,7 @@ public class User implements Serializable {
     public byte[] getPhoto() {
     	return photo;
     }
-    public Bitmap getPhotoToBitmap() {
+    public Bitmap getPhotoToBitmap() throws IOException {
     	return ImageConverter.getBitmapFromBytes(photo, ImageConverter.ImageFormat.JPEG_FORMAT);
     }
     
@@ -177,7 +178,7 @@ public class User implements Serializable {
     public byte[] getSignature() {
     	return signature;
     }
-    public Bitmap getSignatureToBitmap() {
+    public Bitmap getSignatureToBitmap() throws IOException {
     	return ImageConverter.getBitmapFromBytes(signature, ImageConverter.ImageFormat.JPEG_2000_FORMAT);
     }
     public void setSignature(byte[] signature) {

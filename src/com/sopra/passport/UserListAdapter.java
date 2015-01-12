@@ -1,5 +1,6 @@
 package com.sopra.passport;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.sopra.passport.data.User;
@@ -66,7 +67,12 @@ public class UserListAdapter extends ArrayAdapter<User> {
         // Sex
         sexLineView.setText(user.getSex().toString());
         
-        photoView.setImageBitmap(user.getPhotoToBitmap());
+        try {
+			photoView.setImageBitmap(user.getPhotoToBitmap());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         return convertView;
 	}

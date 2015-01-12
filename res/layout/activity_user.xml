@@ -68,7 +68,7 @@
                     android:layout_marginLeft="10dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textIsSelectable="true"
-                    android:textStyle="bold" />
+                    android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
 
