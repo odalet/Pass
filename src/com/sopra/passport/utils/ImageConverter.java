@@ -1,5 +1,8 @@
 package com.sopra.passport.utils;
-
+import jj2000.JJ2000Frontend;
+import jj2000.j2k.decoder.Decoder;
+import jj2000.j2k.util.ParameterList;
+import android.graphics.Bitmap;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -31,8 +34,7 @@ public class ImageConverter {
 		switch(format) {
 		
 		case JPEG_2000_FORMAT:
-			//jj2000.j2k.decoder object = new jj2000; 
-	       
+			decodedBytes = JJ2000Frontend.decode(encodedImage);       
 			break;
 			
 		case PNG_FORMAT:

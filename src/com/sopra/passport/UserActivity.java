@@ -114,6 +114,7 @@ public class UserActivity extends Activity {
         
         
        try {
+    	
 		signatureView.setImageBitmap(user.getSignatureToBitmap());
        } catch (IOException e) {
 		// TODO Auto-generated catch block
