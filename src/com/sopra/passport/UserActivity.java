@@ -1,38 +1,23 @@
 package com.sopra.passport;
 
-
-import java.awt.Image;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import javax.imageio.*;
 
 import com.sopra.passport.data.User;
-
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 public class UserActivity extends Activity {
 
 	private Context context = this;
 	private User user;
 
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,23 +39,9 @@ public class UserActivity extends Activity {
         TextView birthdateView = (TextView)findViewById(R.id.user_birthdate_text);
         TextView birthplaceView = (TextView)findViewById(R.id.user_birthplace_text);
         TextView addressView = (TextView)findViewById(R.id.user_address_text);
-
-        ImageButton photoView = (ImageButton)findViewById(R.id.user_photography_view);
+        ImageView photoView = (ImageView)findViewById(R.id.user_photography_view);
         ImageView signatureView = (ImageView)findViewById(R.id.user_signature_view);
         ImageView fingerprintView = (ImageView)findViewById(R.id.user_fingerprint_view);
-        
-        photoView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            
-                Intent intent = new Intent(context, ImageViewer.class);
-    			intent.putExtra("image", user.getPhoto() );
-    			startActivity(intent);
-   
-            
-            }
-        });
-        
         StringBuffer tmp;
         
         surnameView.setText(user.getSurname());
@@ -98,9 +69,10 @@ public class UserActivity extends Activity {
         birthdateView.setText(user.getBirthdate().toString());
         birthplaceView.setText(user.getBirthplace());
         addressView.setText(user.getAddress());
-        
+
         try {
 			photoView.setImageBitmap(user.getPhotoToBitmap());
+			photoView.setOnClickListener(new ZoomListener());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -108,6 +80,7 @@ public class UserActivity extends Activity {
         
         try {
         	signatureView.setImageBitmap(user.getSignatureToBitmap());
+        	signatureView.setOnClickListener(new ZoomListener());
         } catch (IOException e) {
         	// TODO Auto-generated catch block
         	e.printStackTrace();
@@ -115,9 +88,33 @@ public class UserActivity extends Activity {
         
         try {
         	fingerprintView.setImageBitmap(user.getFingerprintToBitmap());
+        	fingerprintView.setOnClickListener(new ZoomListener());
         } catch (IOException e) {
         	// TODO Auto-generated catch block
         	e.printStackTrace();
         }
+    }
+    
+    private class ZoomListener implements OnClickListener
+    {
+		@Override
+		public void onClick(View v) {
+			ImageView currentView = (ImageView) v;
+			ImageView photoView = (ImageView)findViewById(R.id.user_photography_view);
+	        ImageView signatureView = (ImageView)findViewById(R.id.user_signature_view);
+	        ImageView fingerprintView = (ImageView)findViewById(R.id.user_fingerprint_view);
+			byte[] img = null;
+			
+			if (currentView == photoView)
+				img = user.getPhoto();
+			else if (currentView == signatureView)
+				img = user.getSignature();
+			else if (currentView == fingerprintView)
+				img = user.getFingerprint();
+			
+			Intent intent = new Intent(context, ImageActivity.class);
+			intent.putExtra("image", img);
+			startActivity(intent);
+		}
     }
 }

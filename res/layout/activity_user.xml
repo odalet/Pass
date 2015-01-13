@@ -23,13 +23,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/user_photography_view"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 android:contentDescription="@string/user_photography_description"
-                android:minHeight="125dp"
-                android:minWidth="125dp"
                 android:src="@drawable/ic_launcher" />
 
             <LinearLayout
@@ -68,7 +66,8 @@
                     android:layout_marginLeft="10dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textIsSelectable="true"
-                    android:textSize="13sp" />
+                    android:textStyle="bold" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -136,7 +135,7 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/tableRow1"
+                android:id="@+id/user_sex_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 
@@ -262,7 +261,7 @@
             android:layout_height="2dp"
             android:layout_marginBottom="10dp"
             android:background="#c0c0c0" />
-
+        
         <ImageView
             android:id="@+id/user_signature_view"
             android:layout_width="match_parent"

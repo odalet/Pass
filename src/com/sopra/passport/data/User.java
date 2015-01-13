@@ -168,7 +168,7 @@ public class User implements Serializable {
     	return photo;
     }
     public Bitmap getPhotoToBitmap() throws IOException {
-    	return ImageConverter.getBitmapFromBytes(photo, ImageConverter.ImageFormat.JPEG_FORMAT);
+    	return ImageConverter.getBitmapFromBytes(photo);
     }
     
     public void setPhoto(byte[] photo) {
@@ -179,7 +179,7 @@ public class User implements Serializable {
     	return signature;
     }
     public Bitmap getSignatureToBitmap() throws IOException {
-    	return ImageConverter.getBitmapFromBytes(signature, ImageConverter.ImageFormat.JPEG_2000_FORMAT);
+    	return ImageConverter.getBitmapFromBytes(signature);
     }
     public void setSignature(byte[] signature) {
     	this.signature = signature;
@@ -189,7 +189,7 @@ public class User implements Serializable {
     	return fingerprint;
     }
     public Bitmap getFingerprintToBitmap() throws IOException {
-    	return ImageConverter.getBitmapFromBytes(fingerprint, ImageConverter.ImageFormat.WSQ_FORMAT);
+    	return ImageConverter.getBitmapFromBytes(fingerprint);
     }
     public void setFingerprint(byte[] fingerprint) {
     	this.fingerprint = fingerprint;

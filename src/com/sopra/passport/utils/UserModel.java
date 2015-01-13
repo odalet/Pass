@@ -1,10 +1,13 @@
 package com.sopra.passport.utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
+
+import android.graphics.Bitmap;
 
 import com.sopra.passport.data.Date;
 import com.sopra.passport.data.Sex;
@@ -119,9 +122,30 @@ public class UserModel {
     	user.setAddress(address);
     	user.setBirthdate(new Date(birthdate));
     	user.setBirthplace(birthplace);
-    	user.setPhoto(photo.getBytes());
-    	user.setSignature(signature.getBytes());
-    	user.setFingerprint(fingerprint.getBytes());
+    	
+    	try {
+			Bitmap image = ImageConverter.getBitmapFromJPEG2000Bytes(photo.getBytes());
+    		user.setPhoto(ImageConverter.getBytesFromBitmap(image));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	try {
+    		Bitmap image = ImageConverter.getBitmapFromJPEG2000Bytes(signature.getBytes());
+    		user.setSignature(ImageConverter.getBytesFromBitmap(image));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	try {
+    		Bitmap image = ImageConverter.getBitmapFromWSQBytes(fingerprint.getBytes());
+    		user.setFingerprint(ImageConverter.getBytesFromBitmap(image));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     	return user;
     }

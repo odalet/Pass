@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ImageViewer"
+            android:name=".ImageActivity"
             android:label="@string/title_activity_image_viewer" >
         </activity>
     </application>
