@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
  * It allows the interpretation of date as year, month and day.
  * Each field can be empty.
  */
-public class Date implements Serializable {
+public class Birthdate implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -33,19 +33,19 @@ public class Date implements Serializable {
 	 */
 	private int year;
 	
-	public Date() {
-		this.day = Date.NONE;
-		this.month = Date.NONE;
-		this.year = Date.NONE;
+	public Birthdate() {
+		this.day = Birthdate.NONE;
+		this.month = Birthdate.NONE;
+		this.year = Birthdate.NONE;
 	}
 	
-	public Date(int day, int month, int year) {
+	public Birthdate(int day, int month, int year) {
 		this.day = day;
 		this.month = month;
 		this.year = year;
 	}
 	
-	public Date(String date) {
+	public Birthdate(String date) {
 		StringTokenizer strTk = new StringTokenizer(date, "/");
 		
 		String dayStr = strTk.nextElement().toString();
@@ -69,11 +69,11 @@ public class Date implements Serializable {
 	public String toString() {
 		StringBuffer buff = new StringBuffer();
 		
-		buff.append((day == Date.NONE) ? "--" : day);
+		buff.append((day == Birthdate.NONE) ? "--" : day);
 		buff.append('/');
-		buff.append((month == Date.NONE) ? "--" : month);
+		buff.append((month == Birthdate.NONE) ? "--" : month);
 		buff.append('/');
-		buff.append((year == Date.NONE) ? "----" : year);
+		buff.append((year == Birthdate.NONE) ? "----" : year);
 		
 		return buff.toString();
 	}

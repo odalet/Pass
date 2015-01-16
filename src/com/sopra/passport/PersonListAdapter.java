@@ -3,7 +3,7 @@ package com.sopra.passport;
 import java.io.IOException;
 import java.util.List;
 
-import com.sopra.passport.data.User;
+import com.sopra.passport.data.Person;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,13 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class UserListAdapter extends ArrayAdapter<User> {
+public class PersonListAdapter extends ArrayAdapter<Person> {
 
 	private Context context;
 	private int resourceId;
 	private LayoutInflater inflater;
 	
-	public UserListAdapter(Context context, int textViewResourceId, List<User> objects) {
+	public PersonListAdapter(Context context, int textViewResourceId, List<Person> objects) {
 		super(context, textViewResourceId, objects);
 		this.resourceId = textViewResourceId;
 		this.inflater = LayoutInflater.from(context);
@@ -35,7 +35,7 @@ public class UserListAdapter extends ArrayAdapter<User> {
 			convertView = inflater.inflate(resourceId, parent, false);
 		}
 		
-		User user = getItem(position);
+		Person user = getItem(position);
 		TextView nameView = (TextView) convertView.findViewById(R.id.item_name_text);
 		TextView firstLineView = (TextView) convertView.findViewById(R.id.item_first_line_text);
 		TextView secondLineView = (TextView) convertView.findViewById(R.id.item_second_line_text);

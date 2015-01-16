@@ -1,23 +1,20 @@
-package com.sopra.passport.utils;
+package com.sopra.passport.data;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
-
 import android.graphics.Bitmap;
 
-import com.sopra.passport.data.Date;
-import com.sopra.passport.data.Sex;
-import com.sopra.passport.data.User;
+import com.sopra.passport.utils.ImageConverter;
 
 /**
  * Class used to save all data for a user.
  */
-@JsonIgnoreProperties(ignoreUnknown=true)
-public class UserModel {
+public class Person implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
     /**
      * Id used to identify each user.
@@ -28,126 +25,72 @@ public class UserModel {
      * Surname of the user.
      * (ex : "MARTIN")
      */
-	@JsonProperty("Surname")
     private String surname;
 
     /**
      * Given names of the user.
      * (ex : "Jean, Michel, Henry")
      */
-	@JsonProperty("GivenNames")
     private List<String> givenNames = new ArrayList<String>();
 
     /**
      * Nationality of the user.
      * (ex : "French")
      */
-	@JsonProperty("Nationality")
     private String nationality;
 
     /**
      * Sex of the user.
      */
-	@JsonProperty("Sex")
-    private String sex;    
+    private Gender sex;    
 
     /**
      * Height of the user.
      * (ex : "1.77 m")
      */
-	@JsonProperty("Height")
     private double height;
     
     /**
      * Eyes color of the user.
      */
-	@JsonProperty("EyesColor")
     private String eyesColor;
     
     /**
      * Birthdate of the user.
      */
-	@JsonProperty("Birthdate")
-    private String birthdate;
+    private Birthdate birthdate;
 
     /**
      * Birthplace of the user.
      */
-	@JsonProperty("Birthplace")
     private String birthplace;
 
     /**
      * Address of the user.
      */
-	@JsonProperty("Address")
     private String address;
 
     /**
      * Photography of the user.
      */
-	@JsonProperty("Photo")
-    private String photo;
+    private byte[] photo;
     
     /**
      * Signature of the user.
      */
-	@JsonProperty("Signature")
-    private String signature;
+    private byte[] signature;
 
     /**
      * Fingerprint of the user.
      */
-	@JsonProperty("Fingerprint")
-    private String fingerprint;
+    private byte[] fingerprint;
 
-    public UserModel() {
-    	
+    public Person(int id) {
+
     }
-    
-    public User toUser() {
-    	User user = new User(id);
+
+    public Person() {
     	
-    	user.setSurname(surname);
-    	user.setGivenNames(givenNames);
-    	user.setNationality(nationality);
-    	
-    	if (sex.compareTo(Sex.MALE.toString()) == 0) {
-    		user.setSex(Sex.MALE);
-    	} else {
-    		user.setSex(Sex.FEMALE);
-    	}
-    	
-    	user.setHeight(height);
-    	user.setEyesColor(eyesColor);
-    	user.setAddress(address);
-    	user.setBirthdate(new Date(birthdate));
-    	user.setBirthplace(birthplace);
-    	
-    	try {
-			Bitmap image = ImageConverter.getBitmapFromJPEG2000Bytes(photo.getBytes());
-    		user.setPhoto(ImageConverter.getBytesFromBitmap(image));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	try {
-    		Bitmap image = ImageConverter.getBitmapFromJPEG2000Bytes(signature.getBytes());
-    		user.setSignature(ImageConverter.getBytesFromBitmap(image));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	try {
-    		Bitmap image = ImageConverter.getBitmapFromWSQBytes(fingerprint.getBytes());
-    		user.setFingerprint(ImageConverter.getBytesFromBitmap(image));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	return user;
     }
     
     public int getId() {
@@ -179,10 +122,10 @@ public class UserModel {
         this.nationality = nationality;
     }
 
-    public String getSex() {
+    public Gender getSex() {
         return sex;
     }
-    public void setSex(String sex) {
+    public void setSex(Gender sex) {
         this.sex = sex;
     }
     
@@ -200,10 +143,10 @@ public class UserModel {
     	this.eyesColor = eyesColor;
     }
     
-    public String getBirthdate() {
+    public Birthdate getBirthdate() {
         return birthdate;
     }
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Birthdate birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -221,25 +164,34 @@ public class UserModel {
         this.address = address;
     }
 
-    public String getPhoto() {
+    public byte[] getPhoto() {
     	return photo;
     }
+    public Bitmap getPhotoToBitmap() throws IOException {
+    	return ImageConverter.getBitmapFromBytes(photo);
+    }
     
-    public void setPhoto(String photo) {
+    public void setPhoto(byte[] photo) {
     	this.photo = photo;
     }
     
-    public String getSignature() {
+    public byte[] getSignature() {
     	return signature;
     }
-    public void setSignature(String signature) {
+    public Bitmap getSignatureToBitmap() throws IOException {
+    	return ImageConverter.getBitmapFromBytes(signature);
+    }
+    public void setSignature(byte[] signature) {
     	this.signature = signature;
     }
     
-    public String getFingerprint() {
+    public byte[] getFingerprint() {
     	return fingerprint;
     }
-    public void setFingerprint(String fingerprint) {
+    public Bitmap getFingerprintToBitmap() throws IOException {
+    	return ImageConverter.getBitmapFromBytes(fingerprint);
+    }
+    public void setFingerprint(byte[] fingerprint) {
     	this.fingerprint = fingerprint;
     }
 }

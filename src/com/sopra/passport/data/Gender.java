@@ -3,7 +3,7 @@ package com.sopra.passport.data;
 /**
  * This enumeration represents the sex of the user.
  */
-public enum Sex {
+public enum Gender {
 	MALE,
 	FEMALE;
 	

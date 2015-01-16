@@ -18,7 +18,7 @@ import android.widget.ZoomControls;
 public class ImageActivity extends Activity {
 	
 	private Bitmap image;
-	private ImageView imageView;
+	private ZoomImageView imageView;
 	private ZoomControls zoomControl;
 
 	@Override
@@ -26,7 +26,7 @@ public class ImageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_image);
     	
-		this.imageView = (ImageView)findViewById(R.id.image_view);
+		this.imageView = (ZoomImageView)findViewById(R.id.image_view);
 		this.zoomControl = (ZoomControls) findViewById(R.id.image_zoom_control);
 		
 		byte[] imgBytes = (byte[]) getIntent().getSerializableExtra("image");
@@ -51,7 +51,7 @@ public class ImageActivity extends Activity {
 			float y = imageView.getScaleY();
 			
 			imageView.setScaleX((float) (x + 0.5));
-			imageView.setScaleY((float) (y + 0.5));			
+			imageView.setScaleY((float) (y + 0.5));
 		}
 	}
 	

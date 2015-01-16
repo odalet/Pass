@@ -2,8 +2,8 @@ package com.sopra.passport;
 
 import java.util.List;
 
-import com.sopra.passport.data.User;
-import com.sopra.passport.utils.UserFactory;
+import com.sopra.passport.data.Person;
+import com.sopra.passport.utils.PersonFactory;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,33 +18,33 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class UserListActivity extends Activity {
+public class PersonListActivity extends Activity {
 
 	private Context context = this;
-	static private List<User> userList = null;
-	private ListView userListView = null;
+	static private List<Person> personList = null;
+	private ListView personListView = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_user_list);
+		setContentView(R.layout.activity_person_list);
 		
-		new UserListGetTask().execute();
+		new PersonListGetTask().execute();
 	}
 	
 	private void initUI() {
-		userListView = (ListView) findViewById(R.id.list_userlist_view);
-		userListView.setAdapter(new UserListAdapter(context, R.layout.user_item_row, userList));
-		userListView.setOnItemClickListener(new ItemClickListener());
+		personListView = (ListView) findViewById(R.id.list_personlist_view);
+		personListView.setAdapter(new PersonListAdapter(context, R.layout.person_item_row, personList));
+		personListView.setOnItemClickListener(new ItemClickListener());
 		
 		EditText inputSearch = (EditText) findViewById(R.id.list_search_text);
-		inputSearch.addTextChangedListener(new SearchListener(this, userList, userListView));
+		inputSearch.addTextChangedListener(new SearchListener(this, personList, personListView));
 	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.user_list, menu);
+		getMenuInflater().inflate(R.menu.person_list, menu);
 		return true;
 	}
 
@@ -65,18 +65,18 @@ public class UserListActivity extends Activity {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			User selectedUser = (User) parent.getItemAtPosition(position);
+			Person selectedPerson = (Person) parent.getItemAtPosition(position);
 		
-			// Start UserActivity
-			Intent intent = new Intent(context, UserActivity.class);
-			intent.putExtra("user", selectedUser);
+			// Start PersonActivity
+			Intent intent = new Intent(context, PersonActivity.class);
+			intent.putExtra("person", selectedPerson);
 			startActivity(intent);
 		}
 	}
 	
 	
 	
-	private class UserListGetTask extends AsyncTask<Void, Void, Void> {
+	private class PersonListGetTask extends AsyncTask<Void, Void, Void> {
     	
     	@Override
     	protected void onPostExecute(Void v) {
@@ -87,7 +87,7 @@ public class UserListActivity extends Activity {
 		protected Void doInBackground(Void... params) {
 			
 			try {
-				userList = UserFactory.getListUsers();
+				personList = PersonFactory.getListPersons();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

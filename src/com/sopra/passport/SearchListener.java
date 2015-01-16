@@ -9,27 +9,27 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.ListView;
 
-import com.sopra.passport.data.User;
+import com.sopra.passport.data.Person;
 
 public class SearchListener implements TextWatcher {
 
 	private Context context;
-	private List<User> userList;
-	private ListView userListView;
+	private List<Person> personList;
+	private ListView personListView;
 	
-	public SearchListener(Context context, List<User> userList, ListView userListView) {
+	public SearchListener(Context context, List<Person> personList, ListView personListView) {
 		this.context = context;
-		this.userList = userList;
-		this.userListView = userListView;
+		this.personList = personList;
+		this.personListView = personListView;
 	}
 	
-	public boolean search(CharSequence s, User user) {
+	public boolean search(CharSequence s, Person person) {
 		boolean result = false;
 		
-		if (user.getSurname().toLowerCase(Locale.ENGLISH).contains(s.toString().toLowerCase(Locale.ENGLISH)))
+		if (person.getSurname().toLowerCase(Locale.ENGLISH).contains(s.toString().toLowerCase(Locale.ENGLISH)))
 			result = true;
 		
-		for (String name : user.getGivenNames()) {
+		for (String name : person.getGivenNames()) {
 			if (name.toLowerCase(Locale.ENGLISH).contains(s.toString().toLowerCase(Locale.ENGLISH)))
 				result = true;
 		}
@@ -44,16 +44,16 @@ public class SearchListener implements TextWatcher {
 
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		List<User> tmpList = new ArrayList<User>();
-		UserListAdapter userListAdapter = null;
+		List<Person> tmpList = new ArrayList<Person>();
+		PersonListAdapter personListAdapter = null;
 		
-		for (User user : userList) {
-			if (search(s, user))
-				tmpList.add(user);
+		for (Person person : personList) {
+			if (search(s, person))
+				tmpList.add(person);
 		}
 		
-		userListAdapter = new UserListAdapter(context, R.layout.user_item_row, tmpList);
-		userListView.setAdapter(userListAdapter);
+		personListAdapter = new PersonListAdapter(context, R.layout.person_item_row, tmpList);
+		personListView.setAdapter(personListAdapter);
 	}
 
 	@Override

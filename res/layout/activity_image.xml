@@ -10,12 +10,14 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
+    <com.sopra.passport.ZoomImageView
         android:id="@+id/image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/image_zoom_control"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:src="@drawable/ic_launcher" />
 
-    </RelativeLayout>
+</RelativeLayout>

@@ -16,28 +16,28 @@ import org.codehaus.jackson.type.TypeReference;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import com.sopra.passport.data.User;
+import com.sopra.passport.data.Person;
 
-public class UserFactory {
+public class PersonFactory {
 
 	private static final String FILE_URL = "http://madridi2.olympe.in/Users.json"; 
 	
-	static public List<User> getListUsers() throws JSONException, 
-												   JsonParseException,
-												   JsonMappingException, 
-												   IOException {
+	static public List<Person> getListPersons() throws JSONException, 
+												   	   JsonParseException,
+												       JsonMappingException, 
+												       IOException {
 		JSONArray hs = new JSONArray(getJsonArray());
 		ObjectMapper mapper = new ObjectMapper();
-		List<UserModel> userListModels = null;
-		List<User> userList = null;
+		List<PersonModel> userListModels = null;
+		List<Person> userList = null;
 		
 		userListModels = mapper.readValue(
 			hs.toString(), 
-			new TypeReference<List<UserModel>>(){}
+			new TypeReference<List<PersonModel>>(){}
 		);
 		
-		userList = new ArrayList<User>();
-		for (UserModel userModel : userListModels) {
+		userList = new ArrayList<Person>();
+		for (PersonModel userModel : userListModels) {
 			userList.add(userModel.toUser());
 		}
 		

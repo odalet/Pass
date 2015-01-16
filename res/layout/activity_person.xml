@@ -1,6 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/user_main_scroll"
+    android:id="@+id/person_main_scroll"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,41 +10,41 @@
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:scrollbarStyle="outsideOverlay"
     android:scrollbars="vertical"
-    tools:context="com.sopra.passport.UserActivity" >
+    tools:context="com.sopra.passport.PersonActivity" >
 
     <LinearLayout
-        android:id="@+id/user_main_layout"
+        android:id="@+id/person_main_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/user_photography_layout"
+            android:id="@+id/person_photography_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
             <ImageView
-                android:id="@+id/user_photography_view"
+                android:id="@+id/person_photography_view"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:contentDescription="@string/user_photography_description"
+                android:contentDescription="@string/person_photography_description"
                 android:src="@drawable/ic_launcher" />
 
             <LinearLayout
-                android:id="@+id/user_identity_layout"
+                android:id="@+id/person_identity_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/user_surname_label"
+                    android:id="@+id/person_surname_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_surname_label" />
+                    android:text="@string/person_surname_label" />
 
                 <TextView
-                    android:id="@+id/user_surname_text"
+                    android:id="@+id/person_surname_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -53,14 +53,14 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/user_given_names_label"
+                    android:id="@+id/person_given_names_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/user_given_names_label" />
+                    android:text="@string/person_given_names_label" />
 
                 <TextView
-                    android:id="@+id/user_given_names_text"
+                    android:id="@+id/person_given_names_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -72,38 +72,38 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/user_information_label"
+            android:id="@+id/person_information_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/user_information_label"
+            android:text="@string/person_information_label"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/user_line1_label"
+            android:id="@+id/person_line1_label"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="10dp"
             android:background="#c0c0c0" />
 
         <TableLayout
-            android:id="@+id/user_information_table"
+            android:id="@+id/person_information_table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
             <TableRow
-                android:id="@+id/user_nationality_row"
+                android:id="@+id/person_nationality_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 
                 <TextView
-                    android:id="@+id/user_nationality_label"
+                    android:id="@+id/person_nationality_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_nationality_label" />
+                    android:text="@string/person_nationality_label" />
 
                 <TextView
-                    android:id="@+id/user_nationality_text"
+                    android:id="@+id/person_nationality_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -114,18 +114,18 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/user_height_row"
+                android:id="@+id/person_height_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 
                 <TextView
-                    android:id="@+id/user_height_label"
+                    android:id="@+id/person_height_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_height_label" />
+                    android:text="@string/person_height_label" />
 
                 <TextView
-                    android:id="@+id/user_height_text"
+                    android:id="@+id/person_height_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -135,18 +135,18 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/user_sex_row"
+                android:id="@+id/person_gender_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 
                 <TextView
-                    android:id="@+id/user_sex_label"
+                    android:id="@+id/person_gender_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_sex_label" />
+                    android:text="@string/person_sex_label" />
 
                 <TextView
-                    android:id="@+id/user_sex_text"
+                    android:id="@+id/person_gender_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -155,18 +155,18 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/user_color_of_eyes_row"
+                android:id="@+id/person_color_of_eyes_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 
                 <TextView
-                    android:id="@+id/user_color_of_eyes_label"
+                    android:id="@+id/person_color_of_eyes_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_eyes_color_label" />
+                    android:text="@string/person_eyes_color_label" />
 
                 <TextView
-                    android:id="@+id/user_color_of_eyes_text"
+                    android:id="@+id/person_color_of_eyes_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -177,19 +177,19 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/user_birthdate_row"
+                android:id="@+id/person_birthdate_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp" >
 
                 <TextView
-                    android:id="@+id/user_birthdate_label"
+                    android:id="@+id/person_birthdate_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_birthdate_label" />
+                    android:text="@string/person_birthdate_label" />
 
                 <TextView
-                    android:id="@+id/user_birthdate_text"
+                    android:id="@+id/person_birthdate_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -200,18 +200,18 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/user_birthplace_row"
+                android:id="@+id/person_birthplace_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 
                 <TextView
-                    android:id="@+id/user_birthplace_label"
+                    android:id="@+id/person_birthplace_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_birthplace_label" />
+                    android:text="@string/person_birthplace_label" />
 
                 <TextView
-                    android:id="@+id/user_birthplace_text"
+                    android:id="@+id/person_birthplace_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -222,19 +222,19 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/user_address_row"
+                android:id="@+id/person_address_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp" >
 
                 <TextView
-                    android:id="@+id/user_address_label"
+                    android:id="@+id/person_address_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_address_label" />
+                    android:text="@string/person_address_label" />
 
                 <TextView
-                    android:id="@+id/user_address_text"
+                    android:id="@+id/person_address_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -248,47 +248,47 @@
         </TableLayout>
 
         <TextView
-            android:id="@+id/user_signature_label"
+            android:id="@+id/person_signature_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/user_signature_label"
+            android:text="@string/person_signature_label"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/user_line2_label"
+            android:id="@+id/person_line2_label"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="10dp"
             android:background="#c0c0c0" />
         
         <ImageView
-            android:id="@+id/user_signature_view"
+            android:id="@+id/person_signature_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/user_signature_description"
+            android:contentDescription="@string/person_signature_description"
             android:src="@drawable/ic_launcher" />
 
         <TextView
-            android:id="@+id/user_fingerprint_label"
+            android:id="@+id/person_fingerprint_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/user_fingerprint_label"
+            android:text="@string/person_fingerprint_label"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/user_line3_label"
+            android:id="@+id/person_line3_label"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="10dp"
             android:background="#c0c0c0" />
 
         <ImageView
-            android:id="@+id/user_fingerprint_view"
+            android:id="@+id/person_fingerprint_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/user_fingerprint_description"
+            android:contentDescription="@string/person_fingerprint_description"
             android:src="@drawable/ic_launcher" />
     </LinearLayout>
 

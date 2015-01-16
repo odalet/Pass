@@ -17,11 +17,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".UserActivity"
-            android:label="@string/activity_user_title" >
+            android:name=".PersonActivity"
+            android:label="@string/activity_person_title" >
         </activity>
         <activity
-            android:name=".UserListActivity"
+            android:name=".PersonListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
