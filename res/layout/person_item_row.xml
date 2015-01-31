@@ -39,7 +39,7 @@
         android:textStyle="bold" />
 
     <LinearLayout
-        android:id="@+id/item_second_line_layout"
+        android:id="@+id/nationality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/item_first_line_text"

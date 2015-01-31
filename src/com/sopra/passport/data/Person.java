@@ -3,6 +3,7 @@ package com.sopra.passport.data;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import android.graphics.Bitmap;
@@ -83,7 +84,15 @@ public class Person implements Serializable {
     /**
      * Fingerprint of the user.
      */
-    private byte[] fingerprint;
+    private List<Byte> fingerprint;
+    
+    
+    /**
+     * 
+     * thumbailNail of the user
+     */
+    private Blob thumbnail; 
+    
 
     public Person(int id) {
 
@@ -185,13 +194,23 @@ public class Person implements Serializable {
     	this.signature = signature;
     }
     
-    public byte[] getFingerprint() {
-    	return fingerprint;
-    }
-    public Bitmap getFingerprintToBitmap() throws IOException {
-    	return ImageConverter.getBitmapFromBytes(fingerprint);
-    }
-    public void setFingerprint(byte[] fingerprint) {
-    	this.fingerprint = fingerprint;
-    }
+   
+	public Blob getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(Blob thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public List<Byte> getFingerprint() {
+		return fingerprint;
+	}
+
+	public void setFingerprint(List<Byte> fingerprint) {
+		this.fingerprint = fingerprint;
+	}
+	
+	
+	
 }

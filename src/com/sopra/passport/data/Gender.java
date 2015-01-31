@@ -1,11 +1,15 @@
 package com.sopra.passport.data;
 
+
 /**
  * This enumeration represents the sex of the user.
  */
 public enum Gender {
 	MALE,
 	FEMALE;
+	
+	
+	
 	
 	/**
 	 * Returns the string associated to each sex.

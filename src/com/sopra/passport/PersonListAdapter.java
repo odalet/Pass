@@ -47,33 +47,34 @@ public class PersonListAdapter extends ArrayAdapter<Person> {
         tmp = new StringBuffer();
         tmp.append(user.getSurname());
         tmp.append(' ');
+        
         for (int i = 0; i < user.getGivenNames().size() - 1; ++i) {
         	tmp.append(user.getGivenNames().get(i));
         	tmp.append(", ");
         }
         tmp.append(user.getGivenNames().get(user.getGivenNames().size() - 1));
         nameView.setText(tmp.toString());
-        
+       
         // Birthdate
         tmp = new StringBuffer();
         tmp.append(user.getBirthdate());
         tmp.append(' ');
-        tmp.append(user.getBirthplace());
         firstLineView.setText(tmp.toString());
         
+       
         // Nationality
         secondLineView.setText(user.getNationality());
         
         // Sex
         sexLineView.setText(user.getSex().toString());
-        
+       /*
         try {
 			photoView.setImageBitmap(user.getPhotoToBitmap());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
+        */
         return convertView;
 	}
 }

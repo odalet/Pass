@@ -7,6 +7,8 @@ import jj2000.JJ2000Frontend;
 
 import org.jnbis.WsqDecoder;
 
+import com.sopra.passport.data.Blob;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
@@ -45,4 +47,6 @@ public class ImageConverter {
 
 		return Bitmap.createBitmap(intData, 0, bitmap.getWidth(), bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 	}
+	
+	
 }

@@ -85,7 +85,7 @@ public class PersonActivity extends Activity {
         	// TODO Auto-generated catch block
         	e.printStackTrace();
         }
-        
+        /*
         try {
         	fingerprintView.setImageBitmap(person.getFingerprintToBitmap());
         	fingerprintView.setOnClickListener(new ZoomListener());
@@ -93,6 +93,7 @@ public class PersonActivity extends Activity {
         	// TODO Auto-generated catch block
         	e.printStackTrace();
         }
+        */
     }
     
     private class ZoomListener implements OnClickListener
@@ -109,8 +110,10 @@ public class PersonActivity extends Activity {
 				img = person.getPhoto();
 			else if (currentView == signatureView)
 				img = person.getSignature();
-			else if (currentView == fingerprintView)
-				img = person.getFingerprint();
+			else if (currentView == fingerprintView){
+				
+			}
+				//img = person.getFingerprint();
 			
 			Intent intent = new Intent(context, ImageActivity.class);
 			intent.putExtra("image", img);

@@ -37,7 +37,6 @@ public final class R {
         public static final int item_name_text=0x7f080032;
         public static final int item_photography_layout=0x7f08002f;
         public static final int item_photography_view=0x7f080030;
-        public static final int item_second_line_layout=0x7f080033;
         public static final int item_second_line_text=0x7f080034;
         public static final int item_sex_text=0x7f080035;
         public static final int list_line1_view=0x7f08002c;
@@ -45,6 +44,7 @@ public final class R {
         public static final int list_personlist_view=0x7f08002d;
         public static final int list_search_layout=0x7f08002a;
         public static final int list_search_text=0x7f08002b;
+        public static final int nationality=0x7f080033;
         public static final int person_address_label=0x7f080021;
         public static final int person_address_row=0x7f080020;
         public static final int person_address_text=0x7f080022;

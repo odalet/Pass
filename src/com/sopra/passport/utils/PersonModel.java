@@ -1,17 +1,16 @@
 package com.sopra.passport.utils;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-import android.graphics.Bitmap;
-
 import com.sopra.passport.data.Birthdate;
+import com.sopra.passport.data.Blob;
+import com.sopra.passport.data.CountryCode;
 import com.sopra.passport.data.Gender;
 import com.sopra.passport.data.Person;
+import com.sopra.passport.data.Thumbnail;
 
 /**
  * Class used to save all data for a user.
@@ -22,105 +21,65 @@ public class PersonModel {
     /**
      * Id used to identify each user.
      */
+	@JsonProperty("Id")
     private int id;
 
-    /**
-     * Surname of the user.
-     * (ex : "MARTIN")
-     */
-	@JsonProperty("Surname")
-    private String surname;
+	@JsonProperty("FirstName")
+    private String firstname;
 
-    /**
-     * Given names of the user.
-     * (ex : "Jean, Michel, Henry")
-     */
-	@JsonProperty("GivenNames")
-    private List<String> givenNames = new ArrayList<String>();
-
-    /**
-     * Nationality of the user.
-     * (ex : "French")
-     */
-	@JsonProperty("Nationality")
-    private String nationality;
-
-    /**
-     * Sex of the user.
-     */
-	@JsonProperty("Sex")
-    private String sex;    
-
-    /**
-     * Height of the user.
-     * (ex : "1.77 m")
-     */
-	@JsonProperty("Height")
-    private double height;
-    
-    /**
-     * Eyes color of the user.
-     */
-	@JsonProperty("EyesColor")
-    private String eyesColor;
-    
-    /**
-     * Birthdate of the user.
-     */
-	@JsonProperty("Birthdate")
-    private String birthdate;
-
-    /**
-     * Birthplace of the user.
-     */
-	@JsonProperty("Birthplace")
-    private String birthplace;
-
-    /**
-     * Address of the user.
-     */
-	@JsonProperty("Address")
-    private String address;
-
-    /**
-     * Photography of the user.
-     */
+	@JsonProperty("LastName")
+	private String lastName;
+	
+	
+	@JsonProperty("Thumbnail")
+	private Blob thumbnail;
+	
 	@JsonProperty("Photo")
-    private String photo;
-    
-    /**
-     * Signature of the user.
-     */
+	private Blob photo;
+	
 	@JsonProperty("Signature")
-    private String signature;
+	private Blob signature;
+	
+	@JsonProperty("Adresse")
+	private String adresse;
+	
 
-    /**
-     * Fingerprint of the user.
-     */
-	@JsonProperty("Fingerprint")
-    private String fingerprint;
+	@JsonProperty("Gender")
+    private Gender sex;    
+    
+    
+	@JsonProperty("BirthDate")
+    private String birthdate;
+	
+	@JsonProperty("Country")
+    private CountryCode country;
+	
 
     public PersonModel() {
     	
     }
     
+    
     public Person toUser() {
     	Person user = new Person(id);
     	
-    	user.setSurname(surname);
-    	user.setGivenNames(givenNames);
-    	user.setNationality(nationality);
+    	user.setSurname(lastName);
+    	ArrayList<String> list = new ArrayList<String>();
+    	list.add(firstname);
+    	user.setGivenNames(list);
     	
-    	if (sex.compareTo(Gender.MALE.toString()) == 0) {
+    	if (sex == Gender.MALE) {
     		user.setSex(Gender.MALE);
     	} else {
     		user.setSex(Gender.FEMALE);
     	}
-    	
+    	user.setBirthdate(new Birthdate(birthdate));
+    	user.setNationality(country.getCountrName());
+
+    	/*
     	user.setHeight(height);
     	user.setEyesColor(eyesColor);
     	user.setAddress(address);
-    	user.setBirthdate(new Birthdate(birthdate));
     	user.setBirthplace(birthplace);
     	
     	try {
@@ -146,100 +105,114 @@ public class PersonModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
     	
     	return user;
     }
-    
-    public int getId() {
-        return id;
-    }
-    
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getSurname() {
-        return surname;
-    }
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 
-    public List<String> getGivenNames() {
-        return givenNames;
-    }
-    public void setGivenNames(List<String> givenNames) {
-        this.givenNames = givenNames;
-    }
-    
-    public String getNationality() {
-        return nationality;
-    }
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getSex() {
-        return sex;
-    }
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-    
-    public double getHeight() {
-        return height;
-    }
-    public void setHeight(double height) {
-        this.height = height;
-    }
-    
-    public String getEyesColor() {
-    	return eyesColor;
-    }
-    public void setEyesColor(String eyesColor) {
-    	this.eyesColor = eyesColor;
-    }
-    
-    public String getBirthdate() {
-        return birthdate;
-    }
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
-    }
 
-    public String getBirthplace() {
-        return birthplace;
-    }
-    public void setBirthplace(String birthplace) {
-        this.birthplace = birthplace;
-    }
-    
-    public String getAddress() {
-        return address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getPhoto() {
-    	return photo;
-    }
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public Blob getThumbnail() {
+		return thumbnail;
+	}
+
+
+	public void setThumbnail(Blob thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+
+	public Blob getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(Blob photo) {
+		this.photo = photo;
+	}
+
+
+	public Blob getSignature() {
+		return signature;
+	}
+
+
+	public void setSignature(Blob signature) {
+		this.signature = signature;
+	}
+
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+
+	public Gender getSex() {
+		return sex;
+	}
+
+
+	public void setSex(Gender sex) {
+		this.sex = sex;
+	}
+
+
+	public String getBirthdate() {
+		return birthdate;
+	}
+
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
+	}
+
+
+	public CountryCode getCountry() {
+		return country;
+	}
+
+
+	public void setCountry(CountryCode country) {
+		this.country = country;
+	}
+
     
-    public void setPhoto(String photo) {
-    	this.photo = photo;
-    }
-    
-    public String getSignature() {
-    	return signature;
-    }
-    public void setSignature(String signature) {
-    	this.signature = signature;
-    }
-    
-    public String getFingerprint() {
-    	return fingerprint;
-    }
-    public void setFingerprint(String fingerprint) {
-    	this.fingerprint = fingerprint;
-    }
+	
+	
+	
+	
 }

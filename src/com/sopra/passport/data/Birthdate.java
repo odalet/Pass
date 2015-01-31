@@ -16,7 +16,7 @@ public class Birthdate implements Serializable {
 	/**
 	 * Constant used if a field is not completed.
 	 */
-	private static final int NONE = -1;
+	private static final int NONE = 0;
 	
 	/**
 	 * Day of the month (1 to 31).
@@ -46,24 +46,29 @@ public class Birthdate implements Serializable {
 	}
 	
 	public Birthdate(String date) {
-		StringTokenizer strTk = new StringTokenizer(date, "/");
 		
-		String dayStr = strTk.nextElement().toString();
 		try {
-			this.day = Integer.parseInt(dayStr);
+			String yearStr = date.substring(0, 4);
+			this.year = Integer.parseInt(yearStr);
 		} catch(NumberFormatException ex) {
-			this.day = -1;
+			this.year = 0;
 		}
 		
-		String monthStr = strTk.nextElement().toString();
 		try {
+			String monthStr = date.substring(4, 6);
+
 			this.month = Integer.parseInt(monthStr);
 		} catch(NumberFormatException ex) {
-			this.day = -1;
+			this.month = 0;
 		}
 		
-		String yearStr = strTk.nextElement().toString();
-		this.year = Integer.parseInt(yearStr);
+		try {
+			String dayStr = date.substring(6, 8);
+
+			this.day = Integer.parseInt(dayStr);
+		} catch(NumberFormatException ex) {
+			this.day = 0;
+		}
 	}
 	
 	public String toString() {
