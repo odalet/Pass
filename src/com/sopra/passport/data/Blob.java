@@ -1,21 +1,34 @@
 package com.sopra.passport.data;
 
+import java.io.IOException;
+import java.io.Serializable;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class Blob {
+import com.sopra.passport.utils.ImageConverter;
+
+public class Blob implements Serializable {
 
 
-	@JsonProperty("Finger")
-	private int finger;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	
 	@JsonProperty("Id")
 	private int id;
+	
+	@JsonProperty("Finger")
+	private int finger;
 	
 	@JsonProperty("MimeType")
 	private String mimeType;
 	
 	@JsonProperty("Data")
-	private byte[] data;
+	private String data;
 	
 	public int getId() {
 		return id;
@@ -29,10 +42,10 @@ public class Blob {
 	public void setMimeType(String mimeType) {
 		this.mimeType = mimeType;
 	}
-	public byte[] getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(byte[] data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 	public int getFinger() {
@@ -41,6 +54,8 @@ public class Blob {
 	public void setFinger(int finger) {
 		this.finger = finger;
 	}
+	
+	
 	
 	
 }

@@ -23,6 +23,7 @@ public class PersonListActivity extends Activity {
 	private Context context = this;
 	static private List<Person> personList = null;
 	private ListView personListView = null;
+	private Person personSelected = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +66,32 @@ public class PersonListActivity extends Activity {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			Person selectedPerson = (Person) parent.getItemAtPosition(position);
-		
-			// Start PersonActivity
-			Intent intent = new Intent(context, PersonActivity.class);
-			intent.putExtra("person", selectedPerson);
-			startActivity(intent);
+			//Person selectedPerson = (Person) parent.getItemAtPosition(position);
+			// this part is an obligation for using the http request in the main thread
+			new PersonGetByIdTask().execute();
+			
 		}
 	}
 	
+	private class PersonGetByIdTask extends AsyncTask<Void, Void, Void>{
+
+    	@Override
+    	protected void onPostExecute(Void v) {
+    		Intent intent = new Intent(context, PersonActivity.class);
+			intent.putExtra("person", personSelected);		
+			startActivity(intent);
+			 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+	         //getApplicationContext().startActivity(intent);
+    	}
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			personSelected = PersonFactory.getUserById();
+			
+			return null;
+		}
+		
+	}
 	
 	
 	private class PersonListGetTask extends AsyncTask<Void, Void, Void> {

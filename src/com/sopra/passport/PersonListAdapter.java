@@ -65,6 +65,8 @@ public class PersonListAdapter extends ArrayAdapter<Person> {
         // Nationality
         secondLineView.setText(user.getNationality());
         
+        
+        
         // Sex
         sexLineView.setText(user.getSex().toString());
        /*

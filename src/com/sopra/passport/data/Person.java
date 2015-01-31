@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.graphics.Bitmap;
 
@@ -74,17 +76,17 @@ public class Person implements Serializable {
     /**
      * Photography of the user.
      */
-    private byte[] photo;
+    private Blob photo;
     
     /**
      * Signature of the user.
      */
-    private byte[] signature;
+    private Blob signature;
 
     /**
      * Fingerprint of the user.
      */
-    private List<Byte> fingerprint;
+    private ArrayList<Blob> fingerprints;
     
     
     /**
@@ -173,27 +175,28 @@ public class Person implements Serializable {
         this.address = address;
     }
 
-    public byte[] getPhoto() {
+    public Blob getPhoto() {
     	return photo;
     }
     public Bitmap getPhotoToBitmap() throws IOException {
-    	return ImageConverter.getBitmapFromBytes(photo);
+    	return ImageConverter.getBitmap(photo);
     }
     
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(Blob photo) {
     	this.photo = photo;
     }
     
-    public byte[] getSignature() {
-    	return signature;
-    }
+
     public Bitmap getSignatureToBitmap() throws IOException {
-    	return ImageConverter.getBitmapFromBytes(signature);
+    	return ImageConverter.getBitmap(signature);
     }
-    public void setSignature(byte[] signature) {
+    public void setSignature(Blob signature) {
     	this.signature = signature;
     }
     
+    public Blob getSignature() {
+    	return signature;
+    }
    
 	public Blob getThumbnail() {
 		return thumbnail;
@@ -203,13 +206,15 @@ public class Person implements Serializable {
 		this.thumbnail = thumbnail;
 	}
 
-	public List<Byte> getFingerprint() {
-		return fingerprint;
+	public ArrayList<Blob> getFingerprints() {
+		return fingerprints;
 	}
 
-	public void setFingerprint(List<Byte> fingerprint) {
-		this.fingerprint = fingerprint;
+	public void setFingerprints(ArrayList<Blob> fingerprints) {
+		this.fingerprints = fingerprints;
 	}
+
+	
 	
 	
 	

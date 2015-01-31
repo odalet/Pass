@@ -34,8 +34,14 @@ public class ImageConverter {
 	}
 	
 	public static  Bitmap getBitmapFromBytes(byte[] encodedImage) throws IOException {
-		byte[] base64Bytes = Base64.decode(encodedImage, Base64.DEFAULT);
-		return BitmapFactory.decodeByteArray(base64Bytes,  0, base64Bytes.length);
+		try{
+			byte[] base64Bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+			return BitmapFactory.decodeByteArray(base64Bytes,  0, base64Bytes.length);
+		}catch(Exception exp){
+			System.out.println(exp.getMessage());
+		}
+		return null;
+		
 	}
 		
 	private static Bitmap toAndroidBitmap(org.jnbis.Bitmap bitmap) {
@@ -46,6 +52,26 @@ public class ImageConverter {
 			intData[j] = 0xFF000000 | ((byteData[j] & 0xFF) << 16) | ((byteData[j] & 0xFF) << 8) | (byteData[j] & 0xFF);
 
 		return Bitmap.createBitmap(intData, 0, bitmap.getWidth(), bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T> T getBitmap(Blob inBlob) throws IOException{
+		if (inBlob.getMimeType().equals("JPEG")) {
+			
+			return (T) ImageConverter.getBitmapFromBytes(inBlob.getData().getBytes());
+			
+		} else if (inBlob.getMimeType().equals("WSQ")){
+			
+			return (T) ImageConverter.getBitmapFromWSQBytes(inBlob.getData().getBytes());
+			
+		} else if (inBlob.getMimeType().equals("JPEG2000")){
+			
+			return (T) ImageConverter.getBitmapFromJPEG2000Bytes(inBlob.getData().getBytes());
+
+		}
+		
+		return null;
+		
 	}
 	
 	

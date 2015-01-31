@@ -3,6 +3,7 @@ package com.sopra.passport;
 import java.io.IOException;
 
 import com.sopra.passport.data.Person;
+import com.sopra.passport.utils.PersonFactory;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,10 +23,8 @@ public class PersonActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person);
-
         Person person = (Person) getIntent().getSerializableExtra("person");
         this.person = person;
-        
         initUI();
     }
     
@@ -44,7 +43,10 @@ public class PersonActivity extends Activity {
         ImageView fingerprintView = (ImageView)findViewById(R.id.person_fingerprint_view);
         StringBuffer tmp;
         
+        
         surnameView.setText(person.getSurname());
+        
+
         
         // Given names
         tmp = new StringBuffer();
@@ -52,24 +54,15 @@ public class PersonActivity extends Activity {
         	tmp.append(person.getGivenNames().get(i));
         	tmp.append(", ");
         }
+        
         tmp.append(person.getGivenNames().get(person.getGivenNames().size() - 1));
         givenNamesView.setText(tmp.toString());
         
         nationalityView.setText(person.getNationality());
         sexView.setText(person.getSex().toString());
-        
-        // Height
-        tmp = new StringBuffer();
-        tmp.append(Math.round(person.getHeight() * 100.) / 100.);
-        tmp.append(" ");
-        tmp.append(getString(R.string.height_unit_text));
-        heightView.setText(tmp.toString());
-        
-        eyesColorView.setText(person.getEyesColor().toString());
         birthdateView.setText(person.getBirthdate().toString());
-        birthplaceView.setText(person.getBirthplace());
         addressView.setText(person.getAddress());
-
+   
         try {
 			photoView.setImageBitmap(person.getPhotoToBitmap());
 			photoView.setOnClickListener(new ZoomListener());
@@ -85,6 +78,31 @@ public class PersonActivity extends Activity {
         	// TODO Auto-generated catch block
         	e.printStackTrace();
         }
+		
+        
+        /*
+        // Height
+        tmp = new StringBuffer();
+        tmp.append(Math.round(person.getHeight() * 100.) / 100.);
+        tmp.append(" ");
+        tmp.append(getString(R.string.height_unit_text));
+        heightView.setText(tmp.toString());
+        
+        eyesColorView.setText(person.getEyesColor().toString());
+        
+        birthplaceView.setText(person.getBirthplace());
+        
+
+        
+        
+        try {
+        	signatureView.setImageBitmap(person.getSignatureToBitmap());
+        	signatureView.setOnClickListener(new ZoomListener());
+        } catch (IOException e) {
+        	// TODO Auto-generated catch block
+        	e.printStackTrace();
+        }
+        */
         /*
         try {
         	fingerprintView.setImageBitmap(person.getFingerprintToBitmap());
@@ -107,9 +125,9 @@ public class PersonActivity extends Activity {
 			byte[] img = null;
 			
 			if (currentView == photoView)
-				img = person.getPhoto();
+				img = person.getPhoto().getData().getBytes();
 			else if (currentView == signatureView)
-				img = person.getSignature();
+				img = person.getSignature().getData().getBytes();
 			else if (currentView == fingerprintView){
 				
 			}

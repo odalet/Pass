@@ -1,6 +1,9 @@
 package com.sopra.passport.utils;
 
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -10,7 +13,6 @@ import com.sopra.passport.data.Blob;
 import com.sopra.passport.data.CountryCode;
 import com.sopra.passport.data.Gender;
 import com.sopra.passport.data.Person;
-import com.sopra.passport.data.Thumbnail;
 
 /**
  * Class used to save all data for a user.
@@ -39,9 +41,12 @@ public class PersonModel {
 	
 	@JsonProperty("Signature")
 	private Blob signature;
-	
-	@JsonProperty("Adresse")
-	private String adresse;
+	/*
+	@JsonProperty("Signature")
+	private List<Blob> fingerprints;
+	*/
+	@JsonProperty("Address")
+	private String address;
 	
 
 	@JsonProperty("Gender")
@@ -54,6 +59,8 @@ public class PersonModel {
 	@JsonProperty("Country")
     private CountryCode country;
 	
+	@JsonProperty("Fingerprints")
+	private ArrayList<Blob> fingerprints;
 
     public PersonModel() {
     	
@@ -75,11 +82,14 @@ public class PersonModel {
     	}
     	user.setBirthdate(new Birthdate(birthdate));
     	user.setNationality(country.getCountrName());
-
+    	user.setAddress(address);
+    	user.setPhoto(photo);
+    	user.setFingerprints(fingerprints);
+    	user.setSignature(signature);
     	/*
     	user.setHeight(height);
     	user.setEyesColor(eyesColor);
-    	user.setAddress(address);
+    	
     	user.setBirthplace(birthplace);
     	
     	try {
@@ -170,17 +180,6 @@ public class PersonModel {
 		this.signature = signature;
 	}
 
-
-	public String getAdresse() {
-		return adresse;
-	}
-
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
-
 	public Gender getSex() {
 		return sex;
 	}
@@ -210,8 +209,41 @@ public class PersonModel {
 		this.country = country;
 	}
 
-    
-	
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public ArrayList<Blob> getFingerprints() {
+		return fingerprints;
+	}
+
+
+	public void setFingerprints(ArrayList<Blob> fingerprints) {
+		this.fingerprints = fingerprints;
+	}
+
+    /*
+	private Map<Integer,Blob> getListFingerPrints(){
+		if (fingerprints == null || fingerprints.size() == 0 ){
+			return null;
+		}
+		
+		Map<Integer,Blob> map = new HashMap<Integer, Blob>();
+		
+		for (Blob biterator : fingerprints ){
+			map.put(biterator.getFinger(), biterator)
+		}
+		
+		return map;
+	}
+	*/
 	
 	
 	
