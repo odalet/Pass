@@ -18,11 +18,17 @@
 
         <EditText
             android:id="@+id/list_search_text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="54dp"
+            android:layout_weight="1.02"
             android:ems="10"
             android:inputType="text" />
 
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="49dp"
+            android:layout_height="wrap_content"
+            android:text="+" />
     </LinearLayout>
 
     <TextView

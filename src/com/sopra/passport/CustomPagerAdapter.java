@@ -19,7 +19,7 @@ public class CustomPagerAdapter extends PagerAdapter {
 
 	Context mContext;
     LayoutInflater mLayoutInflater;
-    ArrayList<Bitmap> listImages;
+    ArrayList<Blob> listImages;
     
   
  
@@ -29,17 +29,9 @@ public class CustomPagerAdapter extends PagerAdapter {
     }
     
     public CustomPagerAdapter(Context context , ArrayList<Blob> listImages){
+    	this.listImages = listImages; 
     	mContext = context;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        try {
-	        for (Blob biterator : listImages){
-	        	
-					this.listImages.add((Bitmap)ImageConverter.getBitmap(biterator));
-	        }
-    	} catch (IOException e) {
-			e.printStackTrace();
-		}
-        
     }
     
 	@Override
@@ -57,8 +49,13 @@ public class CustomPagerAdapter extends PagerAdapter {
 	        View itemView = mLayoutInflater.inflate(R.layout.pager_item, container, false);
 	 
 	        ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
-	
-	        imageView.setImageBitmap(listImages.get(position));
+	        Bitmap image = null;
+			try {
+				image = ImageConverter.getBitmap(listImages.get(position));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	        imageView.setImageBitmap(image);
 	 
 	        container.addView(itemView);
 	 
