@@ -86,6 +86,7 @@ public class PersonModel {
     	user.setPhoto(photo);
     	user.setFingerprints(fingerprints);
     	user.setSignature(signature);
+ 
     	/*
     	user.setHeight(height);
     	user.setEyesColor(eyesColor);

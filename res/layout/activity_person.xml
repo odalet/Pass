@@ -284,6 +284,12 @@
             android:layout_marginBottom="10dp"
             android:background="#c0c0c0" />
 
+        <Button
+            android:id="@+id/showfingerprints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show" />
+
         <ImageView
             android:id="@+id/person_fingerprint_view"
             android:layout_width="match_parent"

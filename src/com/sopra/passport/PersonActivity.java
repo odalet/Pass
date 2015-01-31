@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,13 +42,20 @@ public class PersonActivity extends Activity {
         ImageView photoView = (ImageView)findViewById(R.id.person_photography_view);
         ImageView signatureView = (ImageView)findViewById(R.id.person_signature_view);
         ImageView fingerprintView = (ImageView)findViewById(R.id.person_fingerprint_view);
+        Button showFingers = (Button)findViewById(R.id.showfingerprints);
+        
+        showFingers.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, ShowGallery.class);
+				intent.putExtra("fingers", person.getFingerprints());		
+				startActivity(intent);
+			}
+		});
+        
         StringBuffer tmp;
-        
-        
         surnameView.setText(person.getSurname());
-        
-
-        
         // Given names
         tmp = new StringBuffer();
         for (int i = 0; i < person.getGivenNames().size() - 1; ++i) {
@@ -79,6 +87,7 @@ public class PersonActivity extends Activity {
         	e.printStackTrace();
         }
 		
+       
         
         /*
         // Height

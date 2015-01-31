@@ -23,5 +23,7 @@
     <string name="person_information_label">Information</string>
     <string name="title_activity_image_viewer">ImageViewer</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_show_galerry">Show_galerry</string>
+    <string name="title_activity_show_gallery">ShowGallery</string>
 
 </resources>

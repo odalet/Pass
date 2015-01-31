@@ -33,6 +33,14 @@
             android:name=".ImageActivity"
             android:label="@string/title_activity_image_viewer" >
         </activity>
+        <activity
+            android:name=".Show_galerry"
+            android:label="@string/title_activity_show_galerry" >
+        </activity>
+        <activity
+            android:name=".ShowGallery"
+            android:label="@string/title_activity_show_gallery" >
+        </activity>
     </application>
 
 </manifest>
