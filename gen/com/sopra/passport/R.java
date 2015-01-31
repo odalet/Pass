@@ -29,24 +29,24 @@ public final class R {
         public static final int list_selector=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f08003a;
-        public static final int imageView=0x7f080031;
+        public static final int action_settings=0x7f080039;
+        public static final int imageView=0x7f080030;
         public static final int image_view=0x7f080001;
         public static final int image_zoom_control=0x7f080000;
-        public static final int item_first_line_text=0x7f080035;
-        public static final int item_main_layout=0x7f080032;
-        public static final int item_name_text=0x7f080036;
-        public static final int item_photography_layout=0x7f080033;
-        public static final int item_photography_view=0x7f080034;
-        public static final int item_second_line_text=0x7f080038;
-        public static final int item_sex_text=0x7f080039;
-        public static final int list_line1_view=0x7f08002d;
-        public static final int list_main_layout=0x7f08002a;
-        public static final int list_personlist_view=0x7f08002e;
-        public static final int list_search_layout=0x7f08002b;
-        public static final int list_search_text=0x7f08002c;
-        public static final int nationality=0x7f080037;
-        public static final int pager=0x7f080030;
+        public static final int item_first_line_text=0x7f080034;
+        public static final int item_main_layout=0x7f080031;
+        public static final int item_name_text=0x7f080035;
+        public static final int item_photography_layout=0x7f080032;
+        public static final int item_photography_view=0x7f080033;
+        public static final int item_second_line_text=0x7f080037;
+        public static final int item_sex_text=0x7f080038;
+        public static final int list_line1_view=0x7f08002c;
+        public static final int list_main_layout=0x7f080029;
+        public static final int list_personlist_view=0x7f08002d;
+        public static final int list_search_layout=0x7f08002a;
+        public static final int list_search_text=0x7f08002b;
+        public static final int nationality=0x7f080036;
+        public static final int pager=0x7f08002f;
         public static final int person_address_label=0x7f080021;
         public static final int person_address_row=0x7f080020;
         public static final int person_address_text=0x7f080022;
@@ -60,7 +60,6 @@ public final class R {
         public static final int person_color_of_eyes_row=0x7f080017;
         public static final int person_color_of_eyes_text=0x7f080019;
         public static final int person_fingerprint_label=0x7f080026;
-        public static final int person_fingerprint_view=0x7f080029;
         public static final int person_gender_label=0x7f080015;
         public static final int person_gender_row=0x7f080014;
         public static final int person_gender_text=0x7f080016;
@@ -86,7 +85,7 @@ public final class R {
         public static final int person_signature_view=0x7f080025;
         public static final int person_surname_label=0x7f080007;
         public static final int person_surname_text=0x7f080008;
-        public static final int relativeLayout=0x7f08002f;
+        public static final int relativeLayout=0x7f08002e;
         public static final int showfingerprints=0x7f080028;
     }
     public static final class layout {

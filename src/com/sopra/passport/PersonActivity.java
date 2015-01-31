@@ -2,6 +2,7 @@ package com.sopra.passport;
 
 import java.io.IOException;
 
+import com.sopra.passport.data.Blob;
 import com.sopra.passport.data.Person;
 import com.sopra.passport.utils.PersonFactory;
 
@@ -41,7 +42,6 @@ public class PersonActivity extends Activity {
         TextView addressView = (TextView)findViewById(R.id.person_address_text);
         ImageView photoView = (ImageView)findViewById(R.id.person_photography_view);
         ImageView signatureView = (ImageView)findViewById(R.id.person_signature_view);
-        ImageView fingerprintView = (ImageView)findViewById(R.id.person_fingerprint_view);
         Button showFingers = (Button)findViewById(R.id.showfingerprints);
         
         showFingers.setOnClickListener(new OnClickListener() {
@@ -130,18 +130,15 @@ public class PersonActivity extends Activity {
 			ImageView currentView = (ImageView) v;
 			ImageView photoView = (ImageView)findViewById(R.id.person_photography_view);
 	        ImageView signatureView = (ImageView)findViewById(R.id.person_signature_view);
-	        ImageView fingerprintView = (ImageView)findViewById(R.id.person_fingerprint_view);
-			byte[] img = null;
+			Blob img = null;
 			
-			if (currentView == photoView)
-				img = person.getPhoto().getData().getBytes();
-			else if (currentView == signatureView)
-				img = person.getSignature().getData().getBytes();
-			else if (currentView == fingerprintView){
-				
+			if (currentView == photoView){
+				img = person.getPhoto();
 			}
-				//img = person.getFingerprint();
-			
+			else if (currentView == signatureView)
+			{
+				img = person.getSignature();
+			}
 			Intent intent = new Intent(context, ImageActivity.class);
 			intent.putExtra("image", img);
 			startActivity(intent);

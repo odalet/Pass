@@ -288,14 +288,7 @@
             android:id="@+id/showfingerprints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show" />
-
-        <ImageView
-            android:id="@+id/person_fingerprint_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/person_fingerprint_description"
-            android:src="@drawable/ic_launcher" />
+            android:text="FingerPrints" />
     </LinearLayout>
 
 </ScrollView>

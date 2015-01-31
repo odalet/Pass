@@ -2,6 +2,7 @@ package com.sopra.passport;
 
 import java.io.IOException;
 
+import com.sopra.passport.data.Blob;
 import com.sopra.passport.utils.ImageConverter;
 
 import android.app.Activity;
@@ -24,9 +25,26 @@ public class ImageActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_image);
-    	
+		//setContentView(R.layout.activity_image);
+		
+		
+		try {
+			TouchImageView img = new TouchImageView(this);  
+			Blob imgBlob = (Blob) getIntent().getSerializableExtra("image");
+			this.image = ImageConverter.getBitmap(imgBlob);
+			img.setImageBitmap(this.image); 
+		    img.setMaxZoom(4f);  
+		    setContentView(img);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
+    	/*
 		this.imageView = (ZoomImageView)findViewById(R.id.image_view);
+		
+		
 		this.zoomControl = (ZoomControls) findViewById(R.id.image_zoom_control);
 		
 		byte[] imgBytes = (byte[]) getIntent().getSerializableExtra("image");
@@ -41,6 +59,7 @@ public class ImageActivity extends Activity {
     	
     	zoomControl.setOnZoomInClickListener(new ZoomInListener());
     	zoomControl.setOnZoomOutClickListener(new ZoomOutListener());
+    	*/
 	}
 
 	private class ZoomInListener implements OnClickListener
