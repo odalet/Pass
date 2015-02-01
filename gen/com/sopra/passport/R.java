@@ -31,7 +31,7 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f080042;
-        public static final int btnRegister=0x7f080007;
+        public static final int btnSearch=0x7f080007;
         public static final int header=0x7f080000;
         public static final int imageView=0x7f080039;
         public static final int image_view=0x7f080009;

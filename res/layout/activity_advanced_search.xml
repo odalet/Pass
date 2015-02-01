@@ -77,28 +77,25 @@
                 android:id="@+id/search_country"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
-                android:layout_marginBottom="10dip"
-                android:layout_marginTop="10dip"
-                android:textColor="#025f7c" />
+                android:layout_marginBottom="10dip"/>
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Gender"
-                android:textColor="#372c24" />
+                android:textColor="#372c24"
+                android:text="Gender" />
 
             <Spinner
                 android:id="@+id/search_sex"
                 android:layout_width="fill_parent"
                 android:layout_height="39dp"
-                android:layout_marginBottom="10dip"
-                android:layout_marginTop="10dip"
-                android:textColor="#025f7c" />
+                android:layout_marginBottom="20dip"
+                android:layout_marginTop="10dip"/>
 
             <Button
-                android:id="@+id/btnRegister"
+                android:id="@+id/btnSearch"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"

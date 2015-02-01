@@ -2,6 +2,8 @@ package com.sopra.passport;
 
 import java.util.List;
 
+import javax.jws.Oneway;
+
 import com.sopra.passport.data.Person;
 import com.sopra.passport.utils.PersonFactory;
 
@@ -21,8 +23,10 @@ import android.widget.ListView;
 
 public class PersonListActivity extends Activity {
 
+	private static final int STATIC_INTEGER_VALUE = 0x7f040001;
 	private Context context = this;
 	static private List<Person> personList = null;
+	public int returnValue = 0;
 	private ListView personListView = null;
 	private Person personSelected = null;
 	
@@ -33,6 +37,9 @@ public class PersonListActivity extends Activity {
 		
 		new PersonListGetTask().execute();
 	}
+
+	
+
 	
 	private void initUI() {
 		personListView = (ListView) findViewById(R.id.list_personlist_view);
@@ -46,7 +53,7 @@ public class PersonListActivity extends Activity {
 		search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	Intent intent = new Intent(context, AdvancedSearch.class);	
-    			startActivity(intent);
+    			startActivityForResult(intent,STATIC_INTEGER_VALUE);
             }
         });
 
@@ -123,4 +130,24 @@ public class PersonListActivity extends Activity {
     		return null;
 		}
     }
+	
+	@Override 
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {     
+	  super.onActivityResult(requestCode, resultCode, data); 
+	  switch(requestCode) { 
+	    case (STATIC_INTEGER_VALUE) : 
+	    	
+	    	if (resultCode == Activity.RESULT_OK) { 
+	    	      //int tabIndex = (int)data.getSerializableExtra("val");
+	    	      // TODO Switch tabs using the index.
+	    	} 
+	    
+	      // on returning from search part this block will be executed
+	      break; 
+	    } 
+	  } 
+	
+	
+	
+	
 }

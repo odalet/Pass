@@ -16,7 +16,9 @@ package com.sopra.passport.data;
  */
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -892,4 +894,11 @@ public enum CountryCode
     {
         return numericMap.get(code);
     }
+    
+    @Override
+    public String toString() {
+    	return name;
+    }
+    
+
 }

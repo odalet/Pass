@@ -1,5 +1,8 @@
 package com.sopra.passport.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * This enumeration represents the sex of the user.
@@ -31,4 +34,8 @@ public enum Gender {
 		
 		return str;
 	}
+	
+  
+	
+	
 }
