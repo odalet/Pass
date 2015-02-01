@@ -9,22 +9,17 @@
         android:layout_height="wrap_content" android:background="#fff">
  
         <!--  Header  Starts-->
-
-        <LinearLayout
-            android:id="@+id/header"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="5dip"
-            android:paddingTop="5dip" >
-
-            <!-- Logo Start -->
-
-            <ImageView
-                android:layout_height="60dp"
-                android:layout_weight="3"
-                android:src="@drawable/logo" />
-
-            <!-- Logo Ends -->
+        <LinearLayout android:id="@+id/header"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dip"
+                android:paddingBottom="5dip">
+                <!-- Logo Start-->
+                <ImageView 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dip"/>
+                <!-- Logo Ends -->
         </LinearLayout>
 
         <LinearLayout 
@@ -34,61 +29,81 @@
         </LinearLayout>
  
         <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="10dip"
-          android:layout_below="@id/header">
-          <TextView android:layout_width="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+            <TextView
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#372c24"
-                android:text="First Name"/>
+                android:layout_marginTop="10px"
+                android:text="First Name"
+                android:textColor="#372c24" />
 
-          <EditText
-              android:id="@+id/search_firstName"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginBottom="20dip"
-              android:layout_marginTop="5dip"
-              android:singleLine="true" />
-
-          <!--  Email Label -->
-          <TextView android:layout_width="fill_parent"
+            <EditText
+                android:id="@+id/search_firstName"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#372c24"
-                android:text="Given Name"/>
+                android:layout_marginBottom="20dip"
+                android:layout_marginTop="5dip"
+                android:singleLine="true" />
 
-          <EditText
-              android:id="@+id/search_givenName"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginBottom="20dip"
-              android:layout_marginTop="5dip"
-              android:singleLine="true" />
+            <!-- Email Label -->
 
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Given Name"
+                android:textColor="#372c24" />
 
-          <TextView
-              android:id="@+id/textView1"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:textColor="#372c24"
-              android:text="Nationality" />
+            <EditText
+                android:id="@+id/search_givenName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip"
+                android:layout_marginTop="5dip"
+                android:singleLine="true" />
 
-          <Spinner
-              android:id="@+id/spinner1"
-              android:layout_width="fill_parent"
-              android:layout_height="30dp"
-              android:layout_marginBottom="10dip"
-              android:layout_marginTop="10dip"
-              android:textColor="#025f7c" />
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nationality"
+                android:textColor="#372c24" />
 
-          <Button
-              android:id="@+id/btnRegister"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="10dip"
-              android:text="Search" />
- 
+            <Spinner
+                android:id="@+id/search_country"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:textColor="#025f7c" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Gender"
+                android:textColor="#372c24" />
+
+            <Spinner
+                android:id="@+id/search_sex"
+                android:layout_width="fill_parent"
+                android:layout_height="39dp"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:textColor="#025f7c" />
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:text="Search" />
         </LinearLayout>
+
   </RelativeLayout>
 </ScrollView>
