@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -40,6 +41,15 @@ public class PersonListActivity extends Activity {
 		
 		EditText inputSearch = (EditText) findViewById(R.id.list_search_text);
 		inputSearch.addTextChangedListener(new SearchListener(this, personList, personListView));
+		
+		Button search = (Button) findViewById(R.id.searchbtn);
+		search.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	Intent intent = new Intent(context, AdvancedSearch.class);	
+    			startActivity(intent);
+            }
+        });
+
 	}
 	
 	@Override
