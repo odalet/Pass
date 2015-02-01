@@ -9,35 +9,36 @@
         android:layout_height="wrap_content" android:background="#fff">
  
         <!--  Header  Starts-->
-        <LinearLayout android:id="@+id/header"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dip"
-                android:paddingBottom="5dip">
-                <!-- Logo Start-->
-                <ImageView 
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dip"/>
-                <!-- Logo Ends -->
+
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip" >
+
+            <!-- Logo Start -->
+
+            <ImageView
+                android:layout_height="60dp"
+                android:layout_weight="3"
+                android:src="@drawable/logo" />
+
+            <!-- Logo Ends -->
         </LinearLayout>
-        <!--  Header Ends -->
-        <!-- Footer Start -->
+
         <LinearLayout 
                 android:layout_width="fill_parent"
                 android:layout_height="90dip"
                 android:layout_alignParentBottom="true">
         </LinearLayout>
-        <!-- Footer Ends -->
  
-        <!-- Registration Form -->
         <LinearLayout
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:padding="10dip"
           android:layout_below="@id/header">
-          <!-- Full Name Label -->
           <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#372c24"
@@ -65,9 +66,6 @@
               android:layout_marginTop="5dip"
               android:singleLine="true" />
 
-          <!-- Password Label -->
-          <!-- Register Button -->
-          <!-- Link to Login Screen -->
 
           <TextView
               android:id="@+id/textView1"
@@ -80,8 +78,8 @@
               android:id="@+id/spinner1"
               android:layout_width="fill_parent"
               android:layout_height="30dp"
-              android:layout_marginBottom="20dip"
-              android:layout_marginTop="20dip"
+              android:layout_marginBottom="10dip"
+              android:layout_marginTop="10dip"
               android:textColor="#025f7c" />
 
           <Button
@@ -92,6 +90,5 @@
               android:text="Search" />
  
         </LinearLayout>
-        <!-- Registration Form Ends -->
   </RelativeLayout>
 </ScrollView>
