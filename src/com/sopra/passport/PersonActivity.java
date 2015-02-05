@@ -66,11 +66,12 @@ public class PersonActivity extends Activity {
         tmp.append(person.getGivenNames().get(person.getGivenNames().size() - 1));
         givenNamesView.setText(tmp.toString());
         
-        nationalityView.setText(person.getNationality());
+        nationalityView.setText(person.getNationality().getCountrName());
         sexView.setText(person.getSex().toString());
         birthdateView.setText(person.getBirthdate().toString());
         addressView.setText(person.getAddress());
    
+        
         try {
 			photoView.setImageBitmap(person.getPhotoToBitmap());
 			photoView.setOnClickListener(new ZoomListener());
@@ -86,43 +87,9 @@ public class PersonActivity extends Activity {
         	// TODO Auto-generated catch block
         	e.printStackTrace();
         }
-		
-       
-        
-        /*
-        // Height
-        tmp = new StringBuffer();
-        tmp.append(Math.round(person.getHeight() * 100.) / 100.);
-        tmp.append(" ");
-        tmp.append(getString(R.string.height_unit_text));
-        heightView.setText(tmp.toString());
-        
-        eyesColorView.setText(person.getEyesColor().toString());
-        
-        birthplaceView.setText(person.getBirthplace());
-        
-
-        
-        
-        try {
-        	signatureView.setImageBitmap(person.getSignatureToBitmap());
-        	signatureView.setOnClickListener(new ZoomListener());
-        } catch (IOException e) {
-        	// TODO Auto-generated catch block
-        	e.printStackTrace();
-        }
-        */
-        /*
-        try {
-        	fingerprintView.setImageBitmap(person.getFingerprintToBitmap());
-        	fingerprintView.setOnClickListener(new ZoomListener());
-        } catch (IOException e) {
-        	// TODO Auto-generated catch block
-        	e.printStackTrace();
-        }
-        */
     }
     
+
     private class ZoomListener implements OnClickListener
     {
 		@Override
@@ -144,4 +111,5 @@ public class PersonActivity extends Activity {
 			startActivity(intent);
 		}
     }
+    
 }

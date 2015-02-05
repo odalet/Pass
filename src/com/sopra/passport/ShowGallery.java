@@ -1,15 +1,9 @@
 package com.sopra.passport;
-
 import java.util.ArrayList;
-
 import com.sopra.passport.data.Blob;
-import com.sopra.passport.data.Person;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Window;
-
 
 public class ShowGallery extends Activity {
 

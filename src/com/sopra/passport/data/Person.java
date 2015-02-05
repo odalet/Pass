@@ -1,15 +1,20 @@
 package com.sopra.passport.data;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.graphics.Bitmap;
 
+import com.sopra.passport.PersonFilter;
 import com.sopra.passport.utils.ImageConverter;
 
 /**
@@ -40,7 +45,7 @@ public class Person implements Serializable {
      * Nationality of the user.
      * (ex : "French")
      */
-    private String nationality;
+    private CountryCode nationality;
 
     /**
      * Sex of the user.
@@ -126,10 +131,10 @@ public class Person implements Serializable {
         this.givenNames = givenNames;
     }
     
-    public String getNationality() {
+    public CountryCode getNationality() {
         return nationality;
     }
-    public void setNationality(String nationality) {
+    public void setNationality(CountryCode nationality) {
         this.nationality = nationality;
     }
 
@@ -214,6 +219,95 @@ public class Person implements Serializable {
 		this.fingerprints = fingerprints;
 	}
 
+
+	public static byte[] serialize(Person p) throws IOException{
+	
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		ObjectOutput out = null;
+		byte[] yourBytes = null;
+		try {
+		  out = new ObjectOutputStream(bos);   
+		  out.writeObject(p);
+		  yourBytes = bos.toByteArray();
+		} finally {
+		  try {
+		    if (out != null) {
+		      out.close();
+		    }
+		  } catch (IOException ex) {
+		    // ignore close exception
+		  }
+		  try {
+		    bos.close();
+		  } catch (IOException ex) {
+		    // ignore close exception
+		  }
+		}
+		
+		return yourBytes;
+		
+	}
+	
+	public static Person deserialise(byte [] bpreson) throws StreamCorruptedException, IOException, ClassNotFoundException{
+		ByteArrayInputStream bis = new ByteArrayInputStream(bpreson);
+		ObjectInput in = null;
+		Person bperson = null;
+		try{
+			try {
+				  in = new ObjectInputStream(bis);
+				  bperson = (Person)in.readObject(); 
+				} finally {
+				  try {
+				    bis.close();
+				  } catch (IOException ex) {
+					  	throw ex;
+				  }
+				  try {
+				    if (in != null) {
+				      in.close();
+				    }
+				  } catch (IOException ex) {
+				    throw ex;
+				  }
+				}
+		}catch(Exception exp){
+			exp.printStackTrace();
+		}
+		
+		return  bperson;
+		
+	}
+	
+	public boolean filter(PersonFilter fCriteria){
+		boolean ret = false;
+		if (fCriteria.getNationality().equals(nationality) && fCriteria.getSex().equals(sex)){
+			if(fCriteria.getFirstName().isEmpty() && fCriteria.getGivenName().isEmpty()){
+				ret = true;
+			}else if (fCriteria.getFirstName() != null && !fCriteria.getFirstName().isEmpty()
+					&&fCriteria.getGivenName() != null && !fCriteria.getGivenName().isEmpty()){
+				
+				for(String iterator : givenNames){
+					if(iterator.toLowerCase().contains(fCriteria.getGivenName().toLowerCase())){
+						ret = fCriteria.getFirstName().toLowerCase().contains(surname.toLowerCase());
+					}
+				}
+			
+			}else if((fCriteria.getFirstName()== null || fCriteria.getFirstName().isEmpty())){
+				for(String strIterator : givenNames){
+					if(strIterator.toLowerCase().contains(fCriteria.getGivenName().toLowerCase())){
+						ret = true;
+					}
+				}
+			}else if((fCriteria.getGivenName() == null || fCriteria.getGivenName().isEmpty()) && fCriteria.getFirstName().toLowerCase().contains(surname.toLowerCase())) {
+				ret = true;
+			}	
+		}
+		
+		return ret;
+	}
+	
+	
+	
 	
 	
 	

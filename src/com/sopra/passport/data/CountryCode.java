@@ -16,14 +16,15 @@ package com.sopra.passport.data;
  */
 
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
 public enum CountryCode
 {
+	
+	NOSELECTION("Not selected", "NOT SELECTED", 16),
     // @formatter:off
     /** <a href="http://en.wikipedia.org/wiki/Andorra">Andorra</a> */
     AND("Andorra", "AND", 16),
@@ -898,6 +899,13 @@ public enum CountryCode
     @Override
     public String toString() {
     	return name;
+    }
+    
+    public boolean equals(CountryCode code){
+    	if(name == code.name || code == NOSELECTION){
+    		return true;
+    	}
+    	return false;
     }
     
 

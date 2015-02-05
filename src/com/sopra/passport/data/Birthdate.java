@@ -1,7 +1,6 @@
 package com.sopra.passport.data;
 
 import java.io.Serializable;
-import java.util.StringTokenizer;
 
 /**
  * This class represents a specific date.

@@ -1,13 +1,15 @@
 package com.sopra.passport.data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+
+import android.R.bool;
 
 
 /**
  * This enumeration represents the sex of the user.
  */
-public enum Gender {
+public enum Gender implements Serializable {
+	ND,
 	MALE,
 	FEMALE;
 	
@@ -28,11 +30,22 @@ public enum Gender {
 			case FEMALE: 
 				str = "F";
 				break;
+			case ND: 
+				str = "ND";
+				break;
 			default: 
 				throw new IllegalArgumentException();
 	    }
 		
 		return str;
+	}
+	
+	public boolean equals(Gender gender){
+		if(this == gender || this == ND){
+			return true;
+		}
+		
+		return false;
 	}
 	
   

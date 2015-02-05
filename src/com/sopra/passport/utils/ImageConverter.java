@@ -56,15 +56,15 @@ public class ImageConverter {
 	
 	@SuppressWarnings("unchecked")
 	public static <T> T getBitmap(Blob inBlob) throws IOException{
-		if (inBlob.getMimeType().equals("JPEG")) {
+		if (inBlob.getMimeType().equals("image/jpg")) {
 			
 			return (T) ImageConverter.getBitmapFromBytes(inBlob.getData().getBytes());
 			
-		} else if (inBlob.getMimeType().equals("WSQ")){
+		} else if (inBlob.getMimeType().equals("image/x-wsq")){
 			
 			return (T) ImageConverter.getBitmapFromWSQBytes(inBlob.getData().getBytes());
 			
-		} else if (inBlob.getMimeType().equals("JPEG2000")){
+		} else if (inBlob.getMimeType().equals("image/jp2")){
 			
 			return (T) ImageConverter.getBitmapFromJPEG2000Bytes(inBlob.getData().getBytes());
 

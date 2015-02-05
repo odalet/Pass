@@ -2,20 +2,16 @@ package com.sopra.passport;
 
 import com.sopra.passport.data.CountryCode;
 import com.sopra.passport.data.Gender;
+import com.sopra.passport.data.Person;
+import com.sopra.passport.utils.PersonModel;
 
-import android.R.anim;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 
@@ -43,8 +39,14 @@ public class AdvancedSearch extends Activity {
                 Gender selectedGender = (Gender)gender.getSelectedItem();
                 CountryCode selectedCountryCode = (CountryCode)countries.getSelectedItem();
                 
+                PersonFilter serchBloc = new PersonFilter();
+                serchBloc.setFirstName(namefirst);
+                serchBloc.setGivenName(namegiven);
+                serchBloc.setNationality(selectedCountryCode);
+                serchBloc.setSex(selectedGender);
+                
                 Intent resultIntent = new Intent();
-                resultIntent.putExtra("result", 10);
+                resultIntent.putExtra("searchCriteria", serchBloc);
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();
             }

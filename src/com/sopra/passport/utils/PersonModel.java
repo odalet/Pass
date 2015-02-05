@@ -1,13 +1,9 @@
 package com.sopra.passport.utils;
 
-import java.awt.List;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
-
 import com.sopra.passport.data.Birthdate;
 import com.sopra.passport.data.Blob;
 import com.sopra.passport.data.CountryCode;
@@ -18,9 +14,14 @@ import com.sopra.passport.data.Person;
  * Class used to save all data for a user.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class PersonModel {
+public class PersonModel implements Serializable {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Id used to identify each user.
      */
 	@JsonProperty("Id")
@@ -68,57 +69,31 @@ public class PersonModel {
     
     
     public Person toUser() {
-    	Person user = new Person(id);
-    	
-    	user.setSurname(lastName);
-    	ArrayList<String> list = new ArrayList<String>();
-    	list.add(firstname);
-    	user.setGivenNames(list);
-    	
-    	if (sex == Gender.MALE) {
-    		user.setSex(Gender.MALE);
-    	} else {
-    		user.setSex(Gender.FEMALE);
-    	}
-    	user.setBirthdate(new Birthdate(birthdate));
-    	user.setNationality(country.getCountrName());
-    	user.setAddress(address);
-    	user.setPhoto(photo);
-    	user.setFingerprints(fingerprints);
-    	user.setSignature(signature);
- 
-    	/*
-    	user.setHeight(height);
-    	user.setEyesColor(eyesColor);
-    	
-    	user.setBirthplace(birthplace);
-    	
-    	try {
-			Bitmap image = ImageConverter.getBitmapFromJPEG2000Bytes(photo.getBytes());
-    		user.setPhoto(ImageConverter.getBytesFromBitmap(image));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	try {
-    		Bitmap image = ImageConverter.getBitmapFromJPEG2000Bytes(signature.getBytes());
-    		user.setSignature(ImageConverter.getBytesFromBitmap(image));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	try {
-    		Bitmap image = ImageConverter.getBitmapFromWSQBytes(fingerprint.getBytes());
-    		user.setFingerprint(ImageConverter.getBytesFromBitmap(image));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-    	
-    	return user;
+  
+    		
+    		Person user = new Person(id);
+        	
+        	user.setSurname(lastName);
+        	ArrayList<String> list = new ArrayList<String>();
+        	list.add(firstname);
+        	user.setGivenNames(list);
+        	
+        	if (sex == Gender.MALE) {
+        		user.setSex(Gender.MALE);
+        	} else {
+        		user.setSex(Gender.FEMALE);
+        	}
+        	user.setId(id);
+        	user.setBirthdate(new Birthdate(birthdate));
+        	if(country == null){
+        		country = CountryCode.NOSELECTION;
+        	}
+        	user.setNationality(country);
+        	user.setAddress(address);
+        	user.setPhoto(photo);
+        	user.setFingerprints(fingerprints);
+        	user.setSignature(signature);
+        	return user;
     }
 
 
@@ -230,21 +205,6 @@ public class PersonModel {
 		this.fingerprints = fingerprints;
 	}
 
-    /*
-	private Map<Integer,Blob> getListFingerPrints(){
-		if (fingerprints == null || fingerprints.size() == 0 ){
-			return null;
-		}
-		
-		Map<Integer,Blob> map = new HashMap<Integer, Blob>();
-		
-		for (Blob biterator : fingerprints ){
-			map.put(biterator.getFinger(), biterator)
-		}
-		
-		return map;
-	}
-	*/
 	
 	
 	

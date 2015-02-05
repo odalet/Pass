@@ -1,10 +1,6 @@
 package com.sopra.passport;
-
-import java.io.IOException;
 import java.util.List;
-
 import com.sopra.passport.data.Person;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -36,6 +32,7 @@ public class PersonListAdapter extends ArrayAdapter<Person> {
 		}
 		
 		Person user = getItem(position);
+		//Person user = listPerson.get(position);
 		TextView nameView = (TextView) convertView.findViewById(R.id.item_name_text);
 		TextView firstLineView = (TextView) convertView.findViewById(R.id.item_first_line_text);
 		TextView secondLineView = (TextView) convertView.findViewById(R.id.item_second_line_text);
@@ -54,19 +51,13 @@ public class PersonListAdapter extends ArrayAdapter<Person> {
         }
         tmp.append(user.getGivenNames().get(user.getGivenNames().size() - 1));
         nameView.setText(tmp.toString());
-       
         // Birthdate
         tmp = new StringBuffer();
         tmp.append(user.getBirthdate());
         tmp.append(' ');
         firstLineView.setText(tmp.toString());
-        
-       
         // Nationality
-        secondLineView.setText(user.getNationality());
-        
-        
-        
+        secondLineView.setText(user.getNationality().getCountrName());
         // Sex
         sexLineView.setText(user.getSex().toString());
        /*
@@ -79,4 +70,8 @@ public class PersonListAdapter extends ArrayAdapter<Person> {
         */
         return convertView;
 	}
+
+	
+	
+	
 }

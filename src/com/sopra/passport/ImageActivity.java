@@ -20,7 +20,6 @@ public class ImageActivity extends Activity {
 	
 	private Bitmap image;
 	private ZoomImageView imageView;
-	private ZoomControls zoomControl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,52 +38,9 @@ public class ImageActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        
-    	/*
-		this.imageView = (ZoomImageView)findViewById(R.id.image_view);
-		
-		
-		this.zoomControl = (ZoomControls) findViewById(R.id.image_zoom_control);
-		
-		byte[] imgBytes = (byte[]) getIntent().getSerializableExtra("image");
-		
-		try {
-			this.image = ImageConverter.getBitmapFromBytes(imgBytes);
-			imageView.setImageBitmap(this.image);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	zoomControl.setOnZoomInClickListener(new ZoomInListener());
-    	zoomControl.setOnZoomOutClickListener(new ZoomOutListener());
-    	*/
 	}
 
-	private class ZoomInListener implements OnClickListener
-	{
-		@Override
-		public void onClick(View v) {
-			float x = imageView.getScaleX();
-			float y = imageView.getScaleY();
-			
-			imageView.setScaleX((float) (x + 0.5));
-			imageView.setScaleY((float) (y + 0.5));
-		}
-	}
-	
-	private class ZoomOutListener implements OnClickListener
-	{
-		@Override
-		public void onClick(View v) {
-			float x = imageView.getScaleX();
-			float y = imageView.getScaleY();
-			
-			imageView.setScaleX((float) (x - 0.5));
-			imageView.setScaleY((float) (y - 0.5));
-		}
-	}
+
 	
 	/**
 	 * A placeholder fragment containing a simple view.

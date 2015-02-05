@@ -1,15 +1,13 @@
 package com.sopra.passport;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.jws.Oneway;
-
-import com.sopra.passport.data.Person;
-import com.sopra.passport.utils.PersonFactory;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,42 +19,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.sopra.passport.data.Person;
+import com.sopra.passport.utils.PersonDbHelper;
+import com.sopra.passport.utils.PersonFactory;
+
 public class PersonListActivity extends Activity {
 
 	private static final int STATIC_INTEGER_VALUE = 0x7f040001;
 	private Context context = this;
-	static private List<Person> personList = null;
+	private List<Person> personList = null;
 	public int returnValue = 0;
 	private ListView personListView = null;
 	private Person personSelected = null;
+	private PersonDbHelper mpersonDbHelper;
+	private PersonListAdapter mlistPersonAdapter = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_person_list);
-		
-		new PersonListGetTask().execute();
-	}
-
-	
-
-	
-	private void initUI() {
-		personListView = (ListView) findViewById(R.id.list_personlist_view);
-		personListView.setAdapter(new PersonListAdapter(context, R.layout.person_item_row, personList));
-		personListView.setOnItemClickListener(new ItemClickListener());
-		
-		EditText inputSearch = (EditText) findViewById(R.id.list_search_text);
-		inputSearch.addTextChangedListener(new SearchListener(this, personList, personListView));
-		
-		Button search = (Button) findViewById(R.id.searchbtn);
-		search.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	Intent intent = new Intent(context, AdvancedSearch.class);	
-    			startActivityForResult(intent,STATIC_INTEGER_VALUE);
-            }
-        });
-
+		 mpersonDbHelper = new PersonDbHelper(context);
+		 reloadPersonList();
 	}
 	
 	@Override
@@ -72,10 +55,69 @@ public class PersonListActivity extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
+		
+		switch (id) {
+		case R.id.action_settings:
+			
+			break;
+		case R.id.action_refresh:
+			loadPersonList();
+			break;
+		case R.id.action_search:
+			Intent intent = new Intent(context, AdvancedSearch.class);	
+			startActivityForResult(intent,STATIC_INTEGER_VALUE);
+			break;
+
+		default:
+			break;
+		}
 		if (id == R.id.action_settings) {
 			return true;
 		}
+		
 		return super.onOptionsItemSelected(item);
+	}
+	
+	private void initUI() {
+		personListView = (ListView) findViewById(R.id.list_personlist_view);
+		mlistPersonAdapter = new PersonListAdapter(context, R.layout.person_item_row, personList);
+		personListView.setAdapter(mlistPersonAdapter);
+		personListView.setOnItemClickListener(new ItemClickListener());
+		
+		EditText inputSearch = (EditText) findViewById(R.id.list_search_text);
+		inputSearch.addTextChangedListener(new SearchListener(this, personList, personListView));
+		/*
+		Button search = (Button) findViewById(R.id.searchbtn);
+		search.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	Intent intent = new Intent(context, AdvancedSearch.class);	
+    			startActivityForResult(intent,STATIC_INTEGER_VALUE);
+            }
+        });
+        */
+
+	}
+	
+	private void loadPersonList(){
+		if(isOnline()){
+			new PersonListGetTask().execute();
+		}else{
+    		if(mpersonDbHelper.checkDataBase(context)){
+    			this.personList = mpersonDbHelper.getAllPersons();
+    			initUI();			
+    		}
+		}
+	}
+	
+	private void reloadPersonList(){
+		if(isOnline()){
+			new PersonListGetTask().execute();
+		}else{
+    		if(mpersonDbHelper.checkDataBase(context)){
+    			this.personList = mpersonDbHelper.getAllPersons();
+    			initUI();			
+    		}
+		}
 	}
 	
 	
@@ -83,7 +125,6 @@ public class PersonListActivity extends Activity {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			//Person selectedPerson = (Person) parent.getItemAtPosition(position);
 			// this part is an obligation for using the http request in the main thread
 			new PersonGetByIdTask().execute();
 			
@@ -97,14 +138,11 @@ public class PersonListActivity extends Activity {
     		Intent intent = new Intent(context, PersonActivity.class);
 			intent.putExtra("person", personSelected);		
 			startActivity(intent);
-			 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
-	         //getApplicationContext().startActivity(intent);
     	}
 		
 		@Override
 		protected Void doInBackground(Void... params) {
-			personSelected = PersonFactory.getUserById();
-			
+			personSelected = PersonFactory.getUserById();	
 			return null;
 		}
 		
@@ -115,6 +153,11 @@ public class PersonListActivity extends Activity {
     	
     	@Override
     	protected void onPostExecute(Void v) {
+    		try{
+				mpersonDbHelper.UpdateAll(personList);
+			}catch(Exception exp){
+				exp.printStackTrace();
+			}
     		initUI();
     	}
 
@@ -136,16 +179,37 @@ public class PersonListActivity extends Activity {
 	  super.onActivityResult(requestCode, resultCode, data); 
 	  switch(requestCode) { 
 	    case (STATIC_INTEGER_VALUE) : 
-	    	
+		    // on returning from search part this block will be executed
 	    	if (resultCode == Activity.RESULT_OK) { 
-	    	      //int tabIndex = (int)data.getSerializableExtra("val");
-	    	      // TODO Switch tabs using the index.
+	    		PersonFilter searchElement = (PersonFilter)data.getSerializableExtra("searchCriteria");
+	    		rechargeList(searchElement);
 	    	} 
-	    
-	      // on returning from search part this block will be executed
 	      break; 
 	    } 
 	  } 
+	
+	
+	private boolean isOnline() {
+	    ConnectivityManager cm =
+	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    return netInfo != null && netInfo.isConnectedOrConnecting();
+	}
+	
+	private void rechargeList(PersonFilter searchElement){
+		List<Person> listPerson = new ArrayList<Person>();
+		for(Person person : this.personList){
+			if(person.filter(searchElement)){
+				listPerson.add(person);
+			}
+		}
+		
+		if(listPerson.size() != 0){
+			this.personList = listPerson;
+			initUI();
+		}
+		
+	}
 	
 	
 	
