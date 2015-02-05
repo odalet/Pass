@@ -95,7 +95,6 @@ public class PersonListActivity extends Activity {
             }
         });
         */
-
 	}
 	
 	private void loadPersonList(){
@@ -126,13 +125,20 @@ public class PersonListActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			// this part is an obligation for using the http request in the main thread
-			new PersonGetByIdTask().execute();
+			Integer[] integer = new Integer[]{personList.get(position).getId()};
+			new getPersonByIdTask().execute(integer);
 			
 		}
 	}
 	
-	private class PersonGetByIdTask extends AsyncTask<Void, Void, Void>{
+	private class getPersonByIdTask extends AsyncTask<Integer, Void, Void>{
+		
+		
+		public getPersonByIdTask(){
+			super();
 
+		}
+		
     	@Override
     	protected void onPostExecute(Void v) {
     		Intent intent = new Intent(context, PersonActivity.class);
@@ -141,12 +147,14 @@ public class PersonListActivity extends Activity {
     	}
 		
 		@Override
-		protected Void doInBackground(Void... params) {
-			personSelected = PersonFactory.getUserById();	
+		protected Void doInBackground(Integer... params) {
+			personSelected = PersonFactory.getPersonById(params[0]);	
 			return null;
 		}
 		
 	}
+	
+
 	
 	
 	private class PersonListGetTask extends AsyncTask<Void, Void, Void> {

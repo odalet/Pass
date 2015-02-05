@@ -56,7 +56,7 @@ public class ImageConverter {
 	
 	@SuppressWarnings("unchecked")
 	public static <T> T getBitmap(Blob inBlob) throws IOException{
-		if (inBlob.getMimeType().equals("image/jpg")) {
+		if (inBlob.getMimeType().equals("image/jpeg")) {
 			
 			return (T) ImageConverter.getBitmapFromBytes(inBlob.getData().getBytes());
 			

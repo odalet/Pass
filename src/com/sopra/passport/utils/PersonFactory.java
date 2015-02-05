@@ -57,12 +57,12 @@ public class PersonFactory {
         return str;
     }
 	
-	private static String getJsonUser(){
+	private static String getJsonPerson(int id){
 		String str = null;
 		HttpResponse response;
 		try {
         HttpClient myClient = new DefaultHttpClient();
-        HttpGet myConnection = new HttpGet(WS_URL + Integer.toString(1));
+        HttpGet myConnection = new HttpGet(WS_URL + Integer.toString(id));
             response = myClient.execute(myConnection);
             str = EntityUtils.toString(response.getEntity(), "UTF-8");
         } catch(Exception ex) {
@@ -71,12 +71,12 @@ public class PersonFactory {
         return str;
 	}
 	
-	public static Person getUserById(){
+	public static Person getPersonById(int id){
 		Person person = null;
 		ObjectMapper mapper = new ObjectMapper();
 		PersonModel modelPerson;
 		try {
-			modelPerson = mapper.readValue(getJsonUser(), PersonModel.class);
+			modelPerson = mapper.readValue(getJsonPerson(id), PersonModel.class);
 			person = modelPerson.toUser();
 		} catch (Exception e) {
 			e.printStackTrace();
