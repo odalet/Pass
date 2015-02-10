@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -15,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -33,6 +33,7 @@ public class PersonListActivity extends Activity {
 	private Person personSelected = null;
 	private PersonDbHelper mpersonDbHelper;
 	private PersonListAdapter mlistPersonAdapter = null;
+	private ProgressDialog barProgressDialog = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +45,13 @@ public class PersonListActivity extends Activity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.person_list, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		
 		switch (id) {
 		case R.id.action_settings:
 			
@@ -83,18 +79,11 @@ public class PersonListActivity extends Activity {
 		mlistPersonAdapter = new PersonListAdapter(context, R.layout.person_item_row, personList);
 		personListView.setAdapter(mlistPersonAdapter);
 		personListView.setOnItemClickListener(new ItemClickListener());
-		
+		barProgressDialog = new ProgressDialog(PersonListActivity.this);
+		barProgressDialog.setTitle("Loading.....");
+
 		EditText inputSearch = (EditText) findViewById(R.id.list_search_text);
 		inputSearch.addTextChangedListener(new SearchListener(this, personList, personListView));
-		/*
-		Button search = (Button) findViewById(R.id.searchbtn);
-		search.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	Intent intent = new Intent(context, AdvancedSearch.class);	
-    			startActivityForResult(intent,STATIC_INTEGER_VALUE);
-            }
-        });
-        */
 	}
 	
 	private void loadPersonList(){
@@ -144,11 +133,13 @@ public class PersonListActivity extends Activity {
     		Intent intent = new Intent(context, PersonActivity.class);
 			intent.putExtra("person", personSelected);		
 			startActivity(intent);
+			ChangeStateListView();
     	}
 		
 		@Override
 		protected Void doInBackground(Integer... params) {
-			personSelected = PersonFactory.getPersonById(params[0]);	
+			ChangeStateListView();
+			personSelected = PersonFactory.getPersonById(params[0]);
 			return null;
 		}
 		
@@ -196,7 +187,6 @@ public class PersonListActivity extends Activity {
 	    } 
 	  } 
 	
-	
 	private boolean isOnline() {
 	    ConnectivityManager cm =
 	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -217,6 +207,21 @@ public class PersonListActivity extends Activity {
 			initUI();
 		}
 		
+	}
+	
+	
+	void ChangeStateListView(){
+		runOnUiThread(new Runnable() {
+			public void run() {
+				if(personListView.isEnabled()){
+					personListView.setEnabled(false);
+					barProgressDialog.show();
+				}else{
+					barProgressDialog.hide();
+					personListView.setEnabled(true);
+				}	
+			}
+		});
 	}
 	
 	

@@ -4,8 +4,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
  
-    <ImageView
+    <com.sopra.passport.TouchImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="redefined image"
         android:id="@+id/imageView" />
 </LinearLayout>

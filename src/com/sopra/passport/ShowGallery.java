@@ -19,7 +19,5 @@ public class ShowGallery extends Activity {
 		CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this,this.fingers);
 		ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mCustomPagerAdapter);
-		
-		
 	}
 }

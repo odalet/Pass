@@ -183,6 +183,7 @@ public class Person implements Serializable {
     public Blob getPhoto() {
     	return photo;
     }
+    
     public Bitmap getPhotoToBitmap() throws IOException {
     	return ImageConverter.getBitmap(photo);
     }
@@ -206,6 +207,10 @@ public class Person implements Serializable {
 	public Blob getThumbnail() {
 		return thumbnail;
 	}
+	
+	public Bitmap getThumbnailToBitmap() throws IOException {
+	    	return ImageConverter.getBitmap(thumbnail);
+	    }
 
 	public void setThumbnail(Blob thumbnail) {
 		this.thumbnail = thumbnail;

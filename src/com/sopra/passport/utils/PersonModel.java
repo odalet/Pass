@@ -66,36 +66,6 @@ public class PersonModel implements Serializable {
     public PersonModel() {
     	
     }
-    
-    
-    public Person toUser() {
-  
-    		
-    		Person user = new Person(id);
-        	
-        	user.setSurname(lastName);
-        	ArrayList<String> list = new ArrayList<String>();
-        	list.add(firstname);
-        	user.setGivenNames(list);
-        	
-        	if (sex == Gender.MALE) {
-        		user.setSex(Gender.MALE);
-        	} else {
-        		user.setSex(Gender.FEMALE);
-        	}
-        	user.setId(id);
-        	user.setBirthdate(new Birthdate(birthdate));
-        	if(country == null){
-        		country = CountryCode.NOSELECTION;
-        	}
-        	user.setNationality(country);
-        	user.setAddress(address);
-        	user.setPhoto(photo);
-        	user.setFingerprints(fingerprints);
-        	user.setSignature(signature);
-        	return user;
-    }
-
 
 	public int getId() {
 		return id;
@@ -206,6 +176,34 @@ public class PersonModel implements Serializable {
 	}
 
 	
-	
+    public Person toUser() {
+    	  
+		
+		Person user = new Person(id);
+    	
+    	user.setSurname(lastName);
+    	ArrayList<String> list = new ArrayList<String>();
+    	list.add(firstname);
+    	user.setGivenNames(list);
+    	
+    	if (sex == Gender.MALE) {
+    		user.setSex(Gender.MALE);
+    	} else {
+    		user.setSex(Gender.FEMALE);
+    	}
+    	user.setId(id);
+    	user.setBirthdate(new Birthdate(birthdate));
+    	if(country == null){
+    		country = CountryCode.NOSELECTION;
+    	}
+    	user.setNationality(country);
+    	user.setAddress(address);
+    	user.setPhoto(photo);
+    	user.setFingerprints(fingerprints);
+    	user.setSignature(signature);
+    	user.setThumbnail(thumbnail);
+    	return user;
+}
+
 	
 }

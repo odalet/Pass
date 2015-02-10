@@ -25,8 +25,6 @@ public class ImageActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_image);
-		
-		
 		try {
 			TouchImageView img = new TouchImageView(this);  
 			Blob imgBlob = (Blob) getIntent().getSerializableExtra("image");
@@ -47,10 +45,7 @@ public class ImageActivity extends Activity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
-		public PlaceholderFragment() 
-		{
-			
-		}
+		public PlaceholderFragment() {}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

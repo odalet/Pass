@@ -49,6 +49,10 @@
             android:label="@string/title_activity_advanced_search"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        <activity
+            android:name=".SplashScreen"
+            android:label="@string/title_activity_splash_screen" >
+        </activity>
     </application>
 
 </manifest>

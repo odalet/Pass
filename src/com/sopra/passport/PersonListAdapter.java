@@ -1,6 +1,9 @@
 package com.sopra.passport;
+import java.io.IOException;
 import java.util.List;
+
 import com.sopra.passport.data.Person;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -60,14 +63,14 @@ public class PersonListAdapter extends ArrayAdapter<Person> {
         secondLineView.setText(user.getNationality().getCountrName());
         // Sex
         sexLineView.setText(user.getSex().toString());
-       /*
+        
+        
         try {
-			photoView.setImageBitmap(user.getPhotoToBitmap());
+			photoView.setImageBitmap(user.getThumbnailToBitmap());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        */
+    
         return convertView;
 	}
 

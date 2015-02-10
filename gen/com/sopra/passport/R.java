@@ -107,8 +107,9 @@ public final class R {
         public static final int activity_person=0x7f030002;
         public static final int activity_person_list=0x7f030003;
         public static final int activity_show_gallery=0x7f030004;
-        public static final int pager_item=0x7f030005;
-        public static final int person_item_row=0x7f030006;
+        public static final int activity_splash_screen=0x7f030005;
+        public static final int pager_item=0x7f030006;
+        public static final int person_item_row=0x7f030007;
     }
     public static final class menu {
         public static final int image_viewer=0x7f070000;
@@ -145,6 +146,7 @@ public final class R {
         public static final int title_activity_image_viewer=0x7f050014;
         public static final int title_activity_show_galerry=0x7f050016;
         public static final int title_activity_show_gallery=0x7f050017;
+        public static final int title_activity_splash_screen=0x7f05001b;
     }
     public static final class style {
         /** 

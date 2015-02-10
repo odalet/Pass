@@ -23,8 +23,6 @@ public class CustomPagerAdapter extends PagerAdapter {
     ArrayList<Blob> listImages;
     HashMap<Integer, Bitmap> ArrayElementsToShow;
     
-  
- 
     public CustomPagerAdapter(Context context) {
         mContext = context;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -50,13 +48,9 @@ public class CustomPagerAdapter extends PagerAdapter {
 	    @Override
 	    public Object instantiateItem(ViewGroup container, int position) {
 	        View itemView = mLayoutInflater.inflate(R.layout.pager_item, container, false);
-	        
-	        ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
-	        
+	        TouchImageView imageView = (TouchImageView) itemView.findViewById(R.id.imageView);
 	        imageView.setImageBitmap(getFingerPrint(position));
-	 
 	        container.addView(itemView);
-	 
 	        return itemView;
 	    }
 	 

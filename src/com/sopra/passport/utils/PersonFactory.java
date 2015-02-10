@@ -3,6 +3,7 @@ package com.sopra.passport.utils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -14,17 +15,17 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.json.JSONArray;
 import org.json.JSONException;
+
 import com.sopra.passport.data.Person;
 
-
+@SuppressWarnings("unused")
 public class PersonFactory {
 
 	private static final String WS_URL = "http://deltaapps.apphb.com/siti/persons/";
+	private static List<Person> mListPerson;
+	private static PersonFactory mPersonFactory;
 	
-	static public List<Person> getListPersons() throws JSONException, 
-												   	   JsonParseException,
-												       JsonMappingException, 
-												       IOException {
+	private PersonFactory() throws JsonParseException, JsonMappingException, IOException, JSONException{
 		JSONArray hs = new JSONArray(getJsonArray());
 		ObjectMapper mapper = new ObjectMapper();
 		List<PersonModel> userListModels = null;
@@ -40,7 +41,14 @@ public class PersonFactory {
 			userList.add(userModel.toUser());
 		}
 		
-		return userList;
+		mListPerson = userList;
+	}
+	
+	static public synchronized List<Person> getListPersons() throws Exception{
+		if(mListPerson == null){
+			mPersonFactory = new PersonFactory();
+		}
+		return mListPerson;
 	}	
 	
 	private static String getJsonArray() throws JSONException {
@@ -83,4 +91,5 @@ public class PersonFactory {
 		} 
 		return person;
 	}
+
 }

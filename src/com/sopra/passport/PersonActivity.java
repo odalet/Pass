@@ -43,9 +43,7 @@ public class PersonActivity extends Activity {
         ImageView photoView = (ImageView)findViewById(R.id.person_photography_view);
         ImageView signatureView = (ImageView)findViewById(R.id.person_signature_view);
         Button showFingers = (Button)findViewById(R.id.showfingerprints);
-        
         showFingers.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(context, ShowGallery.class);
@@ -75,8 +73,7 @@ public class PersonActivity extends Activity {
         try {
 			photoView.setImageBitmap(person.getPhotoToBitmap());
 			photoView.setOnClickListener(new ZoomListener());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
         
@@ -84,12 +81,10 @@ public class PersonActivity extends Activity {
         	signatureView.setImageBitmap(person.getSignatureToBitmap());
         	signatureView.setOnClickListener(new ZoomListener());
         } catch (IOException e) {
-        	// TODO Auto-generated catch block
         	e.printStackTrace();
         }
     }
     
-
     private class ZoomListener implements OnClickListener
     {
 		@Override
