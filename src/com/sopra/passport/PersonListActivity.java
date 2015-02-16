@@ -7,8 +7,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.sopra.passport.data.Person;
+import com.sopra.passport.utils.ConnexionTools;
 import com.sopra.passport.utils.PersonDbHelper;
 import com.sopra.passport.utils.PersonFactory;
 
@@ -40,7 +39,8 @@ public class PersonListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_person_list);
 		 mpersonDbHelper = new PersonDbHelper(context);
-		 reloadPersonList();
+		 personList = PersonFactory.getListPersons();
+		 initUI();
 	}
 	
 	@Override
@@ -76,9 +76,7 @@ public class PersonListActivity extends Activity {
 	
 	private void initUI() {
 		personListView = (ListView) findViewById(R.id.list_personlist_view);
-		mlistPersonAdapter = new PersonListAdapter(context, R.layout.person_item_row, personList);
-		personListView.setAdapter(mlistPersonAdapter);
-		personListView.setOnItemClickListener(new ItemClickListener());
+		notifyListView();
 		barProgressDialog = new ProgressDialog(PersonListActivity.this);
 		barProgressDialog.setTitle("Loading.....");
 
@@ -86,8 +84,14 @@ public class PersonListActivity extends Activity {
 		inputSearch.addTextChangedListener(new SearchListener(this, personList, personListView));
 	}
 	
+	private void notifyListView(){
+		mlistPersonAdapter = new PersonListAdapter(context, R.layout.person_item_row, personList);
+		personListView.setAdapter(mlistPersonAdapter);
+		personListView.setOnItemClickListener(new ItemClickListener());
+	}
+	
 	private void loadPersonList(){
-		if(isOnline()){
+		if(ConnexionTools.isOnline(context)){
 			new PersonListGetTask().execute();
 		}else{
     		if(mpersonDbHelper.checkDataBase(context)){
@@ -96,28 +100,25 @@ public class PersonListActivity extends Activity {
     		}
 		}
 	}
-	
-	private void reloadPersonList(){
-		if(isOnline()){
-			new PersonListGetTask().execute();
-		}else{
-    		if(mpersonDbHelper.checkDataBase(context)){
-    			this.personList = mpersonDbHelper.getAllPersons();
-    			initUI();			
-    		}
-		}
-	}
-	
 	
 	private class ItemClickListener implements OnItemClickListener {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			// this part is an obligation for using the http request in the main thread
-			Integer[] integer = new Integer[]{personList.get(position).getId()};
-			new getPersonByIdTask().execute(integer);
-			
+			//Integer[] integer = new Integer[]{personList.get(position).getId()};
+			if(!personList.get(position).isCharged){
+				Integer[] pos = new Integer[]{position};
+				new getPersonByIdTask().execute(pos);
+			}else{
+				openPersonDetails(personList.get(position));
+			}
 		}
+	}
+	
+	private void openPersonDetails(Person inPerson){
+		Intent intent = new Intent(context, PersonActivity.class);
+		intent.putExtra("person", inPerson);		
+		startActivity(intent);
 	}
 	
 	private class getPersonByIdTask extends AsyncTask<Integer, Void, Void>{
@@ -130,24 +131,20 @@ public class PersonListActivity extends Activity {
 		
     	@Override
     	protected void onPostExecute(Void v) {
-    		Intent intent = new Intent(context, PersonActivity.class);
-			intent.putExtra("person", personSelected);		
-			startActivity(intent);
-			ChangeStateListView();
+    		openPersonDetails(personSelected);
+    		ChangeStateListView();
+    		notifyListView();
     	}
 		
 		@Override
 		protected Void doInBackground(Integer... params) {
 			ChangeStateListView();
-			personSelected = PersonFactory.getPersonById(params[0]);
+			int position = params[0];
+			personSelected = PersonFactory.getPersonById(personList.get(position).getId());
+			personList.set(position,Person.combine(personSelected,personList.get(position)));
 			return null;
 		}
-		
 	}
-	
-
-	
-	
 	private class PersonListGetTask extends AsyncTask<Void, Void, Void> {
     	
     	@Override
@@ -162,13 +159,11 @@ public class PersonListActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
-			
 			try {
 				personList = PersonFactory.getListPersons();
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-			
+			}	
     		return null;
 		}
     }
@@ -187,13 +182,6 @@ public class PersonListActivity extends Activity {
 	    } 
 	  } 
 	
-	private boolean isOnline() {
-	    ConnectivityManager cm =
-	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    return netInfo != null && netInfo.isConnectedOrConnecting();
-	}
-	
 	private void rechargeList(PersonFilter searchElement){
 		List<Person> listPerson = new ArrayList<Person>();
 		for(Person person : this.personList){
@@ -208,7 +196,6 @@ public class PersonListActivity extends Activity {
 		}
 		
 	}
-	
 	
 	void ChangeStateListView(){
 		runOnUiThread(new Runnable() {

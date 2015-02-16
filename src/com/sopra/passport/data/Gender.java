@@ -2,8 +2,6 @@ package com.sopra.passport.data;
 
 import java.io.Serializable;
 
-import android.R.bool;
-
 
 /**
  * This enumeration represents the sex of the user.

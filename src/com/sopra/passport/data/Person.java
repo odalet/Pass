@@ -100,6 +100,12 @@ public class Person implements Serializable {
      */
     private Blob thumbnail; 
     
+    /**
+     * 
+     * IsCharged
+     */
+    
+    public boolean isCharged = false;
 
     public Person(int id) {
 
@@ -309,6 +315,14 @@ public class Person implements Serializable {
 		}
 		
 		return ret;
+	}
+	
+	public static Person combine(Person firstPerson,Person secondPerson){
+		Person person = secondPerson;
+		secondPerson = firstPerson;
+		firstPerson.thumbnail = person.thumbnail;
+		firstPerson.isCharged = true;
+		return firstPerson;
 	}
 	
 	

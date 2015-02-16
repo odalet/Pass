@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import com.sopra.passport.data.Blob;
 import com.sopra.passport.data.Person;
-import com.sopra.passport.utils.PersonFactory;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -92,8 +90,7 @@ public class PersonActivity extends Activity {
 			ImageView currentView = (ImageView) v;
 			ImageView photoView = (ImageView)findViewById(R.id.person_photography_view);
 	        ImageView signatureView = (ImageView)findViewById(R.id.person_signature_view);
-			Blob img = null;
-			
+			Blob img = null;	
 			if (currentView == photoView){
 				img = person.getPhoto();
 			}

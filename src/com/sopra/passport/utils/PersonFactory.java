@@ -25,31 +25,39 @@ public class PersonFactory {
 	private static List<Person> mListPerson;
 	private static PersonFactory mPersonFactory;
 	
-	private PersonFactory() throws JsonParseException, JsonMappingException, IOException, JSONException{
-		JSONArray hs = new JSONArray(getJsonArray());
-		ObjectMapper mapper = new ObjectMapper();
-		List<PersonModel> userListModels = null;
-		List<Person> userList = null;
-		
-		userListModels = mapper.readValue(
-			hs.toString(), 
-			new TypeReference<List<PersonModel>>(){}
-		);
-		
-		userList = new ArrayList<Person>();
-		for (PersonModel userModel : userListModels) {
-			userList.add(userModel.toUser());
+	private PersonFactory(){
+		try{
+			JSONArray hs = new JSONArray(getJsonArray());
+			ObjectMapper mapper = new ObjectMapper();
+			List<PersonModel> userListModels = null;
+			List<Person> userList = null;
+			
+			userListModels = mapper.readValue(
+				hs.toString(), 
+				new TypeReference<List<PersonModel>>(){}
+			);
+			
+			userList = new ArrayList<Person>();
+			for (PersonModel userModel : userListModels) {
+				userList.add(userModel.toUser());
+			}
+			mListPerson = userList;
+		}catch(Exception exp){
+			exp.printStackTrace();
 		}
-		
-		mListPerson = userList;
 	}
 	
-	static public synchronized List<Person> getListPersons() throws Exception{
+	static public synchronized List<Person> getListPersons(){
 		if(mListPerson == null){
 			mPersonFactory = new PersonFactory();
 		}
 		return mListPerson;
-	}	
+	}
+	
+	static public List<Person> getListPersonsFromWs(){
+		mPersonFactory = new PersonFactory();
+		return mListPerson;
+	}
 	
 	private static String getJsonArray() throws JSONException {
 		String str = null;
@@ -92,4 +100,7 @@ public class PersonFactory {
 		return person;
 	}
 
+	public static void setPerson(List<Person> listPerson){
+		mListPerson = listPerson;
+	}
 }

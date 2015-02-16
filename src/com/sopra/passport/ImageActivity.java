@@ -11,15 +11,12 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ZoomControls;
 
 public class ImageActivity extends Activity {
 	
 	private Bitmap image;
-	private ZoomImageView imageView;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

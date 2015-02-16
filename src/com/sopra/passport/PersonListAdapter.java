@@ -4,13 +4,17 @@ import java.util.List;
 
 import com.sopra.passport.data.Person;
 
+import android.R.color;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class PersonListAdapter extends ArrayAdapter<Person> {
@@ -41,6 +45,10 @@ public class PersonListAdapter extends ArrayAdapter<Person> {
 		TextView secondLineView = (TextView) convertView.findViewById(R.id.item_second_line_text);
 		TextView sexLineView = (TextView) convertView.findViewById(R.id.item_sex_text);
 		ImageView photoView = (ImageView) convertView.findViewById(R.id.item_photography_view);
+		
+		if(user.isCharged)
+			convertView.setBackgroundColor(Color.GRAY);
+		
 		StringBuffer tmp = null;
 		
 		// Surname and given names
