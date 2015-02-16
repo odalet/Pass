@@ -2,8 +2,6 @@ package com.sopra.passport;
 
 import com.sopra.passport.data.CountryCode;
 import com.sopra.passport.data.Gender;
-import com.sopra.passport.data.Person;
-import com.sopra.passport.utils.PersonModel;
 
 import android.app.Activity;
 import android.content.Intent;

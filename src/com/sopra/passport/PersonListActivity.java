@@ -1,5 +1,6 @@
 package com.sopra.passport;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,6 +143,11 @@ public class PersonListActivity extends Activity {
 			int position = params[0];
 			personSelected = PersonFactory.getPersonById(personList.get(position).getId());
 			personList.set(position,Person.combine(personSelected,personList.get(position)));
+			try {
+				mpersonDbHelper.update(personSelected);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			return null;
 		}
 	}

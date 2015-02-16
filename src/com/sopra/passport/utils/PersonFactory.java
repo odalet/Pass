@@ -100,7 +100,7 @@ public class PersonFactory {
 		return person;
 	}
 
-	public static void setPerson(List<Person> listPerson){
+	public static void setPersons(List<Person> listPerson){
 		mListPerson = listPerson;
 	}
 }

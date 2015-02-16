@@ -41,7 +41,7 @@ public class PersonDbHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(CREATE_BDD);
-		Log.i("creation DataBase", "Base de données crée");
+		Log.i("DataBase creation", "the database was created");
 		
 	}
 
@@ -64,6 +64,14 @@ public class PersonDbHelper extends SQLiteOpenHelper {
 		values.put(COLUMN_NAME_OBJECT,Person.serialize(person));	// insertion
 		db.insert(TABLE_NAME,null, values);
 		db.close();
+	}
+	
+	public void update(Person person) throws IOException{
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues value = new ContentValues();
+		value.put(COLUMN_NAME_ID, person.getId());
+		value.put(COLUMN_NAME_OBJECT,Person.serialize(person));	// insertion
+		db.update(TABLE_NAME, value, COLUMN_NAME_ID + "=" + person.getId() , null);
 	}
 	
 	public void AddListPersons(List<Person> persons) throws IOException{
@@ -121,7 +129,6 @@ public class PersonDbHelper extends SQLiteOpenHelper {
 		return false;
 		
 	}
-	
 	
 	public Person getPersonById(int id){
 		Person person = null;
