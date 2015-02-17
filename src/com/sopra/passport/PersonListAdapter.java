@@ -5,6 +5,7 @@ import java.util.List;
 import com.sopra.passport.data.Person;
 
 import android.R.color;
+import android.R.drawable;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -46,8 +47,8 @@ public class PersonListAdapter extends ArrayAdapter<Person> {
 		TextView sexLineView = (TextView) convertView.findViewById(R.id.item_sex_text);
 		ImageView photoView = (ImageView) convertView.findViewById(R.id.item_photography_view);
 		
-		if(user.isCharged)
-			convertView.setBackgroundColor(Color.GRAY);
+		/*if(user.isCharged)
+			convertView.setBackgroundColor(drawable.list_selector_background); */
 		
 		StringBuffer tmp = null;
 		
