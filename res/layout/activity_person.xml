@@ -288,6 +288,7 @@
             android:id="@+id/showfingerprints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@android:style/MediaButton.Play"
             android:text="FingerPrints" />
     </LinearLayout>
 

@@ -66,7 +66,9 @@ public class PersonActivity extends Activity {
         sexView.setText(person.getSex().toString());
         birthdateView.setText(person.getBirthdate().toString());
         addressView.setText(person.getAddress());
-   
+        birthplaceView.setText(person.getBirthplace());
+        eyesColorView.setText(person.getEyesColor());
+        heightView.setText(String.valueOf(person.getHeight()));
         
         try {
 			photoView.setImageBitmap(person.getPhotoToBitmap());

@@ -80,7 +80,7 @@ public class PersonListActivity extends Activity {
 		notifyListView();
 		barProgressDialog = new ProgressDialog(PersonListActivity.this);
 		barProgressDialog.setTitle("Loading.....");
-
+		barProgressDialog.setMessage("Please wait ");
 		EditText inputSearch = (EditText) findViewById(R.id.list_search_text);
 		inputSearch.addTextChangedListener(new SearchListener(this, personList, personListView));
 	}
@@ -93,6 +93,7 @@ public class PersonListActivity extends Activity {
 	
 	private void loadPersonList(){
 		if(ConnexionTools.isOnline(context)){
+			    barProgressDialog.show();
 			new PersonListGetTask().execute();
 		}else{
     		if(mpersonDbHelper.checkDataBase(context)){
@@ -160,13 +161,14 @@ public class PersonListActivity extends Activity {
 			}catch(Exception exp){
 				exp.printStackTrace();
 			}
+    		barProgressDialog.hide();
     		initUI();
     	}
 
 		@Override
 		protected Void doInBackground(Void... params) {
 			try {
-				personList = PersonFactory.getListPersons();
+				personList = PersonFactory.getListPersonsFromWs();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}	

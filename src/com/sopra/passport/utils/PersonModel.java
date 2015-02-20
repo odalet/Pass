@@ -57,12 +57,24 @@ public class PersonModel implements Serializable {
 	@JsonProperty("BirthDate")
     private String birthdate;
 	
-	@JsonProperty("Country")
-    private CountryCode country;
+	
+	@JsonProperty("Nationality")
+    private String nationality;
 	
 	@JsonProperty("Fingerprints")
 	private ArrayList<Blob> fingerprints;
+	
+	@JsonProperty("BirthPlace")
+	private String birthplace;
 
+	@JsonProperty("EyesColor")
+	private String eyesColor;
+	
+	@JsonProperty("Height")
+	private long height;
+	
+	
+	
     public PersonModel() {
     	
     }
@@ -146,14 +158,6 @@ public class PersonModel implements Serializable {
 	}
 
 
-	public CountryCode getCountry() {
-		return country;
-	}
-
-
-	public void setCountry(CountryCode country) {
-		this.country = country;
-	}
 
 
 	public String getAddress() {
@@ -176,7 +180,15 @@ public class PersonModel implements Serializable {
 	}
 
 	
-    public Person toUser() {
+    public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+	
+	public Person toUser() {
     	  
 		
 		Person user = new Person(id);
@@ -193,15 +205,23 @@ public class PersonModel implements Serializable {
     	}
     	user.setId(id);
     	user.setBirthdate(new Birthdate(birthdate));
-    	if(country == null){
-    		country = CountryCode.NOSELECTION;
+
+    	CountryCode country = CountryCode.NOSELECTION;
+    	
+    	if(!nationality.isEmpty()){
+    		country = CountryCode.getByCode(nationality);
     	}
-    	user.setNationality(country);
+    	
+    	
     	user.setAddress(address);
     	user.setPhoto(photo);
     	user.setFingerprints(fingerprints);
     	user.setSignature(signature);
     	user.setThumbnail(thumbnail);
+    	user.setBirthplace(birthplace);
+    	user.setEyesColor(eyesColor);
+    	user.setHeight(height);
+    	user.setNationality(country);
     	return user;
 }
 

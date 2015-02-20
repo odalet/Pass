@@ -46,6 +46,7 @@ public class SplashScreen extends Activity {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 			openMainActivity();	
     	}
 		@Override

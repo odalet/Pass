@@ -17,11 +17,12 @@ package com.sopra.passport.data;
 
 
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public enum CountryCode
+public enum CountryCode implements Serializable
 {
 	
 	NOSELECTION("Not selected", "NOT SELECTED", 16),
@@ -720,13 +721,13 @@ public enum CountryCode
     UA("Ukraine", "UKR", 804),
 
     /** <a href="http://en.wikipedia.org/wiki/Uganda">Uganda</a> */
-    UG("Uganda", "UGA", 800),
+    UGA("Uganda", "UGA", 800),
 
     /** <a href="http://en.wikipedia.org/wiki/United_States_Minor_Outlying_Islands">United States Minor Outlying Islands</a> */
-    UM("United States Minor Outlying Islands", "UMI", 581),
+    UMI("United States Minor Outlying Islands", "UMI", 581),
 
     /** <a href="http://en.wikipedia.org/wiki/United_States">United States</a> */
-    US("United States", "USA", 840),
+    USA("United States", "USA", 840),
 
     /** <a href="http://en.wikipedia.org/wiki/Uruguay">Uruguay</a> */
     UY("Uruguay", "URY", 858),
