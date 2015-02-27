@@ -1,12 +1,16 @@
 package com.sopra.passport;
 import java.util.ArrayList;
 
+import javax.annotation.Resource;
+
 import com.sopra.passport.data.Blob;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.widget.ImageView;
 
 public class ShowGallery extends Activity {
 
@@ -27,5 +31,7 @@ public class ShowGallery extends Activity {
 		CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this,this.fingers,true,position);
 		ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mCustomPagerAdapter);
+
+	
 	}
 }

@@ -10,9 +10,8 @@ import com.sopra.passport.utils.ImageConverter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -64,6 +63,12 @@ public class CustomPagerAdapter extends PagerAdapter {
 		        itemView = mLayoutInflater.inflate(R.layout.pager_item, container, false);
 		        TouchImageView imageView = (TouchImageView) itemView.findViewById(R.id.imageView);
 		        imageView.setImageBitmap(getFingerPrint(pos));
+		        
+				ImageView mImageView = (ImageView) itemView.findViewById(R.id.finger);
+				int resId = mContext.getResources().getIdentifier("fingerprint_"+listImages.get(pos).getFinger(), "drawable", mContext.getPackageName());
+				mImageView.setImageResource(resId);
+
+				
 	    	}else{
 	    		itemView = mLayoutInflater.inflate(R.layout.pager_simple, container, false);
 			    ImageView imageView = (ImageView) itemView.findViewById(R.id.simpleImageView);
@@ -78,6 +83,7 @@ public class CustomPagerAdapter extends PagerAdapter {
 					}
 				});
 	    	}
+	    	
 		        container.addView(itemView);
 		        return itemView;
 	    	
