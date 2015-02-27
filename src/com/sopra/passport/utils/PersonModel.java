@@ -78,6 +78,44 @@ public class PersonModel implements Serializable {
     public PersonModel() {
     	
     }
+    
+public Person toUser() {
+    	  
+		
+		Person user = new Person(id);
+    	
+    	user.setSurname(lastName);
+    	ArrayList<String> list = new ArrayList<String>();
+    	list.add(firstname);
+    	user.setGivenNames(list);
+    	
+    	if (sex == Gender.MALE) {
+    		user.setSex(Gender.MALE);
+    	} else {
+    		user.setSex(Gender.FEMALE);
+    	}
+    	user.setId(id);
+    	user.setBirthdate(new Birthdate(birthdate));
+
+    	CountryCode country = CountryCode.NOSELECTION;
+    	
+    	if(!nationality.isEmpty()){
+    		country = CountryCode.getByCode(nationality);
+    	}
+    	
+    	
+    	user.setAddress(address);
+    	user.setPhoto(photo);
+    	user.setFingerprints(fingerprints);
+    	user.setSignature(signature);
+    	user.setThumbnail(thumbnail);
+    	user.setBirthplace(birthplace);
+    	user.setEyesColor(eyesColor);
+    	user.setHeight(height);
+    	user.setNationality(country);
+    	return user;
+}
+
 
 	public int getId() {
 		return id;
@@ -188,42 +226,6 @@ public class PersonModel implements Serializable {
 		this.nationality = nationality;
 	}
 	
-	public Person toUser() {
-    	  
-		
-		Person user = new Person(id);
-    	
-    	user.setSurname(lastName);
-    	ArrayList<String> list = new ArrayList<String>();
-    	list.add(firstname);
-    	user.setGivenNames(list);
-    	
-    	if (sex == Gender.MALE) {
-    		user.setSex(Gender.MALE);
-    	} else {
-    		user.setSex(Gender.FEMALE);
-    	}
-    	user.setId(id);
-    	user.setBirthdate(new Birthdate(birthdate));
-
-    	CountryCode country = CountryCode.NOSELECTION;
-    	
-    	if(!nationality.isEmpty()){
-    		country = CountryCode.getByCode(nationality);
-    	}
-    	
-    	
-    	user.setAddress(address);
-    	user.setPhoto(photo);
-    	user.setFingerprints(fingerprints);
-    	user.setSignature(signature);
-    	user.setThumbnail(thumbnail);
-    	user.setBirthplace(birthplace);
-    	user.setEyesColor(eyesColor);
-    	user.setHeight(height);
-    	user.setNationality(country);
-    	return user;
-}
-
+	
 	
 }

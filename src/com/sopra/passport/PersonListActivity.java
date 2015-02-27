@@ -107,7 +107,6 @@ public class PersonListActivity extends Activity {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			//Integer[] integer = new Integer[]{personList.get(position).getId()};
 			if(!personList.get(position).isCharged){
 				Integer[] pos = new Integer[]{position};
 				new getPersonByIdTask().execute(pos);

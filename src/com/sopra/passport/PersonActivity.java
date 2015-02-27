@@ -4,10 +4,12 @@ import java.io.IOException;
 
 import com.sopra.passport.data.Blob;
 import com.sopra.passport.data.Person;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -40,16 +42,10 @@ public class PersonActivity extends Activity {
         TextView addressView = (TextView)findViewById(R.id.person_address_text);
         ImageView photoView = (ImageView)findViewById(R.id.person_photography_view);
         ImageView signatureView = (ImageView)findViewById(R.id.person_signature_view);
-        Button showFingers = (Button)findViewById(R.id.showfingerprints);
-        showFingers.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(context, ShowGallery.class);
-				intent.putExtra("fingers", person.getFingerprints());		
-				startActivity(intent);
-			}
-		});
-        
+        CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this,person.getFingerprints(),false,0);
+		ViewPager mViewPager = (ViewPager) findViewById(R.id.pagerViewer);
+		mViewPager.setAdapter(mCustomPagerAdapter);
+		mViewPager.setPageMargin(getResources().getDimensionPixelOffset(R.dimen.viewpager_margin));    
         StringBuffer tmp;
         surnameView.setText(person.getSurname());
         // Given names
@@ -90,7 +86,7 @@ public class PersonActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			ImageView currentView = (ImageView) v;
-			ImageView photoView = (ImageView)findViewById(R.id.person_photography_view);
+			ImageView photoView 	= (ImageView)findViewById(R.id.person_photography_view);
 	        ImageView signatureView = (ImageView)findViewById(R.id.person_signature_view);
 			Blob img = null;	
 			if (currentView == photoView){

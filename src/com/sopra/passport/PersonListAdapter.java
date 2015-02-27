@@ -3,14 +3,8 @@ import java.io.IOException;
 import java.util.List;
 
 import com.sopra.passport.data.Person;
-
-
-
-
-import android.R.drawable;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

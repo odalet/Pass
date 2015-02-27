@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="com.sopra.passport.utils.PersonDbHelper" project="Passport" 
+    file="/Passport/src/com/sopra/passport/utils/PersonDbHelper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="428" width="267" x="178" y="-123"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.sopra.passport.utils.ImageConverter" project="Passport" 
+    file="/Passport/src/com/sopra/passport/utils/ImageConverter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="194" width="244" x="485" y="-123"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.sopra.passport.utils.PersonFactory" project="Passport" 
+    file="/Passport/src/com/sopra/passport/utils/PersonFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="230" width="247" x="482" y="81"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.sopra.passport.utils.ConnexionTools" project="Passport" 
+    file="/Passport/src/com/sopra/passport/utils/ConnexionTools.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="104" width="208" x="754" y="-124"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.sopra.passport.utils.PersonModel" project="Passport" 
+    file="/Passport/src/com/sopra/passport/utils/PersonModel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="366" width="207" x="754" y="-14"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="6">    
+    <bendpoint x="659" y="346"/>    
+    <bendpoint x="617" y="373"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="7" name="mPersonFactory">        
+        <position height="17" width="87" x="529" y="325"/>      
+      </attribute>      
+      <multiplicity id="8" minimum="0" maximum="1">        
+        <position height="15" width="23" x="585" y="311"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

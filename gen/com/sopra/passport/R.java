@@ -20,49 +20,54 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f040000;
         public static final int activity_vertical_margin=0x7f040001;
+        public static final int viewpager_margin=0x7f040002;
+        public static final int viewpager_margin_fix=0x7f040003;
     }
     public static final class drawable {
         public static final int arrow=0x7f020000;
         public static final int charged_selector=0x7f020001;
         public static final int custom_btn_beige=0x7f020002;
         public static final int downloaded=0x7f020003;
-        public static final int gradient_bg=0x7f020004;
-        public static final int gradient_bg_charged=0x7f020005;
-        public static final int gradient_bg_hover=0x7f020006;
-        public static final int ic_action_refresh=0x7f020007;
-        public static final int ic_action_search=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int image_for_rotation=0x7f02000a;
-        public static final int list_selector=0x7f02000b;
-        public static final int logo=0x7f02000c;
-        public static final int logo_sopra=0x7f02000d;
-        public static final int my_progress_indeterminate=0x7f02000e;
-        public static final int sopra=0x7f02000f;
-        public static final int splash=0x7f020010;
+        public static final int fingerprints=0x7f020004;
+        public static final int gradient_bg=0x7f020005;
+        public static final int gradient_bg_charged=0x7f020006;
+        public static final int gradient_bg_hover=0x7f020007;
+        public static final int ic_action_refresh=0x7f020008;
+        public static final int ic_action_search=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int image_for_rotation=0x7f02000b;
+        public static final int list_selector=0x7f02000c;
+        public static final int logo=0x7f02000d;
+        public static final int logo_sopra=0x7f02000e;
+        public static final int my_progress_indeterminate=0x7f02000f;
+        public static final int sopra=0x7f020010;
+        public static final int splash=0x7f020011;
     }
     public static final class id {
-        public static final int action_refresh=0x7f080043;
-        public static final int action_search=0x7f080044;
-        public static final int action_settings=0x7f080042;
+        public static final int action_refresh=0x7f080045;
+        public static final int action_search=0x7f080046;
+        public static final int action_settings=0x7f080044;
         public static final int btnSearch=0x7f080007;
         public static final int header=0x7f080000;
         public static final int imageView=0x7f080039;
+        public static final int imageView1=0x7f08003a;
         public static final int image_view=0x7f080009;
         public static final int image_zoom_control=0x7f080008;
-        public static final int item_first_line_text=0x7f08003d;
-        public static final int item_main_layout=0x7f08003a;
-        public static final int item_name_text=0x7f08003e;
-        public static final int item_photography_layout=0x7f08003b;
-        public static final int item_photography_view=0x7f08003c;
-        public static final int item_second_line_text=0x7f080040;
-        public static final int item_sex_text=0x7f080041;
+        public static final int item_first_line_text=0x7f08003f;
+        public static final int item_main_layout=0x7f08003c;
+        public static final int item_name_text=0x7f080040;
+        public static final int item_photography_layout=0x7f08003d;
+        public static final int item_photography_view=0x7f08003e;
+        public static final int item_second_line_text=0x7f080042;
+        public static final int item_sex_text=0x7f080043;
         public static final int list_line1_view=0x7f080034;
         public static final int list_main_layout=0x7f080031;
         public static final int list_personlist_view=0x7f080035;
         public static final int list_search_layout=0x7f080032;
         public static final int list_search_text=0x7f080033;
-        public static final int nationality=0x7f08003f;
+        public static final int nationality=0x7f080041;
         public static final int pager=0x7f080037;
+        public static final int pagerViewer=0x7f080030;
         public static final int person_address_label=0x7f080029;
         public static final int person_address_row=0x7f080028;
         public static final int person_address_text=0x7f08002a;
@@ -107,7 +112,7 @@ public final class R {
         public static final int search_firstName=0x7f080001;
         public static final int search_givenName=0x7f080002;
         public static final int search_sex=0x7f080006;
-        public static final int showfingerprints=0x7f080030;
+        public static final int simpleImageView=0x7f08003b;
         public static final int textView1=0x7f080003;
         public static final int textView2=0x7f080005;
     }
@@ -119,7 +124,8 @@ public final class R {
         public static final int activity_show_gallery=0x7f030004;
         public static final int activity_splash_screen=0x7f030005;
         public static final int pager_item=0x7f030006;
-        public static final int person_item_row=0x7f030007;
+        public static final int pager_simple=0x7f030007;
+        public static final int person_item_row=0x7f030008;
     }
     public static final class menu {
         public static final int image_viewer=0x7f070000;
