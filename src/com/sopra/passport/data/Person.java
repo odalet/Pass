@@ -191,7 +191,7 @@ public class Person implements Serializable {
     }
     
     public Bitmap getPhotoToBitmap() throws IOException {
-    	return ImageConverter.getBitmap(photo);
+    	return ImageConverter.getBitmap(thumbnail);
     }
     
     public void setPhoto(Blob photo) {
@@ -291,7 +291,12 @@ public class Person implements Serializable {
 	
 	public boolean filter(PersonFilter fCriteria){
 		boolean ret = false;
-		if (fCriteria.getNationality().equals(nationality) && fCriteria.getSex().equals(sex)){
+	
+		boolean condition = fCriteria.getNationality().equals(nationality) && fCriteria.getSex()== sex;
+		condition = condition || (fCriteria.getNationality() == CountryCode.NOSELECTION && fCriteria.getSex()== sex);
+		condition = condition || (fCriteria.getNationality().equals(nationality) && fCriteria.getSex()== Gender.ND);
+		
+		if (condition){
 			if(fCriteria.getFirstName().isEmpty() && fCriteria.getGivenName().isEmpty()){
 				ret = true;
 			}else if (fCriteria.getFirstName() != null && !fCriteria.getFirstName().isEmpty()
@@ -309,7 +314,7 @@ public class Person implements Serializable {
 						ret = true;
 					}
 				}
-			}else if((fCriteria.getGivenName() == null || fCriteria.getGivenName().isEmpty()) && fCriteria.getFirstName().toLowerCase().contains(surname.toLowerCase())) {
+			}else if((fCriteria.getGivenName() == null || fCriteria.getGivenName().isEmpty()) && surname.toLowerCase().contains(fCriteria.getFirstName().toLowerCase())) {
 				ret = true;
 			}	
 		}

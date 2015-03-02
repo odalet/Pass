@@ -7,9 +7,9 @@ import java.io.Serializable;
  * This enumeration represents the sex of the user.
  */
 public enum Gender implements Serializable {
-	ND,
+	FEMALE,
 	MALE,
-	FEMALE;
+	ND;
 	
 	
 	

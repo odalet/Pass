@@ -51,7 +51,7 @@ public class PersonModel implements Serializable {
 	
 
 	@JsonProperty("Gender")
-    private Gender sex;    
+    private int sex;    
     
     
 	@JsonProperty("BirthDate")
@@ -88,11 +88,16 @@ public Person toUser() {
     	ArrayList<String> list = new ArrayList<String>();
     	list.add(firstname);
     	user.setGivenNames(list);
-    	
-    	if (sex == Gender.MALE) {
-    		user.setSex(Gender.MALE);
-    	} else {
+    	switch (sex) {
+		case 0 :
+			user.setSex(Gender.MALE);
+			break;
+		case 1 :
     		user.setSex(Gender.FEMALE);
+			break;
+		default :
+    		user.setSex(Gender.ND);
+			break;
     	}
     	user.setId(id);
     	user.setBirthdate(new Birthdate(birthdate));
@@ -176,12 +181,12 @@ public Person toUser() {
 		this.signature = signature;
 	}
 
-	public Gender getSex() {
+	public int getSex() {
 		return sex;
 	}
 
 
-	public void setSex(Gender sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
 	}
 

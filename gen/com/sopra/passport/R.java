@@ -53,30 +53,34 @@ public final class R {
         public static final int splash=0x7f02001a;
     }
     public static final class id {
-        public static final int action_refresh=0x7f080045;
-        public static final int action_search=0x7f080046;
-        public static final int action_settings=0x7f080044;
+        public static final int action_refresh=0x7f080054;
+        public static final int action_search=0x7f080055;
+        public static final int action_settings=0x7f080053;
         public static final int btnSearch=0x7f080007;
-        public static final int finger=0x7f08003a;
+        public static final int finger=0x7f080049;
         public static final int header=0x7f080000;
-        public static final int imageView=0x7f080039;
+        public static final int imageView=0x7f080048;
         public static final int image_view=0x7f080009;
         public static final int image_zoom_control=0x7f080008;
-        public static final int item_first_line_text=0x7f08003f;
-        public static final int item_main_layout=0x7f08003c;
-        public static final int item_name_text=0x7f080040;
-        public static final int item_photography_layout=0x7f08003d;
-        public static final int item_photography_view=0x7f08003e;
-        public static final int item_second_line_text=0x7f080042;
-        public static final int item_sex_text=0x7f080043;
+        public static final int item_first_line_text=0x7f08004e;
+        public static final int item_main_layout=0x7f08004b;
+        public static final int item_name_text=0x7f08004f;
+        public static final int item_photography_layout=0x7f08004c;
+        public static final int item_photography_view=0x7f08004d;
+        public static final int item_second_line_text=0x7f080051;
+        public static final int item_sex_text=0x7f080052;
         public static final int list_line1_view=0x7f080034;
         public static final int list_main_layout=0x7f080031;
         public static final int list_personlist_view=0x7f080035;
         public static final int list_search_layout=0x7f080032;
         public static final int list_search_text=0x7f080033;
-        public static final int nationality=0x7f080041;
+        public static final int nationality=0x7f080050;
         public static final int pager=0x7f080037;
         public static final int pagerViewer=0x7f080030;
+        public static final int person_Birth=0x7f080046;
+        public static final int person_Birth_=0x7f080042;
+        public static final int person_EyesCol=0x7f080047;
+        public static final int person_EyesCol_=0x7f080043;
         public static final int person_address_label=0x7f080029;
         public static final int person_address_row=0x7f080028;
         public static final int person_address_text=0x7f08002a;
@@ -93,8 +97,12 @@ public final class R {
         public static final int person_gender_label=0x7f08001d;
         public static final int person_gender_row=0x7f08001c;
         public static final int person_gender_text=0x7f08001e;
+        public static final int person_given_names=0x7f08003f;
+        public static final int person_given_names_=0x7f08003e;
         public static final int person_given_names_label=0x7f080011;
         public static final int person_given_names_text=0x7f080012;
+        public static final int person_height=0x7f080045;
+        public static final int person_height_=0x7f080041;
         public static final int person_height_label=0x7f08001a;
         public static final int person_height_row=0x7f080019;
         public static final int person_height_text=0x7f08001b;
@@ -106,13 +114,20 @@ public final class R {
         public static final int person_line3_label=0x7f08002f;
         public static final int person_main_layout=0x7f08000b;
         public static final int person_main_scroll=0x7f08000a;
+        public static final int person_nationality=0x7f080044;
+        public static final int person_nationality_=0x7f080040;
         public static final int person_nationality_label=0x7f080017;
         public static final int person_nationality_row=0x7f080016;
         public static final int person_nationality_text=0x7f080018;
+        public static final int person_photography=0x7f080039;
         public static final int person_photography_layout=0x7f08000c;
         public static final int person_photography_view=0x7f08000d;
+        public static final int person_short_identity=0x7f08003b;
+        public static final int person_short_photography=0x7f08003a;
         public static final int person_signature_label=0x7f08002b;
         public static final int person_signature_view=0x7f08002d;
+        public static final int person_surname=0x7f08003d;
+        public static final int person_surname_=0x7f08003c;
         public static final int person_surname_label=0x7f08000f;
         public static final int person_surname_text=0x7f080010;
         public static final int progressBar1=0x7f080038;
@@ -121,7 +136,7 @@ public final class R {
         public static final int search_firstName=0x7f080001;
         public static final int search_givenName=0x7f080002;
         public static final int search_sex=0x7f080006;
-        public static final int simpleImageView=0x7f08003b;
+        public static final int simpleImageView=0x7f08004a;
         public static final int textView1=0x7f080003;
         public static final int textView2=0x7f080005;
     }
@@ -132,16 +147,18 @@ public final class R {
         public static final int activity_person_list=0x7f030003;
         public static final int activity_show_gallery=0x7f030004;
         public static final int activity_splash_screen=0x7f030005;
-        public static final int pager_item=0x7f030006;
-        public static final int pager_simple=0x7f030007;
-        public static final int person_item_row=0x7f030008;
+        public static final int carte_person=0x7f030006;
+        public static final int pager_item=0x7f030007;
+        public static final int pager_simple=0x7f030008;
+        public static final int person_item_row=0x7f030009;
     }
     public static final class menu {
         public static final int image_viewer=0x7f070000;
         public static final int person=0x7f070001;
-        public static final int person_list=0x7f070002;
-        public static final int show_galerry=0x7f070003;
-        public static final int show_gallery=0x7f070004;
+        public static final int person_carte=0x7f070002;
+        public static final int person_list=0x7f070003;
+        public static final int show_galerry=0x7f070004;
+        public static final int show_gallery=0x7f070005;
     }
     public static final class string {
         public static final int action_refresh=0x7f05001a;
@@ -169,6 +186,7 @@ public final class R {
         public static final int person_surname_label=0x7f050002;
         public static final int title_activity_advanced_search=0x7f050018;
         public static final int title_activity_image_viewer=0x7f050014;
+        public static final int title_activity_person_carte=0x7f05001c;
         public static final int title_activity_show_galerry=0x7f050016;
         public static final int title_activity_show_gallery=0x7f050017;
         public static final int title_activity_splash_screen=0x7f05001b;

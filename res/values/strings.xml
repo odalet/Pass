@@ -29,5 +29,6 @@
     <string name="action_search">AdvancedSearch</string>
     <string name="action_refresh">Reload</string>
     <string name="title_activity_splash_screen">Passport</string>
+    <string name="title_activity_person_carte">PersonCarte</string>
 
 </resources>
