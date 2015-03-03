@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,14 +14,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import com.sopra.passport.data.Person;
 import com.sopra.passport.utils.ConnexionTools;
 import com.sopra.passport.utils.PersonDbHelper;
@@ -115,7 +110,7 @@ public class PersonListActivity extends Activity {
 			if(!personList.get(position).isCharged && ConnexionTools.isOnline(context)){
 				Integer[] pos = new Integer[]{position};
 				new getPersonByIdTask().execute(pos);
-			}else if(ConnexionTools.isOnline(context)){
+			}else if(ConnexionTools.isOnline(context) || personList.get(position).isCharged){
 				openPersonDetails(personList.get(position));
 			}else{
 				Person selected = personList.get(position);
@@ -193,8 +188,6 @@ public class PersonListActivity extends Activity {
 		    // on returning from search part this block will be executed
 	    	if (resultCode == Activity.RESULT_OK) { 
 	    		PersonFilter searchElement = (PersonFilter)data.getSerializableExtra("searchCriteria");
-	    		Log.i("----------------------", ""+searchElement.getSex());
-
 	    		rechargeList(searchElement);
 	    	} 
 	      break; 
@@ -208,12 +201,10 @@ public class PersonListActivity extends Activity {
 				listPerson.add(person);
 			}
 		}
-		
 		if(listPerson.size() != 0){
 			this.personList = listPerson;
 			initUI();
 		}
-		
 	}
 	
 	void ChangeStateListView(){

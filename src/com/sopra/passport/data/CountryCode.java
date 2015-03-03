@@ -17,6 +17,7 @@ package com.sopra.passport.data;
 
 
 
+import android.annotation.SuppressLint;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -780,7 +781,8 @@ public enum CountryCode implements Serializable
 
 
     private static final Map<String, CountryCode> alpha3Map = new HashMap<String, CountryCode>();
-    private static final Map<Integer, CountryCode> numericMap = new HashMap<Integer, CountryCode>();
+    @SuppressLint("UseSparseArrays")
+	private static final Map<Integer, CountryCode> numericMap = new HashMap<Integer, CountryCode>();
 
 
     static
