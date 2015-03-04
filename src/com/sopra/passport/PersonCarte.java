@@ -36,7 +36,7 @@ public class PersonCarte extends Activity {
 		surname.setText(person.getSurname());
 		
 		birthDate.setText(person.getBirthdate().toString());
-		nationality.setText(person.getNationality().name());
+		nationality.setText(person.getNationality().getAlpha3());
 		height.setText(String.valueOf(person.getHeight()));
 		givenName.setText(person.getGivenNames().get(0));
 		eyesCol.setText(person.getEyesColor());

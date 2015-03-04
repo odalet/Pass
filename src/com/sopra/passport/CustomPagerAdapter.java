@@ -3,10 +3,8 @@ package com.sopra.passport;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import com.sopra.passport.data.Blob;
 import com.sopra.passport.utils.ImageConverter;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class CustomPagerAdapter extends PagerAdapter {
-
 	private Context mContext;
 	private LayoutInflater  mLayoutInflater;
 	private ArrayList<Blob> listImages;
@@ -27,11 +24,9 @@ public class CustomPagerAdapter extends PagerAdapter {
 	private boolean expoState = true;
 	private int posix = 0;
 	private int size;
-    
     public CustomPagerAdapter(Context context) {
         mContext = context;
-        mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        
+        mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
     }
     
     public CustomPagerAdapter(Context context , ArrayList<Blob> listImages,boolean isForExposition,int position){
@@ -82,12 +77,8 @@ public class CustomPagerAdapter extends PagerAdapter {
 					}
 				});
 	    	}
-	    	
 		        container.addView(itemView);
 		        return itemView;
-	    	
-	    	
-	      
 	    }
 	 
 	    @Override

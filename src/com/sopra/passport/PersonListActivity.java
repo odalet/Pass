@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,7 +31,7 @@ public class PersonListActivity extends Activity {
 	private ListView personListView = null;
 	private Person personSelected = null;
 	private PersonDbHelper mpersonDbHelper;
-	private PersonListAdapter mlistPersonAdapter = null;
+	private PersonListAdapter mlistPersonAdapter;
 	private ProgressDialog barProgressDialog = null;
 	
 	@Override
@@ -94,7 +93,7 @@ public class PersonListActivity extends Activity {
 	private void loadPersonList(){
 		if(ConnexionTools.isOnline(context)){
 			    barProgressDialog.show();
-			new PersonListGetTask().execute();
+			new GetPersonListTask().execute();
 		}else{
     		if(mpersonDbHelper.checkDataBase(context)){
     			this.personList = mpersonDbHelper.getAllPersons();
@@ -109,7 +108,7 @@ public class PersonListActivity extends Activity {
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			if(!personList.get(position).isCharged && ConnexionTools.isOnline(context)){
 				Integer[] pos = new Integer[]{position};
-				new getPersonByIdTask().execute(pos);
+				new GetPersonByIdTask().execute(pos);
 			}else if(ConnexionTools.isOnline(context) || personList.get(position).isCharged){
 				openPersonDetails(personList.get(position));
 			}else{
@@ -127,21 +126,17 @@ public class PersonListActivity extends Activity {
 		startActivity(intent);
 	}
 	
-	private class getPersonByIdTask extends AsyncTask<Integer, Void, Void>{
-		
-		
-		public getPersonByIdTask(){
+	private class GetPersonByIdTask extends AsyncTask<Integer, Void, Void>{
+		public GetPersonByIdTask(){
 			super();
-
 		}
-		
     	@Override
     	protected void onPostExecute(Void v) {
     		openPersonDetails(personSelected);
     		ChangeStateListView();
     		notifyListView();
     	}
-		
+	
 		@Override
 		protected Void doInBackground(Integer... params) {
 			ChangeStateListView();
@@ -156,7 +151,7 @@ public class PersonListActivity extends Activity {
 			return null;
 		}
 	}
-	private class PersonListGetTask extends AsyncTask<Void, Void, Void> {
+	private class GetPersonListTask extends AsyncTask<Void, Void, Void> {
     	
     	@Override
     	protected void onPostExecute(Void v) {

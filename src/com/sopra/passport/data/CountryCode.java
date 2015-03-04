@@ -200,13 +200,13 @@ public enum CountryCode implements Serializable
     CZ("Czech Republic", "CZE", 203),
 
     /** <a href="http://en.wikipedia.org/wiki/Germany">Germany</a> */
-    DE("Germany", "DEU", 276),
+    DEU("Germany", "DEU", 276),
 
     /** <a href="http://en.wikipedia.org/wiki/Djibouti">Djibouti </a> */
-    DJ("Djibouti", "DJI", 262),
+    DJI("Djibouti", "DJI", 262),
 
     /** <a href="http://en.wikipedia.org/wiki/Denmark">Denmark</a> */
-    DK("Denmark", "DNK", 208),
+    DNK("Denmark", "DNK", 208),
 
     /** <a href="http://en.wikipedia.org/wiki/Dominica">Dominica</a> */
     DMA("Dominica", "DMA", 212),
@@ -218,37 +218,37 @@ public enum CountryCode implements Serializable
     DZA("Algeria", "DZA", 12),
 
     /** <a href="http://en.wikipedia.org/wiki/Ecuador">Ecuador</a> */
-    EC("Ecuador", "ECU", 218),
+    ECU("Ecuador", "ECU", 218),
 
     /** <a href="http://en.wikipedia.org/wiki/Estonia">Estonia</a> */
-    EE("Estonia", "EST", 233),
+    EST("Estonia", "EST", 233),
 
     /** <a href="http://en.wikipedia.org/wiki/Egypt">Egypt</a> */
-    EG("Egypt", "EGY", 818),
+    EGY("Egypt", "EGY", 818),
 
     /** <a href="http://en.wikipedia.org/wiki/Western_Sahara">Western Sahara</a> */
-    EH("Western Sahara", "ESH", 732),
+    ESH("Western Sahara", "ESH", 732),
 
     /** <a href="http://en.wikipedia.org/wiki/Eritrea">Eritrea</a> */
-    ER("Eritrea", "ERI", 232),
+    ERI("Eritrea", "ERI", 232),
 
     /** <a href="http://en.wikipedia.org/wiki/Spain">Spain</a> */
-    ES("Spain", "ESP", 724),
+    ESP("Spain", "ESP", 724),
 
     /** <a href="http://en.wikipedia.org/wiki/Ethiopia">Ethiopia</a> */
-    ET("Ethiopia", "ETH", 231),
+    ETH("Ethiopia", "ETH", 231),
 
     /** <a href="http://en.wikipedia.org/wiki/Finland">Finland</a> */
-    FI("Finland", "FIN", 246),
+    FIN("Finland", "FIN", 246),
 
     /** <a href="http://en.wikipedia.org/wiki/Fiji">Fiji</a> */
-    FJ("Fiji", "FJI", 242),
+    FJI("Fiji", "FJI", 242),
 
     /** <a href="http://en.wikipedia.org/wiki/Falkland_Islands">Falkland Islands (Malvinas)</a> */
-    FK("Falkland Islands", "FLK", 238),
+    FLK("Falkland Islands", "FLK", 238),
 
     /** <a href="http://en.wikipedia.org/wiki/Federated_States_of_Micronesia">Federated States of Micronesia</a> */
-    FM("Federated States of Micronesia", "FSM", 583),
+    FSM("Federated States of Micronesia", "FSM", 583),
 
     /** <a href="http://en.wikipedia.org/wiki/Faroe_Islands">Faroe Islands</a> */
     FRO("Faroe Islands", "FRO", 234),
@@ -260,13 +260,13 @@ public enum CountryCode implements Serializable
     GAB("Gabon", "GAB", 266),
 
     /** <a href="http://en.wikipedia.org/wiki/United_Kingdom">United Kingdom</a> */
-    GB("United Kingdom", "GBR", 826),
+    GBR("United Kingdom", "GBR", 826),
 
     /** <a href="http://en.wikipedia.org/wiki/Grenada">Grenada</a> */
-    GD("Grenada", "GRD", 308),
+    GRD("Grenada", "GRD", 308),
 
     /** <a href="http://en.wikipedia.org/wiki/Georgia_(country)">Georgia</a> */
-    GE("Georgia", "GEO", 268),
+    GEO("Georgia", "GEO", 268),
 
     /** <a href="http://en.wikipedia.org/wiki/French_Guiana">French Guiana</a> */
     GF("French Guiana", "GUF", 254),
