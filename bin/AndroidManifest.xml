@@ -35,17 +35,17 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
-            android:name=".ShowGallery"
+            android:name=".GalleryActivity"
             android:label="@string/title_activity_show_gallery"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
-            android:name=".AdvancedSearch"
+            android:name=".AdvancedSearchActivity"
             android:label="@string/title_activity_advanced_search"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
-            android:name=".SplashScreen"
+            android:name=".SplashScreenActivity"
             android:label="@string/title_activity_splash_screen"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
             <intent-filter>
@@ -54,7 +54,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PersonCarte"
+            android:name=".PersonCardActivity"
             android:label="@string/title_activity_person_carte"
             android:theme="@android:style/Theme.DeviceDefault.Dialog">
         </activity>

@@ -4,8 +4,20 @@ import com.sopra.passport.data.Blob;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-public class ShowGallery extends Activity {
 
+
+/**
+ * Class implement the search listener functionality
+ * it's used in the personListActivity for binding the 
+ * text field to the person information
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
+public class GalleryActivity extends Activity {
+
+	
+	
 	private ArrayList<Blob> fingers;
 	private int position = 0;
 	@Override

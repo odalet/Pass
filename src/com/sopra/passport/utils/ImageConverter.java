@@ -14,6 +14,17 @@ import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
 import android.util.Base64;
 
+/**
+ * This class is used to convert pictures
+ * formats supported  are :
+ * 			-JPEG
+ * 			-JPEG 2000
+ * 			-wsq
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ *
+ */
 public class ImageConverter {
 	
 	public static byte[] getBytesFromBitmap(Bitmap bitmap) {
@@ -22,17 +33,34 @@ public class ImageConverter {
 	    return Base64.encode(stream.toByteArray(), Base64.NO_WRAP);
 	}
 	
+	/**
+	 * @param encodedImage
+	 * @return Bitmap
+	 * @throws IOException
+	 */
 	public static Bitmap getBitmapFromJPEG2000Bytes(byte[] encodedImage) throws IOException {
 		byte[] base64Bytes = Base64.decode(encodedImage, Base64.DEFAULT);
 		return JJ2000Frontend.decode(base64Bytes);
 	}
 	
+	/**
+	 * 
+	 * @param encodedImage
+	 * @return Bitmap
+	 * @throws IOException
+	 */
 	public static Bitmap getBitmapFromWSQBytes(byte[] encodedImage) throws IOException {
 		byte[] base64Bytes = Base64.decode(encodedImage, Base64.DEFAULT);
 		WsqDecoder wsqDecoder = new WsqDecoder();
 		return toAndroidBitmap(wsqDecoder.decode(base64Bytes));
 	}
 	
+	/**
+	 * 
+	 * @param encodedImage
+	 * @return Bitmap
+	 * @throws IOException
+	 */
 	public static  Bitmap getBitmapFromBytes(byte[] encodedImage) throws IOException {
 		try{
 			byte[] base64Bytes = Base64.decode(encodedImage, Base64.DEFAULT);
@@ -44,6 +72,11 @@ public class ImageConverter {
 		
 	}
 		
+	/**
+	 * @param encodedImage
+	 * @return Bitmap
+	 * @throws IOException
+	 */
 	private static Bitmap toAndroidBitmap(org.jnbis.Bitmap bitmap) {
 		byte[] byteData = bitmap.getPixels();
 		int[] intData = new int[byteData.length];
@@ -54,6 +87,12 @@ public class ImageConverter {
 		return Bitmap.createBitmap(intData, 0, bitmap.getWidth(), bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 	}
 	
+	/**
+	 * 
+	 * @param inBlob
+	 * @return Bitmap
+	 * @throws IOException
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T getBitmap(Blob inBlob) throws IOException{
 		if (inBlob.getMimeType().equals("image/jpeg")) {

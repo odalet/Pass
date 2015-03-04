@@ -16,6 +16,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+/**
+ * <p>This class provides the slider adapter 
+ * for displaying pictures as a gallery using a custom objects</p>.
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
 public class CustomPagerAdapter extends PagerAdapter {
 	private Context mContext;
 	private LayoutInflater  mLayoutInflater;
@@ -70,7 +77,7 @@ public class CustomPagerAdapter extends PagerAdapter {
 			    imageView.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						Intent intent = new Intent(mContext, ShowGallery.class);
+						Intent intent = new Intent(mContext, GalleryActivity.class);
 						intent.putExtra("fingers", listImages);
 						intent.putExtra("position", pos);	
 						mContext.startActivity(intent);

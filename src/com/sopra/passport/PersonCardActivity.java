@@ -12,7 +12,17 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class PersonCarte extends Activity {
+
+/**
+ * If the person not charged from WS and there is no connection
+ * this activity will display the person charged information
+ * it's used as pop up (see the manifest content for more informations)
+ * 
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
+public class PersonCardActivity extends Activity {
 
 	private Person person;
 	@Override

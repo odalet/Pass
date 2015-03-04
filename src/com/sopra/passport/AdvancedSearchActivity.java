@@ -12,10 +12,14 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
-public class AdvancedSearch extends Activity {
-
-	public static String PUBLIC_STATIC_STRING_IDENTIFIER;
+/**
+ * This class implements advanced search service in activity.
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
+public class AdvancedSearchActivity extends Activity {
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,7 +27,7 @@ public class AdvancedSearch extends Activity {
 		
 		final Spinner countries = (Spinner) findViewById(R.id.search_country);
 		final Spinner gender	 =  (Spinner) findViewById(R.id.search_sex);
-		Button searchbtn = (Button) findViewById(R.id.btnSearch);
+		final Button searchbtn = (Button) findViewById(R.id.btnSearch);
 		final TextView firstName = (TextView) findViewById(R.id.search_firstName);
 		final TextView givenName = (TextView) findViewById(R.id.search_givenName);
 		

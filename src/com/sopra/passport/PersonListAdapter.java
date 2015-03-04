@@ -12,6 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+/**
+ * Class adapter used for customizing the person ListView
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
 public class PersonListAdapter extends ArrayAdapter<Person> {
 
 	private Context context;

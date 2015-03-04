@@ -18,9 +18,20 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import com.sopra.passport.data.Person;
-import com.sopra.passport.utils.ConnexionTools;
+import com.sopra.passport.utils.ConnectionTools;
 import com.sopra.passport.utils.PersonDbHelper;
 import com.sopra.passport.utils.PersonFactory;
+
+
+
+/**
+ * This activity is main activity of the application 
+ * contains a the charged list of persons
+ * it's the  heart of the application
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
 
 public class PersonListActivity extends Activity {
 
@@ -60,7 +71,7 @@ public class PersonListActivity extends Activity {
 			loadPersonList();
 			break;
 		case R.id.action_search:
-			Intent intent = new Intent(context, AdvancedSearch.class);	
+			Intent intent = new Intent(context, AdvancedSearchActivity.class);	
 			startActivityForResult(intent,STATIC_INTEGER_VALUE);
 			break;
 
@@ -74,6 +85,9 @@ public class PersonListActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	/**
+	 * initialization function
+	 */
 	private void initUI() {
 		personListView = (ListView) findViewById(R.id.list_personlist_view);
 		notifyListView();
@@ -84,6 +98,11 @@ public class PersonListActivity extends Activity {
 		inputSearch.addTextChangedListener(new SearchListener(this, personList, personListView));
 	}
 	
+	
+	/**
+	 * this function used to refresh person list content 
+	 * @return void
+	 */
 	private void notifyListView(){
 		mlistPersonAdapter = new PersonListAdapter(context, R.layout.person_item_row, personList);
 		personListView.setAdapter(mlistPersonAdapter);
@@ -91,7 +110,7 @@ public class PersonListActivity extends Activity {
 	}
 	
 	private void loadPersonList(){
-		if(ConnexionTools.isOnline(context)){
+		if(ConnectionTools.isOnline(context)){
 			    barProgressDialog.show();
 			new GetPersonListTask().execute();
 		}else{
@@ -102,18 +121,26 @@ public class PersonListActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * 
+	 * class implementing OnItemClickListener
+	 * it's used to load person details from :
+	 *  	- web service : if the person is not recently charged and the device is connected
+	 *  	- database : there is no connection and person charged in the database
+	 *		- from the initial list : if there is no person and no connection
+	 */
 	private class ItemClickListener implements OnItemClickListener {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			if(!personList.get(position).isCharged && ConnexionTools.isOnline(context)){
+			if(!personList.get(position).isCharged && ConnectionTools.isOnline(context)){
 				Integer[] pos = new Integer[]{position};
 				new GetPersonByIdTask().execute(pos);
-			}else if(ConnexionTools.isOnline(context) || personList.get(position).isCharged){
+			}else if(ConnectionTools.isOnline(context) || personList.get(position).isCharged){
 				openPersonDetails(personList.get(position));
 			}else{
 				Person selected = personList.get(position);
-				Intent intent = new Intent(context, PersonCarte.class);	
+				Intent intent = new Intent(context, PersonCardActivity.class);	
 				intent.putExtra("person", selected);
 				startActivity(intent);
 			}
@@ -137,6 +164,10 @@ public class PersonListActivity extends Activity {
     		notifyListView();
     	}
 	
+    	/**
+    	 * this function lunch a thread in background as a worker for 
+    	 * after loading person, and update the person in database
+    	 */
 		@Override
 		protected Void doInBackground(Integer... params) {
 			ChangeStateListView();
@@ -151,6 +182,13 @@ public class PersonListActivity extends Activity {
 			return null;
 		}
 	}
+	
+	/*
+	 * This class is used to loading the person list from WS
+	 * used as an asynchronous task, it's called when 
+	 * the device is connection to Internet
+	 * 
+	 */
 	private class GetPersonListTask extends AsyncTask<Void, Void, Void> {
     	
     	@Override
@@ -175,6 +213,13 @@ public class PersonListActivity extends Activity {
 		}
     }
 	
+	
+	/**
+	 * This function called for filtering persons by criteria
+	 * used in the advanced search activity
+	 * 
+	 * @return void
+	 */
 	@Override 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {     
 	  super.onActivityResult(requestCode, resultCode, data); 

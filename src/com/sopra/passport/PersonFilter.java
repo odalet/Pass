@@ -5,6 +5,16 @@ import java.io.Serializable;
 import com.sopra.passport.data.CountryCode;
 import com.sopra.passport.data.Gender;
 
+
+/**
+ * This class is used as a person filter 
+ * its used by advanced search activity, 
+ * and contains selected information.
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
+
 public class PersonFilter implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

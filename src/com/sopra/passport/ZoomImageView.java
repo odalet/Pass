@@ -10,11 +10,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+
+/**
+ * This class used to implement the zoom functionality
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
 public class ZoomImageView extends ImageView {
 
 	private static final String TAG = "Touch";
 
-	// These matrices will be used to move and zoom image
+	/**
+	 * These matrices will be used to move and zoom image
+	 */
 	Matrix matrix = new Matrix();
 	Matrix savedMatrix = new Matrix();  
 
@@ -46,7 +54,11 @@ public class ZoomImageView extends ImageView {
 		super(context, attrs);
 	}
 	
-	/////////************ touch events functions **************////////////////////
+	/**
+	 * touch events functions
+	 * @param hasFocus
+	 * @return boolean
+	 */
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
@@ -61,7 +73,12 @@ public class ZoomImageView extends ImageView {
 		viewRect = new RectF(0, 0, this.getWidth()+20, this.getHeight()+20);
 	}
 
-	/////////************touch events for image Moving, panning and zooming   ***********///
+	/**
+	 * touch events for image Moving, panning and zooming
+	 * @param v
+	 * @param event
+	 * @return boolean
+	 */
 	public boolean onTouch(View v, MotionEvent event) {
 
 		// Dump touch event to log
@@ -118,14 +135,22 @@ public class ZoomImageView extends ImageView {
 		return true; // indicate event was handled
 	}
 
-	//*******************Determine the space between the first two fingers
+	/**
+	 * Determine the space between the first two fingers
+	 * @param event
+	 * @return
+	 */
 	private float spacing(MotionEvent event) {
 		float x = event.getX(0) - event.getX(1);
 		float y = event.getY(0) - event.getY(1);
 		return FloatMath.sqrt(x * x + y * y);
 	}
 
-	//************* Calculate the mid point of the first two fingers 
+	/**
+	 *  Calculate the mid point of the first two fingers 
+	 * @param point
+	 * @param event
+	 */
 	private void midPoint(PointF point, MotionEvent event) {
 		float x = event.getX(0) + event.getX(1);
 		float y = event.getY(0) + event.getY(1);

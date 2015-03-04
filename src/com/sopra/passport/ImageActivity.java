@@ -13,6 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
+
+/**
+ * The rule of This activity is to display 
+ * a picture in the backgound of the activity
+ * and use the zoom functionalities
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
 public class ImageActivity extends Activity {
 	
 	private Bitmap image;
@@ -39,6 +49,7 @@ public class ImageActivity extends Activity {
 	
 	/**
 	 * A placeholder fragment containing a simple view.
+	 * it's used to display pictures as fragments
 	 */
 	public static class PlaceholderFragment extends Fragment {
 

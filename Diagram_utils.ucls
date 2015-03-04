@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="com.sopra.passport.utils.ConnexionTools" project="Passport" 
-    file="/Passport/src/com/sopra/passport/utils/ConnexionTools.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="com.sopra.passport.utils.ConnectionTools" project="Passport" 
+    file="/Passport/src/com/sopra/passport/utils/ConnectionTools.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="104" width="208" x="754" y="-124"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

@@ -15,6 +15,16 @@ import android.util.Log;
 
 import com.sopra.passport.data.Person;
 
+/**
+ * Class implmenting SQLiteOpenHelper
+ * 
+ * It's used for saving data in a local database
+ * the SGBD used is SQLite
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ *
+ */
 public class PersonDbHelper extends SQLiteOpenHelper {
 
 	private static final int DATABASE_VERSION = 1; 

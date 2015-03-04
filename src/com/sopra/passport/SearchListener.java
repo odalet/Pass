@@ -11,6 +11,17 @@ import android.widget.ListView;
 
 import com.sopra.passport.data.Person;
 
+
+
+/**
+ * Class implement the search listener functionality
+ * it's used in the personListActivity for binding the 
+ * text field to the person information
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
+
 public class SearchListener implements TextWatcher {
 
 	private Context context;
@@ -42,6 +53,10 @@ public class SearchListener implements TextWatcher {
 		
 	}
 
+	/**
+	 * if the text is changed we detected, if there is a new value
+	 * and after that we search the person having the inserted value.
+	 */
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 		List<Person> tmpList = new ArrayList<Person>();

@@ -1,18 +1,20 @@
 package com.sopra.passport;
-
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import com.sopra.passport.utils.ConnexionTools;
+import com.sopra.passport.utils.ConnectionTools;
 import com.sopra.passport.utils.PersonDbHelper;
 import com.sopra.passport.utils.PersonFactory;
 
 
-
-public class SplashScreen extends Activity {
+/**
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
+public class SplashScreenActivity extends Activity {
 
 	private final Context context = this;
 	private PersonDbHelper mpersonDbHelper;
@@ -22,7 +24,7 @@ public class SplashScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
 		mpersonDbHelper = new PersonDbHelper(context);
-		if(ConnexionTools.isOnline(context))
+		if(ConnectionTools.isOnline(context))
 		{
 			new LoadingDataTask().execute();
 		}

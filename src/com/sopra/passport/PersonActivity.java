@@ -15,6 +15,14 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+/**
+ * This activity used to display selected user details
+ * 
+ * 
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
 public class PersonActivity extends Activity {
 
 	private Context context = this;
@@ -29,6 +37,9 @@ public class PersonActivity extends Activity {
         initUI();
     }
     
+    /**
+	  * This function consists to initialize the activity by person information     * @return void
+     */
     private void initUI()  {
     	TextView surnameView = (TextView)findViewById(R.id.person_surname_text);
         TextView givenNamesView = (TextView)findViewById(R.id.person_given_names_text);

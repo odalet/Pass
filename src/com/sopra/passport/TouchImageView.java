@@ -11,6 +11,12 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 
+/**
+ * 
+ * Implementing picture zoom functionality
+ * @author Mohammed EL GADI
+ * @author Corentin CHEMINAUD 
+ */
 public class TouchImageView extends ImageView {
 
 	Matrix matrix;
