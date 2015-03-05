@@ -11,27 +11,24 @@ import android.widget.ListView;
 
 import com.sopra.passport.data.Person;
 
-
-
 /**
- * Class implement the search listener functionality
- * it's used in the personListActivity for binding the 
- * text field to the person information
+ * Class implement the search listener functionality.
+ * It's used in the personListActivity for binding the text field to the person
+ * information.
  * 
  * @author Mohammed EL GADI
  * @author Corentin CHEMINAUD 
  */
-
 public class SearchListener implements TextWatcher {
 
-	private Context context;
-	private List<Person> personList;
-	private ListView personListView;
+	private Context mContext;
+	private List<Person> mPersonList;
+	private ListView mPersonListView;
 	
 	public SearchListener(Context context, List<Person> personList, ListView personListView) {
-		this.context = context;
-		this.personList = personList;
-		this.personListView = personListView;
+		this.mContext = context;
+		this.mPersonList = personList;
+		this.mPersonListView = personListView;
 	}
 	
 	public boolean search(CharSequence s, Person person) {
@@ -54,7 +51,7 @@ public class SearchListener implements TextWatcher {
 	}
 
 	/**
-	 * if the text is changed we detected, if there is a new value
+	 * If the text is changed we detected, if there is a new value
 	 * and after that we search the person having the inserted value.
 	 */
 	@Override
@@ -62,13 +59,13 @@ public class SearchListener implements TextWatcher {
 		List<Person> tmpList = new ArrayList<Person>();
 		PersonListAdapter personListAdapter = null;
 		
-		for (Person person : personList) {
+		for (Person person : mPersonList) {
 			if (search(s, person))
 				tmpList.add(person);
 		}
 		
-		personListAdapter = new PersonListAdapter(context, R.layout.person_item_row, tmpList);
-		personListView.setAdapter(personListAdapter);
+		personListAdapter = new PersonListAdapter(mContext, R.layout.person_item_row, tmpList);
+		mPersonListView.setAdapter(personListAdapter);
 	}
 
 	@Override

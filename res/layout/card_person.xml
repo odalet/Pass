@@ -62,71 +62,86 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_marginTop="10dp" >
 
-        <LinearLayout
-            android:layout_width="104dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/person_nationality_"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nationality" />
+                android:text="@string/person_nationality_label" />
+
+            <TextView
+                android:id="@+id/person_nationality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/person_height_"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Height" />
+                android:text="@string/person_height_label" />
+
+            <TextView
+                android:id="@+id/person_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/person_Birth_"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Birth date" />
-             <TextView
-                android:id="@+id/person_EyesCol_"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Eyes color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/person_nationality"
-                android:textColor="@android:color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/person_height"
-                android:layout_width="wrap_content"
-                android:textColor="@android:color/white"
-                android:layout_height="wrap_content"/>
+                android:text="@string/person_birthdate_label" />
 
             <TextView
                 android:id="@+id/person_Birth"
                 android:layout_width="wrap_content"
-                android:textColor="@android:color/white"
-                android:layout_height="wrap_content" />
-             <TextView
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/person_EyesCol_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/person_eyes_color_label" />
+
+            <TextView
                 android:id="@+id/person_EyesCol"
                 android:layout_width="wrap_content"
-                android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
-                 />
+                android:textColor="@android:color/white" />
 
-        </LinearLayout>
-        
-    </LinearLayout>
+        </TableRow>
+    </TableLayout>
     
 </LinearLayout>

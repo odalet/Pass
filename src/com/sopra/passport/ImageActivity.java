@@ -13,39 +13,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-
 /**
- * The rule of This activity is to display 
- * a picture in the backgound of the activity
- * and use the zoom functionalities
+ * The rule of This activity is to display a picture in the backgound of the 
+ * activity and use the zoom functionalities.
  * 
  * @author Mohammed EL GADI
  * @author Corentin CHEMINAUD 
  */
 public class ImageActivity extends Activity {
 	
-	private Bitmap image;
-	
+	private Bitmap mImage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_image);
+		
 		try {
 			TouchImageView img = new TouchImageView(this);  
 			Blob imgBlob = (Blob) getIntent().getSerializableExtra("image");
-			this.image = ImageConverter.getBitmap(imgBlob);
-			img.setImageBitmap(this.image); 
-		    img.setMaxZoom(4f);  
+			
+			this.mImage = ImageConverter.getBitmap(imgBlob);
+			img.setImageBitmap(this.mImage); 
+		    img.setMaxZoom(4f);
+		    
 		    setContentView(img);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
-
 	
 	/**
 	 * A placeholder fragment containing a simple view.

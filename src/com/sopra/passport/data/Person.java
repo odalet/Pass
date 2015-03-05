@@ -18,92 +18,89 @@ import com.sopra.passport.PersonFilter;
 import com.sopra.passport.utils.ImageConverter;
 
 /**
- * Class used to save all data for a user.
+ * This class contains all data for a person.
+ * 
+ * @author Corentin CHEMINAUD
+ * @author Mohammed EL GADI
  */
 public class Person implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
     /**
-     * Id used to identify each user.
+     * Id used to identify each person.
      */
     private int id;
 
     /**
-     * Surname of the user.
+     * Surname of the person.
      * (ex : "MARTIN")
      */
     private String surname;
 
     /**
-     * Given names of the user.
+     * Given names of the person.
      * (ex : "Jean, Michel, Henry")
      */
     private List<String> givenNames = new ArrayList<String>();
 
     /**
-     * Nationality of the user.
+     * Nationality of the person.
      * (ex : "French")
      */
     private CountryCode nationality;
 
     /**
-     * Sex of the user.
+     * Sex of the person.
      */
     private Gender sex;    
 
     /**
-     * Height of the user.
+     * Height of the person.
      * (ex : "1.77 m")
      */
     private double height;
     
     /**
-     * Eyes color of the user.
+     * Eyes color of the person.
      */
     private String eyesColor;
     
     /**
-     * Birthdate of the user.
+     * Birthdate of the person.
      */
     private Birthdate birthdate;
 
     /**
-     * Birthplace of the user.
+     * Birthplace of the person.
      */
     private String birthplace;
 
     /**
-     * Address of the user.
+     * Address of the person.
      */
     private String address;
 
     /**
-     * Photography of the user.
+     * Photography of the person.
      */
     private Blob photo;
     
     /**
-     * Signature of the user.
+     * Signature of the person.
      */
     private Blob signature;
 
     /**
-     * Fingerprint of the user.
+     * Fingerprint of the person.
      */
     private ArrayList<Blob> fingerprints;
     
     
     /**
-     * 
-     * thumbailNail of the user
+     * Thumbnail of the person.
      */
-    private Blob thumbnail; 
-    
-    /**
-     * 
-     * IsCharged
-     */
+    private Blob thumbnail;
     
     public boolean isCharged = false;
 
@@ -236,62 +233,63 @@ public class Person implements Serializable {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutput out = null;
 		byte[] yourBytes = null;
+		
 		try {
-		  out = new ObjectOutputStream(bos);   
-		  out.writeObject(p);
-		  yourBytes = bos.toByteArray();
+			out = new ObjectOutputStream(bos);   
+			out.writeObject(p);
+			yourBytes = bos.toByteArray();
 		} finally {
-		  try {
-		    if (out != null) {
-		      out.close();
-		    }
-		  } catch (IOException ex) {
-		    // ignore close exception
-		  }
-		  try {
-		    bos.close();
-		  } catch (IOException ex) {
-		    // ignore close exception
-		  }
+			try {
+				if (out != null)
+					out.close();
+			} catch (IOException ex) {
+				// ignore close exception
+			}
+			
+			try {
+				bos.close();
+			} catch (IOException ex) {
+				// ignore close exception
+			}
 		}
 		
 		return yourBytes;
-		
 	}
 	
-	public static Person deserialise(byte [] bpreson) throws StreamCorruptedException, IOException, ClassNotFoundException{
+	public static Person deserialise(byte [] bpreson) 
+			throws StreamCorruptedException, IOException, ClassNotFoundException{
+		
 		ByteArrayInputStream bis = new ByteArrayInputStream(bpreson);
 		ObjectInput in = null;
 		Person bperson = null;
+		
 		try{
 			try {
-				  in = new ObjectInputStream(bis);
-				  bperson = (Person)in.readObject(); 
-				} finally {
-				  try {
-				    bis.close();
-				  } catch (IOException ex) {
-					  	throw ex;
-				  }
-				  try {
-				    if (in != null) {
-				      in.close();
-				    }
-				  } catch (IOException ex) {
-				    throw ex;
-				  }
+				in = new ObjectInputStream(bis);
+				bperson = (Person)in.readObject(); 
+			} finally {
+				try {
+					bis.close();
+				} catch (IOException ex) {
+					throw ex;
 				}
-		}catch(Exception exp){
+				try {
+					if (in != null)
+						in.close();
+				} catch (IOException ex) {
+				    throw ex;
+				}
+			}
+		} catch(Exception exp){
 			exp.printStackTrace();
 		}
 		
 		return  bperson;
-		
 	}
 	
-	public boolean filter(PersonFilter fCriteria){
+	public boolean filter(PersonFilter fCriteria) {
 		boolean ret = false;
-	
+
 		boolean condition = fCriteria.getNationality().equals(nationality) && fCriteria.getSex()== sex;
 		condition = condition || (fCriteria.getNationality() == CountryCode.NOSELECTION && fCriteria.getSex()== sex);
 		condition = condition || (fCriteria.getNationality().equals(nationality) && fCriteria.getSex()== Gender.ND);
@@ -299,22 +297,23 @@ public class Person implements Serializable {
 		if (condition){
 			if(fCriteria.getFirstName().isEmpty() && fCriteria.getGivenName().isEmpty()){
 				ret = true;
-			}else if (fCriteria.getFirstName() != null && !fCriteria.getFirstName().isEmpty()
-					&&fCriteria.getGivenName() != null && !fCriteria.getGivenName().isEmpty()){
+			} else if (fCriteria.getFirstName() != null && !fCriteria.getFirstName().isEmpty()
+					&& fCriteria.getGivenName() != null && !fCriteria.getGivenName().isEmpty()){
 				
 				for(String iterator : givenNames){
-					if(iterator.toLowerCase().contains(fCriteria.getGivenName().toLowerCase())){
+					if(iterator.toLowerCase().contains(fCriteria.getGivenName().toLowerCase()))
 						ret = fCriteria.getFirstName().toLowerCase().contains(surname.toLowerCase());
-					}
 				}
 			
-			}else if((fCriteria.getFirstName()== null || fCriteria.getFirstName().isEmpty())){
+			} else if((fCriteria.getFirstName()== null || fCriteria.getFirstName().isEmpty())){
+				
 				for(String strIterator : givenNames){
-					if(strIterator.toLowerCase().contains(fCriteria.getGivenName().toLowerCase())){
+					if(strIterator.toLowerCase().contains(fCriteria.getGivenName().toLowerCase()))
 						ret = true;
-					}
 				}
-			}else if((fCriteria.getGivenName() == null || fCriteria.getGivenName().isEmpty()) && surname.toLowerCase().contains(fCriteria.getFirstName().toLowerCase())) {
+				
+			} else if((fCriteria.getGivenName() == null || fCriteria.getGivenName().isEmpty()) 
+					&& surname.toLowerCase().contains(fCriteria.getFirstName().toLowerCase())) {
 				ret = true;
 			}	
 		}
@@ -322,18 +321,11 @@ public class Person implements Serializable {
 		return ret;
 	}
 	
-	public static Person combine(Person firstPerson,Person secondPerson){
+	public static Person combine(Person firstPerson, Person secondPerson) {
 		Person person = secondPerson;
 		secondPerson = firstPerson;
 		firstPerson.thumbnail = person.thumbnail;
 		firstPerson.isCharged = true;
 		return firstPerson;
 	}
-	
-	
-	
-	
-	
-	
-	
 }

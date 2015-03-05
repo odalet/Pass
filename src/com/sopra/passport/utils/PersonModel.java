@@ -11,16 +11,14 @@ import com.sopra.passport.data.Gender;
 import com.sopra.passport.data.Person;
 
 /**
- * This class is used as a person model
- * used by the jackson mapper to get data
- * from WS used at PersonFactory class
+ * This class is used as a person model.
+ * It's used by the jackson mapper to get data from WS used at PersonFactory class.
  * 
  * @author Mohammed EL GADI
  * @author Corentin CHEMINAUD 
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PersonModel implements Serializable {
-
 	
 	private static final long serialVersionUID = 1L;
 
@@ -237,5 +235,4 @@ public class PersonModel implements Serializable {
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
-
 }

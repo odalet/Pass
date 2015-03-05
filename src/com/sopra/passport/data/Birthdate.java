@@ -7,6 +7,9 @@ import java.io.Serializable;
  *
  * It allows the interpretation of date as year, month and day.
  * Each field can be empty.
+ * 
+ * @author Corentin CHEMINAUD
+ * @author Mohammed EL GADI
  */
 public class Birthdate implements Serializable {
 	

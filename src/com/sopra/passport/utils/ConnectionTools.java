@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 /**
- * This class provide connection informations 
+ * This class provides some connection informations.
  *
  * @author Mohammed EL GADI
  * @author Corentin CHEMINAUD 
@@ -13,15 +13,13 @@ import android.net.NetworkInfo;
 public class ConnectionTools {
 	
 	/**
-	 * return the connection status
+	 * Returns the connection status
 	 * @param cntx
 	 * @return boolean
 	 */
 	public static boolean isOnline(Context cntx) {
-	    ConnectivityManager cm =
-	        (ConnectivityManager) cntx.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    ConnectivityManager cm = (ConnectivityManager) cntx.getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
 	    return netInfo != null && netInfo.isConnectedOrConnecting();
 	}
-	
 }

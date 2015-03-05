@@ -2,7 +2,6 @@ package com.sopra.passport.data;
 
 import java.io.Serializable;
 
-
 /**
  * This enumeration represents the sex of the user.
  */
@@ -10,9 +9,6 @@ public enum Gender implements Serializable {
 	FEMALE,
 	MALE,
 	ND;
-	
-	
-	
 	
 	/**
 	 * Returns the string associated to each sex.
@@ -39,14 +35,9 @@ public enum Gender implements Serializable {
 	}
 	
 	public boolean equals(Gender gender){
-		if(this == gender || this == ND){
+		if(this == gender || this == ND)
 			return true;
-		}
-		
+
 		return false;
 	}
-	
-  
-	
-	
 }

@@ -16,14 +16,11 @@ import android.util.Log;
 import com.sopra.passport.data.Person;
 
 /**
- * Class implmenting SQLiteOpenHelper
- * 
- * It's used for saving data in a local database
- * the SGBD used is SQLite
+ * Class implementing SQLiteOpenHelper.
+ * It's used for saving data in a local database the SGBD used is SQLite.
  * 
  * @author Mohammed EL GADI
  * @author Corentin CHEMINAUD 
- *
  */
 public class PersonDbHelper extends SQLiteOpenHelper {
 
@@ -39,20 +36,16 @@ public class PersonDbHelper extends SQLiteOpenHelper {
      
  	public PersonDbHelper(Context context) {
  		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
- 		} 
+ 	} 
      
-	public PersonDbHelper(Context context, String name, CursorFactory factory,
-			int version) {
+	public PersonDbHelper(Context context, String name, CursorFactory factory, int version) {
 		super(context, name, factory, version);
-		
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(CREATE_BDD);
-		Log.i("DataBase creation", "the database was created");
-		
+		Log.i("DataBase creation", "The database was created");
 	}
 
 	@Override
@@ -84,15 +77,17 @@ public class PersonDbHelper extends SQLiteOpenHelper {
 		db.update(TABLE_NAME, value, COLUMN_NAME_ID + "=" + person.getId() , null);
 	}
 	
-	public void AddListPersons(List<Person> persons) throws IOException{
+	public void addListPersons(List<Person> persons) throws IOException{
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = null;
+		
 		for(Person person : persons){
 			values = new ContentValues();
 			values.put(COLUMN_NAME_ID, person.getId());
 			values.put(COLUMN_NAME_OBJECT,Person.serialize(person));	// insertion
 			db.insert(TABLE_NAME,null, values);
 		}
+		
 		db.close();
 	}
 	
@@ -102,6 +97,7 @@ public class PersonDbHelper extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(query,null);
 		Person person = null;
+		
 		if (cursor.moveToFirst()) {
 			do {
 				person = new Person();
@@ -114,30 +110,31 @@ public class PersonDbHelper extends SQLiteOpenHelper {
 					e.printStackTrace();
 				}
 			} while (cursor.moveToNext());
-		} 
+		}
+		
 		return listPersons;
 	}
 	
-	public void Remove(Person person){
+	public void remove(Person person){
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_NAME, "_ID = ?", new String[] { String.valueOf(person.getId()) });
 		db.close(); 
 	}
 	
 	public boolean checkDataBase(Context context){
-		try{
+		try {
 			File database=context.getDatabasePath(DATABASE_NAME);
 
-			if (!database.exists()) {
+			if (!database.exists())
 			    return false;
-			} else {
+			else
 			    return true;
-			}
-		}catch(Exception exp){
+			
+		} catch(Exception exp){
 			
 		}
-		return false;
 		
+		return false;
 	}
 	
 	public Person getPersonById(int id){
@@ -156,6 +153,7 @@ public class PersonDbHelper extends SQLiteOpenHelper {
 		if(cursor != null){
 			if(cursor.moveToFirst()){
 				byte[] data = cursor.getBlob(cursor.getColumnIndex(COLUMN_NAME_OBJECT));
+				
 				try {
 					person = Person.deserialise(data);
 					return person;
@@ -163,22 +161,18 @@ public class PersonDbHelper extends SQLiteOpenHelper {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} 
-			}else
-			{
+			} else
 				System.out.println("");
-			}
-			
 		}
+		
 		return person;
 	}
 	
-	public void UpdateAll(List<Person> listPersons) throws IOException{
+	public void updateAll(List<Person> listPersons) throws IOException{
 		//using rawQuery should work, but can be a potential security risk
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_NAME, null, null);
 		db.close();
-		AddListPersons(listPersons);
+		addListPersons(listPersons);
 	}
-	
-	
 }

@@ -19,20 +19,20 @@ import org.json.JSONException;
 import com.sopra.passport.data.Person;
 
 /**
- * This function executes HTTP requests
- * for getting a person list from web service
- * it's implemented factory and singleton patterns
+ * This function executes HTTP requests for getting a person list from web service.
+ * It's implemented factory and singleton patterns.
  *
  * @author Mohammed EL GADI
- * @author Corentin CHEMINAUD 
- *
+ * @author Corentin CHEMINAUD
  */
 @SuppressWarnings("unused")
 public class PersonFactory {
+
 	/**
 	 * Web service url
 	 */
 	private static final String WS_URL = "http://deltaapps.apphb.com/siti/persons/";
+	
 	private static List<Person> mListPerson;
 	private static PersonFactory mPersonFactory;
 	
@@ -52,6 +52,7 @@ public class PersonFactory {
 			for (PersonModel userModel : userListModels) {
 				userList.add(userModel.toUser());
 			}
+			
 			mListPerson = userList;
 		}catch(Exception exp){
 			exp.printStackTrace();
@@ -59,7 +60,7 @@ public class PersonFactory {
 	}
 	
 	/**
-	 * pattern sigleton implementation
+	 * Pattern singleton implementation
 	 * 
 	 * @return List<Person>
 	 * @param void
@@ -70,75 +71,59 @@ public class PersonFactory {
 		}
 		return mListPerson;
 	}
-	/**
-	 * @return List<Person>
-	 * @param void
-	 */
+
 	static public List<Person> getListPersonsFromWs(){
 		mPersonFactory = new PersonFactory();
 		return mListPerson;
 	}
 	
-	/**
-	 * 
-	 * @return String
-	 * @throws JSONException
-	 */
 	private static String getJsonArray() throws JSONException {
 		String str = null;
+	
 		try {
-		HttpResponse response;
-        HttpClient myClient = new DefaultHttpClient();
-        HttpGet myConnection = new HttpGet(WS_URL);
+			HttpResponse response;
+			HttpClient myClient = new DefaultHttpClient();
+			HttpGet myConnection = new HttpGet(WS_URL);
             response = myClient.execute(myConnection);
             str = EntityUtils.toString(response.getEntity(), "UTF-8");
         } catch(Exception ex) {
             System.out.println(ex.getMessage());
         }
+		
         return str;
     }
 	
-	/**
-	 * 
-	 * @param id
-	 * @return String
-	 */
 	private static String getJsonPerson(int id){
 		String str = null;
 		HttpResponse response;
+	
 		try {
-        HttpClient myClient = new DefaultHttpClient();
-        HttpGet myConnection = new HttpGet(WS_URL + Integer.toString(id));
+			HttpClient myClient = new DefaultHttpClient();
+			HttpGet myConnection = new HttpGet(WS_URL + Integer.toString(id));
             response = myClient.execute(myConnection);
             str = EntityUtils.toString(response.getEntity(), "UTF-8");
         } catch(Exception ex) {
             System.out.println(ex.getMessage());
         }
+		
         return str;
 	}
 	
-	/**
-	 * 
-	 * @param id
-	 * @return Person
-	 */
 	public static Person getPersonById(int id){
 		Person person = null;
 		ObjectMapper mapper = new ObjectMapper();
 		PersonModel modelPerson;
+	
 		try {
 			modelPerson = mapper.readValue(getJsonPerson(id), PersonModel.class);
 			person = modelPerson.toUser();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
+		
 		return person;
 	}
 
-	/**
-	 * 
-	 * @param listPerson
-	 */
 	public static void setPersons(List<Person> listPerson){
 		mListPerson = listPerson;
 	}

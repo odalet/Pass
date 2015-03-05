@@ -1,4 +1,3 @@
-package com.sopra.passport.data;
 /*
  * Copyright (C) 2012 Neo Visionaries Inc.
  *
@@ -15,20 +14,18 @@ package com.sopra.passport.data;
  * limitations under the License.
  */
 
-
+package com.sopra.passport.data;
 
 import android.annotation.SuppressLint;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public enum CountryCode implements Serializable
 {
-	
 	NOSELECTION("Not selected", "NOT SELECTED", 16),
     // @formatter:off
-    /** <a href="http://en.wikipedia.org/wiki/Andorra">Andorra</a> */
+	/** <a href="http://en.wikipedia.org/wiki/Andorra">Andorra</a> */
     AND("Andorra", "AND", 16),
 
     /** <a href="http://en.wikipedia.org/wiki/United_Arab_Emirates">United Arab Emirates</a> */
@@ -779,11 +776,9 @@ public enum CountryCode implements Serializable
     ZW("Zimbabwe", "ZWE", 716);
     // @formatter:on
 
-
     private static final Map<String, CountryCode> alpha3Map = new HashMap<String, CountryCode>();
     @SuppressLint("UseSparseArrays")
 	private static final Map<Integer, CountryCode> numericMap = new HashMap<Integer, CountryCode>();
-
 
     static
     {
@@ -794,19 +789,15 @@ public enum CountryCode implements Serializable
         }
     }
 
-
     private final String name;
     private final String alpha3;
     private final int numeric;
 
-
-    private CountryCode(String name, String alpha3, int numeric)
-    {
+    private CountryCode(String name, String alpha3, int numeric) {
         this.name = name;
         this.alpha3 = alpha3;
         this.numeric = numeric;
     }
-
 
     /**
      * Get the country name.
@@ -814,8 +805,7 @@ public enum CountryCode implements Serializable
      * @return
      *         The country name.
      */
-    public String getCountrName()
-    {
+    public String getCountrName() {
         return name;
     }
 
@@ -827,11 +817,9 @@ public enum CountryCode implements Serializable
      *         The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3"
      *         >ISO 3166-1 alpha-3</a> code.
      */
-    public String getAlpha3()
-    {
+    public String getAlpha3() {
         return alpha3;
     }
-
 
     /**
      * Get the <a href="http://en.wikipedia.org/wiki/ISO_3166-1_numeric"
@@ -841,11 +829,9 @@ public enum CountryCode implements Serializable
      *         The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_numeric"
      *         >ISO 3166-1 numeric</a> code.
      */
-    public int getNumeric()
-    {
+    public int getNumeric() {
         return numeric;
     }
-
 
     /**
      * Get a CountryCode that corresponds to a given ISO 3166-1
@@ -860,27 +846,16 @@ public enum CountryCode implements Serializable
      * @return
      *         A CountryCode instance, or null if not found.
      */
-    public static CountryCode getByCode(String code)
-    {
+    public static CountryCode getByCode(String code) {
         if (code == null)
-        {
             return null;
-        }
 
-        return getByAlpha3Code(code);
-
-        
+        return getByAlpha3Code(code);        
     }
 
-
-   
-
-
-    private static CountryCode getByAlpha3Code(String code)
-    {
+    private static CountryCode getByAlpha3Code(String code) {
         return alpha3Map.get(code);
     }
-
 
     /**
      * Get a CountryCode that corresponds to a given
@@ -894,8 +869,7 @@ public enum CountryCode implements Serializable
      * @return
      *         A CountryCode instance, or null if not found.
      */
-    public static CountryCode getByCode(int code)
-    {
+    public static CountryCode getByCode(int code) {
         return numericMap.get(code);
     }
     
@@ -905,11 +879,9 @@ public enum CountryCode implements Serializable
     }
     
     public boolean equals(CountryCode code){
-    	if(name == code.name || code == NOSELECTION){
+    	if(name == code.name || code == NOSELECTION)
     		return true;
-    	}
+    	
     	return false;
     }
-    
-
 }

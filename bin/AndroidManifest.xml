@@ -16,34 +16,40 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
         <activity
             android:name=".PersonActivity"
             android:label="@string/activity_person_title" >
         </activity>
+        
         <activity
             android:name=".PersonListActivity"
             android:label="@string/app_name" >
         </activity>
+        
         <activity
             android:name=".ImageActivity"
             android:label="@string/title_activity_image_viewer"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        
         <activity
             android:name=".Show_galerry"
             android:label="@string/title_activity_show_galerry"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        
         <activity
             android:name=".GalleryActivity"
             android:label="@string/title_activity_show_gallery"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        
         <activity
             android:name=".AdvancedSearchActivity"
-            android:label="@string/title_activity_advanced_search"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:label="@string/title_activity_advanced_search">
         </activity>
+        
         <activity
             android:name=".SplashScreenActivity"
             android:label="@string/title_activity_splash_screen"
@@ -53,6 +59,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name=".PersonCardActivity"
             android:label="@string/title_activity_person_carte"

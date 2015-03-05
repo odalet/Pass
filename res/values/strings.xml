@@ -13,7 +13,7 @@
     <string name="person_address_label">Address :</string>
     <string name="person_nationality_label">Nationality :</string>
     <string name="person_photography_description">Photography</string>
-    <string name="height_unit_text">m</string>
+    <string name="height_unit_text">cm</string>
     <string name="person_signature_label">Signature</string>
     <string name="person_fingerprint_label">Fingerprint</string>
     <string name="person_signature_description">Signature</string>
@@ -25,10 +25,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_show_galerry">Show_galerry</string>
     <string name="title_activity_show_gallery">ShowGallery</string>
-    <string name="title_activity_advanced_search">AdvancedSearch</string>
+    <string name="title_activity_advanced_search">Advanced search</string>
     <string name="action_search">AdvancedSearch</string>
     <string name="action_refresh">Reload</string>
     <string name="title_activity_splash_screen">Passport</string>
     <string name="title_activity_person_carte">PersonCarte</string>
+    <string name="button_search_label">Search</string>
 
 </resources>

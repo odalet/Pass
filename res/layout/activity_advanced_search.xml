@@ -9,37 +9,18 @@
         android:layout_height="wrap_content" android:background="#fff">
  
         <!--  Header  Starts-->
-        <LinearLayout android:id="@+id/header"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dip"
-                android:paddingBottom="5dip">
-                <!-- Logo Start-->
-                <ImageView 
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dip"/>
-                <!-- Logo Ends -->
-        </LinearLayout>
-
-        <LinearLayout 
-                android:layout_width="fill_parent"
-                android:layout_height="90dip"
-                android:layout_alignParentBottom="true">
-        </LinearLayout>
  
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/header"
             android:orientation="vertical"
             android:padding="10dip" >
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10px"
-                android:text="First Name"
+                android:layout_marginTop="5dp"
+                android:text="@string/person_surname_label"
                 android:textColor="#372c24" />
 
             <EditText
@@ -48,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
+                android:inputType="text"
                 android:singleLine="true" />
 
             <!-- Email Label -->
@@ -55,7 +37,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Given Name"
+                android:text="@string/person_given_names_label"
                 android:textColor="#372c24" />
 
             <EditText
@@ -64,13 +46,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
+                android:inputType="text"
                 android:singleLine="true" />
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nationality"
+                android:text="@string/person_nationality_label"
                 android:textColor="#372c24" />
 
             <Spinner
@@ -84,8 +67,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="#372c24"
-                android:text="Gender" />
+                android:text="@string/person_sex_label"
+                android:textColor="#372c24" />
 
             <Spinner
                 android:id="@+id/search_sex"
@@ -99,7 +82,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
-                android:text="Search" />
+                android:text="@string/button_search_label" />
         </LinearLayout>
 
   </RelativeLayout>

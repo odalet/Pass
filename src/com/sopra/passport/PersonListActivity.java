@@ -22,10 +22,8 @@ import com.sopra.passport.utils.ConnectionTools;
 import com.sopra.passport.utils.PersonDbHelper;
 import com.sopra.passport.utils.PersonFactory;
 
-
-
 /**
- * This activity is main activity of the application 
+ * This class is the main activity of the application.
  * contains a the charged list of persons
  * it's the  heart of the application
  * 
@@ -36,22 +34,23 @@ import com.sopra.passport.utils.PersonFactory;
 public class PersonListActivity extends Activity {
 
 	private static final int STATIC_INTEGER_VALUE = 0x7f040001;
-	private Context context = this;
-	private List<Person> personList = null;
-	public int returnValue = 0;
-	private ListView personListView = null;
-	private Person personSelected = null;
-	private PersonDbHelper mpersonDbHelper;
-	private PersonListAdapter mlistPersonAdapter;
-	private ProgressDialog barProgressDialog = null;
+	
+	private Context mContext = this;
+	private List<Person> mPersonList = null;
+	public int mReturnValue = 0;
+	private ListView mPersonListView = null;
+	private Person mPersonSelected = null;
+	private PersonDbHelper mPersonDbHelper;
+	private PersonListAdapter mListPersonAdapter;
+	private ProgressDialog mBarProgressDialog = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_person_list);
-		 mpersonDbHelper = new PersonDbHelper(context);
-		 personList = PersonFactory.getListPersons();
-		 initUI();
+		mPersonDbHelper = new PersonDbHelper(mContext);
+		mPersonList = PersonFactory.getListPersons();
+		initUI();
 	}
 	
 	@Override
@@ -63,6 +62,7 @@ public class PersonListActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
+		
 		switch (id) {
 		case R.id.action_settings:
 			
@@ -71,60 +71,57 @@ public class PersonListActivity extends Activity {
 			loadPersonList();
 			break;
 		case R.id.action_search:
-			Intent intent = new Intent(context, AdvancedSearchActivity.class);	
+			Intent intent = new Intent(mContext, AdvancedSearchActivity.class);	
 			startActivityForResult(intent,STATIC_INTEGER_VALUE);
 			break;
-
 		default:
 			break;
 		}
-		if (id == R.id.action_settings) {
+		
+		if (id == R.id.action_settings)
 			return true;
-		}
 		
 		return super.onOptionsItemSelected(item);
 	}
 	
 	/**
-	 * initialization function
+	 * Initialization method.
 	 */
 	private void initUI() {
-		personListView = (ListView) findViewById(R.id.list_personlist_view);
+		mPersonListView = (ListView) findViewById(R.id.list_personlist_view);
 		notifyListView();
-		barProgressDialog = new ProgressDialog(PersonListActivity.this);
-		barProgressDialog.setTitle("Loading.....");
-		barProgressDialog.setMessage("Please wait ");
+		mBarProgressDialog = new ProgressDialog(PersonListActivity.this);
+		mBarProgressDialog.setTitle("Loading.....");
+		mBarProgressDialog.setMessage("Please wait ");
 		EditText inputSearch = (EditText) findViewById(R.id.list_search_text);
-		inputSearch.addTextChangedListener(new SearchListener(this, personList, personListView));
+		inputSearch.addTextChangedListener(new SearchListener(this, mPersonList, mPersonListView));
 	}
 	
-	
 	/**
-	 * this function used to refresh person list content 
+	 * Method used to refresh person list content. 
 	 * @return void
 	 */
 	private void notifyListView(){
-		mlistPersonAdapter = new PersonListAdapter(context, R.layout.person_item_row, personList);
-		personListView.setAdapter(mlistPersonAdapter);
-		personListView.setOnItemClickListener(new ItemClickListener());
+		mListPersonAdapter = new PersonListAdapter(mContext, R.layout.person_item_row, mPersonList);
+		mPersonListView.setAdapter(mListPersonAdapter);
+		mPersonListView.setOnItemClickListener(new ItemClickListener());
 	}
 	
 	private void loadPersonList(){
-		if(ConnectionTools.isOnline(context)){
-			    barProgressDialog.show();
+		if(ConnectionTools.isOnline(mContext)){
+			    mBarProgressDialog.show();
 			new GetPersonListTask().execute();
-		}else{
-    		if(mpersonDbHelper.checkDataBase(context)){
-    			this.personList = mpersonDbHelper.getAllPersons();
+		} else {
+    		if(mPersonDbHelper.checkDataBase(mContext)){
+    			this.mPersonList = mPersonDbHelper.getAllPersons();
     			initUI();			
     		}
 		}
 	}
 	
 	/**
-	 * 
-	 * class implementing OnItemClickListener
-	 * it's used to load person details from :
+	 * This class implements OnItemClickListener interface.
+	 * It's used to load person details from :
 	 *  	- web service : if the person is not recently charged and the device is connected
 	 *  	- database : there is no connection and person charged in the database
 	 *		- from the initial list : if there is no person and no connection
@@ -133,14 +130,14 @@ public class PersonListActivity extends Activity {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			if(!personList.get(position).isCharged && ConnectionTools.isOnline(context)){
+			if(!mPersonList.get(position).isCharged && ConnectionTools.isOnline(mContext)) {
 				Integer[] pos = new Integer[]{position};
 				new GetPersonByIdTask().execute(pos);
-			}else if(ConnectionTools.isOnline(context) || personList.get(position).isCharged){
-				openPersonDetails(personList.get(position));
-			}else{
-				Person selected = personList.get(position);
-				Intent intent = new Intent(context, PersonCardActivity.class);	
+			} else if(ConnectionTools.isOnline(mContext) || mPersonList.get(position).isCharged) {
+				openPersonDetails(mPersonList.get(position));
+			} else {
+				Person selected = mPersonList.get(position);
+				Intent intent = new Intent(mContext, PersonCardActivity.class);	
 				intent.putExtra("person", selected);
 				startActivity(intent);
 			}
@@ -148,7 +145,7 @@ public class PersonListActivity extends Activity {
 	}
 	
 	private void openPersonDetails(Person inPerson){
-		Intent intent = new Intent(context, PersonActivity.class);
+		Intent intent = new Intent(mContext, PersonActivity.class);
 		intent.putExtra("person", inPerson);		
 		startActivity(intent);
 	}
@@ -157,68 +154,68 @@ public class PersonListActivity extends Activity {
 		public GetPersonByIdTask(){
 			super();
 		}
-    	@Override
+    	
+		@Override
     	protected void onPostExecute(Void v) {
-    		openPersonDetails(personSelected);
-    		ChangeStateListView();
+    		openPersonDetails(mPersonSelected);
+    		changeStateListView();
     		notifyListView();
     	}
 	
     	/**
-    	 * this function lunch a thread in background as a worker for 
-    	 * after loading person, and update the person in database
+    	 * This function lunch a thread in background as a worker for 
+    	 * after loading person, and update the person in database.
     	 */
 		@Override
 		protected Void doInBackground(Integer... params) {
-			ChangeStateListView();
+			changeStateListView();
 			int position = params[0];
-			personSelected = PersonFactory.getPersonById(personList.get(position).getId());
-			personList.set(position,Person.combine(personSelected,personList.get(position)));
+			mPersonSelected = PersonFactory.getPersonById(mPersonList.get(position).getId());
+			mPersonList.set(position,Person.combine(mPersonSelected,mPersonList.get(position)));
+			
 			try {
-				mpersonDbHelper.update(personSelected);
+				mPersonDbHelper.update(mPersonSelected);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
 			return null;
 		}
 	}
 	
-	/*
-	 * This class is used to loading the person list from WS
-	 * used as an asynchronous task, it's called when 
-	 * the device is connection to Internet
-	 * 
+	/**
+	 * This class is used to loading the person list from WS.
+	 * Used as an asynchronous task, it's called when the device is connection to Internet
 	 */
 	private class GetPersonListTask extends AsyncTask<Void, Void, Void> {
     	
     	@Override
     	protected void onPostExecute(Void v) {
     		try{
-				mpersonDbHelper.UpdateAll(personList);
-			}catch(Exception exp){
+				mPersonDbHelper.updateAll(mPersonList);
+			} catch(Exception exp){
 				exp.printStackTrace();
 			}
-    		barProgressDialog.hide();
+    		
+    		mBarProgressDialog.hide();
     		initUI();
     	}
 
 		@Override
 		protected Void doInBackground(Void... params) {
 			try {
-				personList = PersonFactory.getListPersonsFromWs();
+				mPersonList = PersonFactory.getListPersonsFromWs();
 			} catch (Exception e) {
 				e.printStackTrace();
-			}	
+			}
+			
     		return null;
 		}
     }
 	
-	
 	/**
-	 * This function called for filtering persons by criteria
-	 * used in the advanced search activity
-	 * 
-	 * @return void
+	 * This method is called for filtering persons by criteria.
+	 * Used in the advanced search activity.
 	 */
 	@Override 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {     
@@ -228,40 +225,38 @@ public class PersonListActivity extends Activity {
 		    // on returning from search part this block will be executed
 	    	if (resultCode == Activity.RESULT_OK) { 
 	    		PersonFilter searchElement = (PersonFilter)data.getSerializableExtra("searchCriteria");
-	    		rechargeList(searchElement);
+	    		reloadList(searchElement);
 	    	} 
 	      break; 
 	    } 
 	  } 
 	
-	private void rechargeList(PersonFilter searchElement){
+	private void reloadList(PersonFilter searchElement) {
 		List<Person> listPerson = new ArrayList<Person>();
-		for(Person person : this.personList){
+		
+		for(Person person : this.mPersonList){
 			if(person.filter(searchElement)){
 				listPerson.add(person);
 			}
 		}
+		
 		if(listPerson.size() != 0){
-			this.personList = listPerson;
+			this.mPersonList = listPerson;
 			initUI();
 		}
 	}
 	
-	void ChangeStateListView(){
+	void changeStateListView() {
 		runOnUiThread(new Runnable() {
 			public void run() {
-				if(personListView.isEnabled()){
-					personListView.setEnabled(false);
-					barProgressDialog.show();
-				}else{
-					barProgressDialog.hide();
-					personListView.setEnabled(true);
+				if(mPersonListView.isEnabled()) {
+					mPersonListView.setEnabled(false);
+					mBarProgressDialog.show();
+				} else {
+					mBarProgressDialog.hide();
+					mPersonListView.setEnabled(true);
 				}	
 			}
 		});
 	}
-	
-	
-	
-	
 }

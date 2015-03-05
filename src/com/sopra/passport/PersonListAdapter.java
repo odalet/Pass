@@ -1,4 +1,5 @@
 package com.sopra.passport;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -12,32 +13,31 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 /**
- * Class adapter used for customizing the person ListView
+ * Class adapter used for customizing the person ListView.
  * 
  * @author Mohammed EL GADI
  * @author Corentin CHEMINAUD 
  */
 public class PersonListAdapter extends ArrayAdapter<Person> {
 
-	private Context context;
-	private int resourceId;
-	private LayoutInflater inflater;
+	private Context mContext;
+	private int mResourceId;
+	private LayoutInflater mInflater;
 	
 	public PersonListAdapter(Context context, int textViewResourceId, List<Person> objects) {
 		super(context, textViewResourceId, objects);
-		this.resourceId = textViewResourceId;
-		this.inflater = LayoutInflater.from(context);
-		this.context = context;
+		this.mResourceId = textViewResourceId;
+		this.mInflater = LayoutInflater.from(context);
+		this.mContext = context;
 	}
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
 		if (convertView == null) {
-			inflater = ((Activity) context).getLayoutInflater();
-			convertView = inflater.inflate(resourceId, parent, false);
+			mInflater = ((Activity) mContext).getLayoutInflater();
+			convertView = mInflater.inflate(mResourceId, parent, false);
 		}
 		
 		Person user = getItem(position);
@@ -62,18 +62,21 @@ public class PersonListAdapter extends ArrayAdapter<Person> {
         	tmp.append(user.getGivenNames().get(i));
         	tmp.append(", ");
         }
+        
         tmp.append(user.getGivenNames().get(user.getGivenNames().size() - 1));
         nameView.setText(tmp.toString());
+        
         // Birthdate
         tmp = new StringBuffer();
         tmp.append(user.getBirthdate());
         tmp.append(' ');
         firstLineView.setText(tmp.toString());
+        
         // Nationality
         secondLineView.setText(user.getNationality().getCountrName());
+        
         // Sex
         sexLineView.setText(user.getSex().toString());
-        
         
         try {
 			photoView.setImageBitmap(user.getThumbnailToBitmap());
@@ -83,8 +86,4 @@ public class PersonListAdapter extends ArrayAdapter<Person> {
     
         return convertView;
 	}
-
-	
-	
-	
 }

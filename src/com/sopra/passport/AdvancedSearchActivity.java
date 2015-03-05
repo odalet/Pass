@@ -16,7 +16,7 @@ import android.widget.TextView;
  * This class implements advanced search service in activity.
  * 
  * @author Mohammed EL GADI
- * @author Corentin CHEMINAUD 
+ * @author Corentin CHEMINAUD
  */
 public class AdvancedSearchActivity extends Activity {
 	
@@ -26,24 +26,24 @@ public class AdvancedSearchActivity extends Activity {
 		setContentView(R.layout.activity_advanced_search);
 		
 		final Spinner countries = (Spinner) findViewById(R.id.search_country);
-		final Spinner gender	 =  (Spinner) findViewById(R.id.search_sex);
-		final Button searchbtn = (Button) findViewById(R.id.btnSearch);
+		final Spinner gender = (Spinner) findViewById(R.id.search_sex);
 		final TextView firstName = (TextView) findViewById(R.id.search_firstName);
 		final TextView givenName = (TextView) findViewById(R.id.search_givenName);
+		final Button searchButton = (Button) findViewById(R.id.btnSearch);
 		
 		countries.setAdapter(new ArrayAdapter<CountryCode>(this,android.R.layout.simple_spinner_dropdown_item,CountryCode.values()));
 		gender.setAdapter(new ArrayAdapter<Gender>(this,android.R.layout.simple_spinner_dropdown_item,Gender.values()));
 	
-		searchbtn.setOnClickListener(new View.OnClickListener() {
+		searchButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String namefirst = firstName.getText().toString();
-                String namegiven = givenName.getText().toString();
+                String nameFirst = firstName.getText().toString();
+                String nameGiven = givenName.getText().toString();
                 Gender selectedGender = (Gender)gender.getSelectedItem();
                 CountryCode selectedCountryCode = (CountryCode)countries.getSelectedItem();
                 
                 PersonFilter serchBloc = new PersonFilter();
-                serchBloc.setFirstName(namefirst);
-                serchBloc.setGivenName(namegiven);
+                serchBloc.setFirstName(nameFirst);
+                serchBloc.setGivenName(nameGiven);
                 serchBloc.setNationality(selectedCountryCode);
                 serchBloc.setSex(selectedGender);
                 
@@ -53,8 +53,5 @@ public class AdvancedSearchActivity extends Activity {
                 finish();
             }
         });
-
-		
-	
 	}
 }
